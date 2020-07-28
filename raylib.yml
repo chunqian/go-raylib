@@ -15,6 +15,7 @@ PARSER:
   SourcesPaths: ["lib/raylib/src/raylib.h"]
   Defines:
     C_FOR_GO: 1
+    C_FOR_GO_DISABLE: 1
 
 TRANSLATOR:
   ConstRules:

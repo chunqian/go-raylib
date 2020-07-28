@@ -15,9 +15,11 @@ PARSER:
   SourcesPaths: ["lib/raylib/src/physac.h"]
   Defines:
     C_FOR_GO: 1
+    C_FOR_GO_DISABLE: 1
     PHYSAC_IMPLEMENTATION: 1
     PHYSAC_NO_THREADS: 1
     PHYSAC_STANDALONE: 1
+    PHYSAC_STATIC: 1
 
 TRANSLATOR:
   ConstRules:
@@ -40,6 +42,8 @@ TRANSLATOR:
       - { action: ignore, from: __ }
       - { action: accept, from: "." }
     type:
+      - { action: replace, from: ^PhysicsBody$, to: "PhysicsBodyData" }
+      - { action: replace, from: ^PhysicsManifold$, to: "PhysicsManifoldData" }
       - { action: accept, from: "." }
     private:
       - { transform: unexport }

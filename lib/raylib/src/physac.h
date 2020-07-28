@@ -69,6 +69,7 @@
 *     3. This notice may not be removed or altered from any source distribution.
 *
 **********************************************************************************************/
+#pragma once // C_FOR_GO
 
 #if !defined(PHYSAC_H)
 #define PHYSAC_H
@@ -126,6 +127,70 @@
 #endif
 
 typedef enum PhysicsShapeType { PHYSICS_CIRCLE, PHYSICS_POLYGON } PhysicsShapeType;
+
+#if defined(C_FOR_GO)
+//----------------------------------------------------------------------------------
+// Data Types Structure Definition
+//----------------------------------------------------------------------------------
+
+// Matrix2x2 type (used for polygon shape rotation matrix)
+typedef struct Matrix2x2 {
+    float m00;
+    float m01;
+    float m10;
+    float m11;
+} Matrix2x2;
+
+typedef struct PolygonData {
+    unsigned int vertexCount;                   // Current used vertex and normals count
+    Vector2 positions[PHYSAC_MAX_VERTICES];     // Polygon vertex positions vectors
+    Vector2 normals[PHYSAC_MAX_VERTICES];       // Polygon vertex normals vectors
+} PolygonData;
+
+typedef struct PhysicsShape {
+    PhysicsShapeType type;                      // Physics shape type (circle or polygon)
+    struct PhysicsBodyData *body;                           // Shape physics body reference
+    float radius;                               // Circle shape radius (used for circle shapes)
+    Matrix2x2 transform;                        // Vertices transform matrix 2x2
+    PolygonData vertexData;                     // Polygon shape vertices position and normals data (just used for polygon shapes)
+} PhysicsShape;
+
+typedef struct PhysicsBodyData {
+    unsigned int id;                            // Reference unique identifier
+    bool enabled;                               // Enabled dynamics state (collisions are calculated anyway)
+    Vector2 position;                           // Physics body shape pivot
+    Vector2 velocity;                           // Current linear velocity applied to position
+    Vector2 force;                              // Current linear force (reset to 0 every step)
+    float angularVelocity;                      // Current angular velocity applied to orient
+    float torque;                               // Current angular force (reset to 0 every step)
+    float orient;                               // Rotation in radians
+    float inertia;                              // Moment of inertia
+    float inverseInertia;                       // Inverse value of inertia
+    float mass;                                 // Physics body mass
+    float inverseMass;                          // Inverse value of mass
+    float staticFriction;                       // Friction when the body has not movement (0 to 1)
+    float dynamicFriction;                      // Friction when the body has movement (0 to 1)
+    float restitution;                          // Restitution coefficient of the body (0 to 1)
+    bool useGravity;                            // Apply gravity force to dynamics
+    bool isGrounded;                            // Physics grounded on other body state
+    bool freezeOrient;                          // Physics rotation constraint
+    PhysicsShape shape;                         // Physics body shape information (type, radius, vertices, normals)
+} PhysicsBodyData;
+
+typedef struct PhysicsManifoldData {
+    unsigned int id;                            // Reference unique identifier
+    struct PhysicsBodyData *bodyA;                          // Manifold first physics body reference
+    struct PhysicsBodyData *bodyB;                          // Manifold second physics body reference
+    float penetration;                          // Depth of penetration from collision
+    Vector2 normal;                             // Normal direction vector from 'a' to 'b'
+    Vector2 contacts[2];                        // Points of contact during collision
+    unsigned int contactsCount;                 // Current collision number of contacts
+    float restitution;                          // Mixed restitution during collision
+    float dynamicFriction;                      // Mixed dynamic friction during collision
+    float staticFriction;                       // Mixed static friction during collision
+} PhysicsManifoldData, *PhysicsManifold;
+
+#endif // C_FOR_GO
 
 // Previously defined to be used in PhysicsShape struct as circular dependencies
 typedef struct PhysicsBodyData *PhysicsBody;
@@ -188,8 +253,7 @@ PHYSACDEF void ClosePhysics(void);                                              
     #define TRACELOG(...) (void)0
 #endif
 
-#if defined(C_FOR_GO)
-#else
+#if !defined(C_FOR_GO_DISABLE)
 #include <stdlib.h>                 // Required for: malloc(), free(), srand(), rand()
 #include <math.h>                   // Required for: cosf(), sinf(), fabs(), sqrtf()
 #endif
@@ -198,8 +262,7 @@ PHYSACDEF void ClosePhysics(void);                                              
     #include "raymath.h"            // Required for: Vector2Add(), Vector2Subtract()
 #endif
 
-#if defined(C_FOR_GO)
-#else
+#if !defined(C_FOR_GO_DISABLE)
 // Time management functionality
 #include <time.h>                   // Required for: time(), clock_gettime()
 #endif
@@ -228,6 +291,7 @@ PHYSACDEF void ClosePhysics(void);                                              
 #define PHYSAC_K            1.0f/3.0f
 #define PHYSAC_VECTOR_ZERO  (Vector2){ 0.0f, 0.0f }
 
+#if !defined(C_FOR_GO)
 //----------------------------------------------------------------------------------
 // Data Types Structure Definition
 //----------------------------------------------------------------------------------
@@ -288,6 +352,8 @@ typedef struct PhysicsManifoldData {
     float dynamicFriction;                      // Mixed dynamic friction during collision
     float staticFriction;                       // Mixed static friction during collision
 } PhysicsManifoldData, *PhysicsManifold;
+
+#endif // C_FOR_GO
 
 //----------------------------------------------------------------------------------
 // Global Variables Definition
@@ -359,8 +425,7 @@ static void Mat2Set(Matrix2x2 *matrix, float radians);                          
 static inline Matrix2x2 Mat2Transpose(Matrix2x2 matrix);                                                              // Returns the transpose of a given matrix 2x2
 static inline Vector2 Mat2MultiplyVector2(Matrix2x2 matrix, Vector2 vector);                                     // Multiplies a vector by a matrix 2x2
 
-#if defined(C_FOR_GO)
-#else
+#if !defined(C_FOR_GO_DISABLE)
 //----------------------------------------------------------------------------------
 // Module Functions Definition
 //----------------------------------------------------------------------------------
@@ -2069,6 +2134,6 @@ static inline Vector2 Mat2MultiplyVector2(Matrix2x2 matrix, Vector2 vector)
     return (Vector2){ matrix.m00*vector.x + matrix.m01*vector.y, matrix.m10*vector.x + matrix.m11*vector.y };
 }
 
-#endif // C_FOR_GO
+#endif // C_FOR_GO_DISABLE
 
 #endif  // PHYSAC_IMPLEMENTATION

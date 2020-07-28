@@ -57,9 +57,7 @@
 *     3. This notice may not be removed or altered from any source distribution.
 *
 **********************************************************************************************/
-#if defined(C_FOR_GO)
-#pragma once
-#endif
+#pragma once // C_FOR_GO
 
 #ifndef RLGL_H
 #define RLGL_H
