@@ -1,9 +1,10 @@
 package main
 
 import (
+	rl "goray/raylib"
+	
 	"fmt"
 	"math"
-	"rl"
 	"runtime"
 	"unsafe"
 )

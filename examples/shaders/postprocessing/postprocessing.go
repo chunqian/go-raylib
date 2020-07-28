@@ -1,8 +1,9 @@
 package main
 
 import (
+	rl "goray/raylib"
+	
 	"fmt"
-	"rl"
 	"runtime"
 )
 
