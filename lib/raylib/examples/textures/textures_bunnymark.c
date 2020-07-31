@@ -9,7 +9,7 @@
 *
 ********************************************************************************************/
 
-#include "raylib.h"
+#include "../../src/raylib.h"
 
 #include <stdlib.h>                 // Required for: malloc(), free()
 

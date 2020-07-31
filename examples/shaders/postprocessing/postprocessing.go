@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	MAX_POSTPRO_SHADERS = 12
+	MAX_POSTPRO_SHADERS = 8 // 12
 )
 
 type PostproShader int32
