@@ -31,7 +31,7 @@ TRANSLATOR:
       - { action: accept, from: ^PHYSAC_ }
       - { action: accept, from: ^PHYSICS_ }
 
-      - { action: ignore, from: "PHYSAC_VECTOR_ZERO" }
+      - { action: ignore, from: PHYSAC_VECTOR_ZERO }
 
       - { transform: title }
     function:
@@ -73,7 +73,7 @@ TRANSLATOR:
       - { action: accept, from: ^Mat2Transpose$ }
       - { action: accept, from: ^Mat2MultiplyVector2$ }
     type:
-      - { action: accept, from: ^Physics }
+      - { action: accept, from: Physics }
       - { action: accept, from: ^Vector2$ }
       - { action: accept, from: ^Matrix2x2$ }
       - { action: accept, from: ^PolygonData$ }

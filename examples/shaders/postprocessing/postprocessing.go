@@ -22,10 +22,10 @@ const (
 	FX_CROSS_STITCHING
 	FX_PREDATOR_VIEW
 	FX_SCANLINES
-	FX_FISHEYE
-	FX_SOBEL
-	FX_BLOOM
-	FX_BLUR
+	// FX_FISHEYE
+	// FX_SOBEL
+	// FX_BLOOM
+	// FX_BLUR
 )
 
 var postproShaderText = []string{
@@ -37,10 +37,10 @@ var postproShaderText = []string{
 	"CROSS_STITCHING",
 	"PREDATOR_VIEW",
 	"SCANLINES",
-	"FISHEYE",
-	"SOBEL",
-	"BLOOM",
-	"BLUR",
+	// "FISHEYE",
+	// "SOBEL",
+	// "BLOOM",
+	// "BLUR",
 }
 
 func init() {
@@ -78,10 +78,10 @@ func main() {
 	shaders[FX_CROSS_STITCHING] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/cross_stitching.fs", 330))
 	shaders[FX_PREDATOR_VIEW] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/predator.fs", 330))
 	shaders[FX_SCANLINES] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/scanlines.fs", 330))
-	shaders[FX_FISHEYE] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/fisheye.fs", 330))
-	shaders[FX_SOBEL] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/sobel.fs", 330))
-	shaders[FX_BLOOM] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/bloom.fs", 330))
-	shaders[FX_BLUR] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/blur.fs", 330))
+	// shaders[FX_FISHEYE] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/fisheye.fs", 330))
+	// shaders[FX_SOBEL] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/sobel.fs", 330))
+	// shaders[FX_BLOOM] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/bloom.fs", 330))
+	// shaders[FX_BLUR] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/blur.fs", 330))
 
 	currentShader := FX_GRAYSCALE
 
