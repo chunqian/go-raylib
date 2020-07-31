@@ -2,7 +2,7 @@ package main
 
 import (
 	rl "goray/raylib"
-	
+
 	"fmt"
 	"runtime"
 )
@@ -126,7 +126,17 @@ func main() {
 
 		rl.BeginShaderMode(shaders[currentShader])
 
-		rl.DrawTextureRec(*target.GetTexture(), rl.Rectangle{X: 0, Y: 0, Width: float32(*target.GetTexture().GetWidth()), Height: -float32(*target.GetTexture().GetHeight())}, rl.Vector2{X: 0, Y: 0}, *rl.White)
+		rl.DrawTextureRec(
+			*target.GetTexture(),
+			rl.Rectangle{
+				X:      0,
+				Y:      0,
+				Width:  float32(*target.GetTexture().GetWidth()),
+				Height: -float32(*target.GetTexture().GetHeight()),
+			},
+			rl.Vector2{X: 0, Y: 0},
+			*rl.White,
+		)
 
 		rl.EndShaderMode()
 

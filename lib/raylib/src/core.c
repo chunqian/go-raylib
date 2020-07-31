@@ -327,14 +327,8 @@ typedef struct {
 } KeyEventFifo;
 #endif
 
-#if defined(C_FOR_GO)
-typedef struct { int x; int y; } RLPoint;
-typedef struct { unsigned int width; unsigned int height; } RLSize;
-#else
 typedef struct { int x; int y; } Point;
 typedef struct { unsigned int width; unsigned int height; } Size;
-#endif
-
 
 // Core global state context data
 typedef struct CoreData {
@@ -362,21 +356,12 @@ typedef struct CoreData {
         bool alwaysRun;                     // Flag to keep window update/draw running on minimized
         bool shouldClose;                   // Flag to set window for closing
 
-#if defined(C_FOR_GO)
-        RLPoint position;                     // Window position on screen (required on fullscreen toggle)
-        RLSize display;                       // Display width and height (monitor, device-screen, LCD, ...)
-        RLSize screen;                        // Screen width and height (used render area)
-        RLSize currentFbo;                    // Current render width and height, it could change on BeginTextureMode()
-        RLSize render;                        // Framebuffer width and height (render area, including black bars if required)
-        RLPoint renderOffset;                 // Offset from render area (must be divided by 2)
-#else
         Point position;                     // Window position on screen (required on fullscreen toggle)
         Size display;                       // Display width and height (monitor, device-screen, LCD, ...)
         Size screen;                        // Screen width and height (used render area)
         Size currentFbo;                    // Current render width and height, it could change on BeginTextureMode()
         Size render;                        // Framebuffer width and height (render area, including black bars if required)
         Point renderOffset;                 // Offset from render area (must be divided by 2)
-#endif
         Matrix screenScale;                 // Matrix to scale screen (framebuffer rendering)
 
         char **dropFilesPath;               // Store dropped files paths as strings

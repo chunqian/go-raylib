@@ -126,6 +126,7 @@
 *     3. This notice may not be removed or altered from any source distribution.
 *
 **********************************************************************************************/
+#pragma once // Cforgo
 
 #ifndef RAYGUI_H
 #define RAYGUI_H
@@ -133,7 +134,7 @@
 #define RAYGUI_VERSION  "2.6-dev"
 
 #if !defined(RAYGUI_STANDALONE)
-    #include "raylib.h"
+    #include "../../raylib/src/raylib.h" // Cforgo
 #endif
 
 // Define functions scope to be used internally (static) or externally (extern) to the module including this file
@@ -158,6 +159,7 @@
 
 
 #if !defined(RAYGUI_MALLOC) && !defined(RAYGUI_CALLOC) && !defined(RAYGUI_FREE)
+    #include <stdint.h> // Cforgo
     #include <stdlib.h>                 // Required for: malloc(), calloc(), free()
 #endif
 
@@ -488,6 +490,10 @@ RAYGUIDEF void UnloadGuiStyle(GuiStyle style);                  // Unload style
 */
 
 RAYGUIDEF const char *GuiIconText(int iconId, const char *text); // Get text with icon id prepended (if supported)
+
+// Cforgo
+RAYGUIDEF Color GuiColorPanelEx(Rectangle bounds, Color color, float hue);
+RAYGUIDEF float GuiSliderPro(Rectangle bounds, const char *textLeft, const char *textRight, float value, float minValue, float maxValue, int sliderWidth);
 
 #if defined(RAYGUI_SUPPORT_ICONS)
 // Gui icons functionality

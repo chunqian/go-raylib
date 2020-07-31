@@ -3530,11 +3530,7 @@ Color ColorAlphaBlend(Color dst, Color src, Color tint)
 }
 
 // Returns a Color struct from hexadecimal value
-#if defined(C_FOR_GO)
-Color GetColorStructure(int hexValue)
-#else
 Color GetColor(int hexValue)
-#endif
 {
     Color color;
 

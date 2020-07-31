@@ -14,12 +14,7 @@ PARSER:
     - "/Applications/Xcode-11.3.1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
   SourcesPaths: ["lib/raylib/src/physac.h"]
   Defines:
-    C_FOR_GO: 1
-    C_FOR_GO_DISABLE: 1
-    PHYSAC_IMPLEMENTATION: 1
-    PHYSAC_NO_THREADS: 1
     PHYSAC_STANDALONE: 1
-    PHYSAC_STATIC: 1
 
 TRANSLATOR:
   ConstRules:
@@ -31,20 +26,63 @@ TRANSLATOR:
       - { target: ".", tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
   Rules:
     global:
-      - { action: accept, from: "." }
       - { transform: export }
     const:
-      - { action: accept, from: "." }
+      - { action: accept, from: ^PHYSAC_ }
+      - { action: accept, from: ^PHYSICS_ }
+
       - { action: ignore, from: "PHYSAC_VECTOR_ZERO" }
-      - { action: ignore, from: __ }
+
       - { transform: title }
     function:
-      - { action: ignore, from: __ }
-      - { action: accept, from: "." }
+      - { action: accept, from: Physics }
+      - { action: accept, from: ^FindAvailableBodyIndex }
+      - { action: accept, from: ^CreateRandomPolygon }
+      - { action: accept, from: ^CreateRectanglePolygon }
+      - { action: accept, from: ^PhysicsLoop }
+      - { action: accept, from: ^PhysicsStep }
+      - { action: accept, from: ^FindAvailableManifoldIndex }
+      - { action: accept, from: ^CreatePhysicsManifold }
+      - { action: accept, from: ^DestroyPhysicsManifold }
+      - { action: accept, from: ^SolvePhysicsManifold }
+      - { action: accept, from: ^SolveCircleToCircle }
+      - { action: accept, from: ^SolveCircleToPolygon }
+      - { action: accept, from: ^SolvePolygonToCircle }
+      - { action: accept, from: ^SolvePolygonToPolygon }
+      - { action: accept, from: ^IntegratePhysicsForces }
+      - { action: accept, from: ^InitializePhysicsManifolds }
+      - { action: accept, from: ^IntegratePhysicsImpulses }
+      - { action: accept, from: ^IntegratePhysicsVelocity }
+      - { action: accept, from: ^CorrectPhysicsPositions }
+      - { action: accept, from: ^FindAxisLeastPenetration }
+      - { action: accept, from: ^FindIncidentFace }
+      - { action: accept, from: ^Clip$ }
+      - { action: accept, from: ^BiasGreaterThan }
+      - { action: accept, from: ^TriangleBarycenter }
+      - { action: accept, from: ^InitTimer$ }
+      - { action: accept, from: ^GetTimeCount$ }
+      - { action: accept, from: ^GetCurrentTime$ }
+      - { action: accept, from: ^MathCross$ }
+      - { action: accept, from: ^MathCrossVector2$ }
+      - { action: accept, from: ^MathLenSqr$ }
+      - { action: accept, from: ^MathDot$ }
+      - { action: accept, from: ^DistSqr$ }
+      - { action: accept, from: ^MathNormalize$ }
+      - { action: accept, from: ^Mat2Radians$ }
+      - { action: accept, from: ^Mat2Set$ }
+      - { action: accept, from: ^Mat2Transpose$ }
+      - { action: accept, from: ^Mat2MultiplyVector2$ }
     type:
+      - { action: accept, from: ^Physics }
+      - { action: accept, from: ^Vector2$ }
+      - { action: accept, from: ^Matrix2x2$ }
+      - { action: accept, from: ^PolygonData$ }
+      - { action: accept, from: ^PhysicsShape$ }
+      - { action: accept, from: ^PhysicsBodyData$ }
+      - { action: accept, from: ^PhysicsManifoldData$ }
+      
       - { action: replace, from: ^PhysicsBody$, to: "PhysicsBodyData" }
       - { action: replace, from: ^PhysicsManifold$, to: "PhysicsManifoldData" }
-      - { action: accept, from: "." }
     private:
       - { transform: unexport }
     post-global:

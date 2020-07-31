@@ -1,9 +1,9 @@
 all: gen
 	
 gen:
-# 	c-for-go -out . raylib.yml
 	../c-for-go/c-for-go -out . raylib.yml
 	../c-for-go/c-for-go -out . physac.yml
+	../c-for-go/c-for-go -out . raygui.yml
 
 clean:
 	# raylib
@@ -14,6 +14,10 @@ clean:
 	rm -f physac/cgo_helpers.go physac/cgo_helpers.h physac/cgo_helpers.c
 	rm -f physac/doc.go physac/types.go physac/const.go
 	rm -f physac/physac.go
+	# raygui
+	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
+	rm -f raygui/doc.go raygui/types.go raygui/const.go
+	rm -f raygui/raygui.go
 
 test:
 	go build

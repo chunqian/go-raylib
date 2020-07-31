@@ -3,8 +3,11 @@
 ### Build
 
 ```bash
+$ export MACOSX_DEPLOYMENT_TARGET=10.9
 $ git clone https://github.com/chunqian/go-raylib.git
-$ cd go-raylib
+$ cd go-raylib/lib/raylib/src
+$ make
+$ cd ../..
 $ go build -o examples/audio/module_playing/module_playing examples/audio/module_playing/module_playing.go
 ```
 

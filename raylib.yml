@@ -13,9 +13,6 @@ PARSER:
     - "/Applications/Xcode-11.3.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
     - "/Applications/Xcode-11.3.1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
   SourcesPaths: ["lib/raylib/src/raylib.h"]
-  Defines:
-    C_FOR_GO: 1
-    C_FOR_GO_DISABLE: 1
 
 TRANSLATOR:
   ConstRules:
@@ -65,22 +62,96 @@ TRANSLATOR:
       - { target: ".", tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
   Rules:
     global:
-      - { action: accept, from: "." }
       - { transform: export }
     const:
-      - { action: accept, from: "." }
+      - { action: accept, from: ^PI$ }
+      - { action: accept, from: DEG }
+      - { action: accept, from: ^LOC_MAP }
+      - { action: accept, from: ^MAP_ }
+      - { action: accept, from: ^FLAG_ }
+      - { action: accept, from: ^KEY_ }
+      - { action: accept, from: ^MOUSE_ }
+      - { action: accept, from: ^GAMEPAD_ }
+      - { action: accept, from: ^LOC_ }
+      - { action: accept, from: ^UNIFORM_ }
+      - { action: accept, from: ^MAP_ }
+      - { action: accept, from: ^UNCOMPRESSED_ }
+      - { action: accept, from: ^COMPRESSED_ }
+      - { action: accept, from: ^FILTER_ }
+      - { action: accept, from: ^CUBEMAP_ }
+      - { action: accept, from: ^WRAP_ }
+      - { action: accept, from: ^FONT_ }
+      - { action: accept, from: ^BLEND_ }
+      - { action: accept, from: ^GESTURE_ }
+      - { action: accept, from: ^CAMERA_ }
+      - { action: accept, from: ^NPT_ }
+
       - { action: ignore, from: "(?i)Trace" }
       - { action: ignore, from: "SpriteFont" }
-      - { action: ignore, from: __ }
+
       - { transform: title }
     function:
       - { action: accept, from: "." }
-      - { action: replace, from: ^GetColorStructure, to: GetColor }
+
+      # - { action: replace, from: ^GetColorStructure, to: GetColor }
+
       - { action: ignore, from: "(?i)Trace" }
       - { action: ignore, from: "^TextFormat$" }
       - { action: ignore, from: __ }
     type:
-      - { action: accept, from: "." }
+      - { action: accept, from: ^ConfigFlag$ }
+      - { action: accept, from: ^Keyboard }
+      - { action: accept, from: ^Android }
+      - { action: accept, from: ^Mouse }
+      - { action: accept, from: ^Gamepad }
+      - { action: accept, from: ^Shader }
+      - { action: accept, from: ^Material }
+      - { action: accept, from: ^Pixel }
+      - { action: accept, from: ^Texture }
+      - { action: accept, from: ^Cubemap }
+      - { action: accept, from: ^Font }
+      - { action: accept, from: ^Blend }
+      - { action: accept, from: ^Gesture }
+      - { action: accept, from: ^Camera }
+      - { action: accept, from: ^NPatch }
+
+      - { action: accept, from: ^Vector2$ }
+      - { action: accept, from: ^Vector3$ }
+      - { action: accept, from: ^Vector4$ }
+      - { action: accept, from: ^Quaternion$ }
+      - { action: accept, from: ^Matrix$ }
+      - { action: accept, from: ^Color$ }
+      - { action: accept, from: ^Rectangle$ }
+      - { action: accept, from: ^Image$ }
+      - { action: accept, from: ^Texture2D$ }
+      - { action: accept, from: ^Texture$ }
+      - { action: accept, from: ^TextureCubemap$ }
+      - { action: accept, from: ^RenderTexture2D$ }
+      - { action: accept, from: ^RenderTexture$ }
+      - { action: accept, from: ^NPatchInfo$ }
+      - { action: accept, from: ^CharInfo$ }
+      - { action: accept, from: ^Font$ }
+      - { action: accept, from: ^Camera3D$ }
+      - { action: accept, from: ^Camera$ }
+      - { action: accept, from: ^Camera2D$ }
+      - { action: accept, from: ^Mesh$ }
+      - { action: accept, from: ^Shader$ }
+      - { action: accept, from: ^MaterialMap$ }
+      - { action: accept, from: ^Material$ }
+      - { action: accept, from: ^Transform$ }
+      - { action: accept, from: ^BoneInfo$ }
+      - { action: accept, from: ^Model$ }
+      - { action: accept, from: ^ModelAnimation$ }
+      - { action: accept, from: ^Ray$ }
+      - { action: accept, from: ^RayHitInfo$ }
+      - { action: accept, from: ^BoundingBox$ }
+      - { action: accept, from: ^Wave$ }
+      - { action: accept, from: ^RAudioBuffer$ }
+      - { action: accept, from: ^AudioStream$ }
+      - { action: accept, from: ^Sound$ }
+      - { action: accept, from: ^Music$ }
+      - { action: accept, from: ^VrDeviceInfo$ }
+
       - { action: ignore, from: "(?i)Trace" }
     private:
       - { transform: unexport }

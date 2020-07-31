@@ -21,7 +21,7 @@
 *
 **********************************************************************************************/
 
-#include "raylib.h"
+#include "../../../raylib/src/raylib.h"
 
 #define RAYGUI_IMPLEMENTATION
 #include "../../src/raygui.h"
