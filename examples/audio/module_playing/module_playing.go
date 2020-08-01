@@ -97,7 +97,9 @@ func main() {
 				circles[i].radius = float32(rl.GetRandomValue(10, 40))
 				px := float32(rl.GetRandomValue(int32(circles[i].radius), screenWidth-int32(circles[i].radius)))
 				py := float32(rl.GetRandomValue(int32(circles[i].radius), screenHeight-int32(circles[i].radius)))
-				circles[i].position.SetX(px).SetY(py)
+				
+				circles[i].position.Self().X = px
+				circles[i].position.Self().Y = py
 				circles[i].speed = float32(rl.GetRandomValue(1, 100)) / 2000.0
 				circles[i].color = *colors[rl.GetRandomValue(0, 13)]
 			}

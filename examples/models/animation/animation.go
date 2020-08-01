@@ -30,7 +30,7 @@ func main() {
 	model := rl.LoadModel("../resources/guy/guy.iqm")
 	texture := rl.LoadTexture("../resources/guy/guytex.png")
 
-	rl.SetMaterialTexture(&(model.GetMaterials(*model.GetMaterialCount())[0]), rl.MAP_DIFFUSE, texture)
+	rl.SetMaterialTexture(model.GetMaterials(0), rl.MAP_DIFFUSE, texture)
 
 	animsCount := int32(0)
 	anims := rl.LoadModelAnimations("../resources/guy/guyanim.iqm", &animsCount)
@@ -39,8 +39,6 @@ func main() {
 	rl.SetCameraMode(camera, int32(rl.CAMERA_CUSTOM))
 	rl.SetTargetFPS(60)
 
-	framePoses := anims[0].GetFramePoses(*anims[0].GetFrameCount(), *model.GetBoneCount())
-
 	for !rl.WindowShouldClose() {
 
 		rl.UpdateCamera(&camera)
@@ -48,7 +46,7 @@ func main() {
 		if rl.IsKeyDown(int32(rl.KEY_SPACE)) {
 			animFrameCounter++
 			rl.UpdateModelAnimation(model, anims[0], animFrameCounter)
-			if animFrameCounter >= *anims[0].GetFrameCount() {
+			if animFrameCounter >= anims[0].Self().FrameCount {
 				animFrameCounter = 0
 			}
 		}
@@ -59,8 +57,9 @@ func main() {
 
 		rl.DrawModelEx(model, rl.Vector3{X: 0.0, Y: -5.0, Z: 0.0}, rl.Vector3{X: 1.0, Y: 0.0, Z: 0.0}, -90.0, rl.Vector3{X: 1.0, Y: 1.0, Z: 1.0}, *rl.White)
 
-		for i := int32(0); i < *model.GetBoneCount(); i++ {
-			rl.DrawCube(*(framePoses[animFrameCounter][i].GetTranslation()), 0.2, 0.2, 0.2, *rl.Red)
+		for i := int32(0); i < model.Self().BoneCount; i++ {
+			framePose := anims[0].GetFramePoses(animFrameCounter, i)
+			rl.DrawCube(*framePose.GetTranslation(), 0.2, 0.2, 0.2, *rl.Red)
 		}
 
 		rl.DrawGrid(10, 1.0)

@@ -44,8 +44,10 @@ func main() {
 
 				if bunniesCount < MAX_BUNNIES {
 					bunnies[bunniesCount].position = rl.GetMousePosition()
-					bunnies[bunniesCount].speed.SetX(float32(rl.GetRandomValue(-250, 250)) / 60.0)
-					bunnies[bunniesCount].speed.SetY(float32(rl.GetRandomValue(-250, 250)) / 60.0)
+
+					bunnies[bunniesCount].speed.Self().X = float32(rl.GetRandomValue(-250, 250)) / 60.0
+					bunnies[bunniesCount].speed.Self().Y = float32(rl.GetRandomValue(-250, 250)) / 60.0
+					
 					bunnies[bunniesCount].color = rl.Color{
 						R: byte(rl.GetRandomValue(50, 240)),
 						G: byte(rl.GetRandomValue(80, 240)),
@@ -58,16 +60,16 @@ func main() {
 		}
 
 		for i := 0; i < bunniesCount; i++ {
-			bunnies[i].position.SetX(*bunnies[i].position.GetX() + *bunnies[i].speed.GetX())
-			bunnies[i].position.SetY(*bunnies[i].position.GetY() + *bunnies[i].speed.GetY())
+			bunnies[i].position.Self().X += bunnies[i].speed.Self().X
+			bunnies[i].position.Self().Y += bunnies[i].speed.Self().Y
 
-			if (*bunnies[i].position.GetX()+float32(texBunny.Width)/2.0) > float32(rl.GetScreenWidth()) ||
-				(*bunnies[i].position.GetX()+float32(texBunny.Width)/2.0) < 0.0 {
-				bunnies[i].speed.SetX(*bunnies[i].speed.GetX() * (-1.0))
+			if (bunnies[i].position.Self().X+float32(texBunny.Width)/2.0) > float32(rl.GetScreenWidth()) ||
+				(bunnies[i].position.Self().X+float32(texBunny.Width)/2.0) < 0.0 {
+				bunnies[i].speed.Self().X *= -1.0
 			}
-			if (*bunnies[i].position.GetY()+float32(texBunny.Height)/2.0) > float32(rl.GetScreenHeight()) ||
-				(*bunnies[i].position.GetY()+float32(texBunny.Height)/2.0-40.0) < 0.0 {
-				bunnies[i].speed.SetY(*bunnies[i].speed.GetY() * (-1.0))
+			if (bunnies[i].position.Self().Y+float32(texBunny.Height)/2.0) > float32(rl.GetScreenHeight()) ||
+				(bunnies[i].position.Self().Y+float32(texBunny.Height)/2.0-40.0) < 0.0 {
+				bunnies[i].speed.Self().Y *= -1.0
 			}
 		}
 
@@ -76,7 +78,7 @@ func main() {
 		rl.ClearBackground(*rl.RayWhite)
 
 		for i := 0; i < bunniesCount; i++ {
-			rl.DrawTexture(texBunny, int32(*bunnies[i].position.GetX()), int32(*bunnies[i].position.GetY()), bunnies[i].color)
+			rl.DrawTexture(texBunny, int32(bunnies[i].position.Self().X), int32(bunnies[i].position.Self().Y), bunnies[i].color)
 		}
 
 		rl.DrawRectangle(0, 0, screenWidth, 40, *rl.Black)

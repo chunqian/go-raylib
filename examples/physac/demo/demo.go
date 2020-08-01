@@ -27,10 +27,10 @@ func main() {
 	phys.InitPhysics()
 
 	floor := phys.CreatePhysicsBodyRectangle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight)}, 500, 100, 10)
-	floor.SetEnabled(false)
+	floor.Self().Enabled = false
 
 	circle := phys.CreatePhysicsBodyCircle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight / 2)}, 45, 10)
-	circle.SetEnabled(false)
+	circle.Self().Enabled = false
 
 	rl.SetTargetFPS(60)
 
@@ -40,10 +40,10 @@ func main() {
 
 		if needsReset {
 			floor = phys.CreatePhysicsBodyRectangle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight)}, 500, 100, 10)
-			floor.SetEnabled(false)
+			floor.Self().Enabled = false
 
 			circle := phys.CreatePhysicsBodyCircle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight / 2)}, 45, 10)
-			circle.SetEnabled(false)
+			circle.Self().Enabled = false
 
 			needsReset = false
 		}
@@ -65,7 +65,7 @@ func main() {
 		bodiesCount := phys.GetPhysicsBodiesCount()
 		for i := bodiesCount - 1; i >= 0; i-- {
 			body := phys.GetPhysicsBody(i)
-			if body != nil && int32(*body.GetPosition().GetY()) > screenHeight*2 {
+			if body != nil && int32(body.GetPosition().Self().Y) > screenHeight*2 {
 				phys.DestroyPhysicsBody(body)
 			}
 		}
