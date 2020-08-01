@@ -57,7 +57,9 @@ func main() {
 	}
 
 	music := rl.LoadMusicStream("../resources/mini1111.xm")
-	music.Looping = false
+	// if GO struct mapping with C struct please use Self() to assign value
+	// music.Looping = true
+	music.Self().Looping = true
 
 	rl.PlayMusicStream(music)
 
@@ -67,6 +69,7 @@ func main() {
 	rl.SetTargetFPS(60)
 
 	for !rl.WindowShouldClose() {
+
 		rl.UpdateMusicStream(music)
 
 		if rl.IsKeyPressed(int32(rl.KEY_SPACE)) {
@@ -106,17 +109,23 @@ func main() {
 		}
 
 		rl.BeginDrawing()
+
 		rl.ClearBackground(*rl.RayWhite)
+
 		for i := (MAX_CIRCLES - 1); i >= 0; i-- {
 			rl.DrawCircleV(circles[i].position, circles[i].radius, rl.Fade(circles[i].color, circles[i].alpha))
 		}
+
 		rl.DrawRectangle(20, screenHeight-20-12, screenWidth-40, 12, *rl.LightGray)
 		rl.DrawRectangle(20, screenHeight-20-12, int32(timePlayed), 12, *rl.Maroon)
 		rl.DrawRectangleLines(20, screenHeight-20-12, screenWidth-40, 12, *rl.Gray)
+
 		rl.EndDrawing()
 	}
 
 	rl.UnloadMusicStream(music)
+
 	rl.CloseAudioDevice()
+	
 	rl.CloseWindow()
 }
