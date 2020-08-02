@@ -24,8 +24,8 @@ func main() {
 		Type:     int32(rl.CAMERA_PERSPECTIVE),
 	}
 
-	model := rl.LoadModel("../resources/models/castle.obj")
-	texture := rl.LoadTexture("../resources/models/castle_diffuse.png")
+	model := rl.LoadModel("../models/resources/models/castle.obj")
+	texture := rl.LoadTexture("../models/resources/models/castle_diffuse.png")
 
 	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).SetTexture(&texture)
 

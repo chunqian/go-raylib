@@ -56,7 +56,7 @@ func main() {
 		circles[i].color = *colors[rl.GetRandomValue(0, 13)]
 	}
 
-	music := rl.LoadMusicStream("../resources/mini1111.xm")
+	music := rl.LoadMusicStream("../audio/resources/mini1111.xm")
 	// if GO struct mapping with C struct please use Self() to assign value
 	// music.Looping = true
 	music.Self().Looping = true

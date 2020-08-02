@@ -63,25 +63,25 @@ func main() {
 		Type:     int32(rl.CAMERA_CUSTOM),
 	}
 
-	model := rl.LoadModel("../resources/models/church.obj")
-	texture := rl.LoadTexture("../resources/models/church_diffuse.png")
+	model := rl.LoadModel("../shaders/resources/models/church.obj")
+	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
 
 	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Self().Texture = *texture.Ref()
 
 	shaders := make([]rl.Shader, MAX_POSTPRO_SHADERS)
 
-	shaders[FX_GRAYSCALE] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/grayscale.fs", 330))
-	shaders[FX_POSTERIZATION] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/posterization.fs", 330))
-	shaders[FX_DREAM_VISION] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/dream_vision.fs", 330))
-	shaders[FX_PIXELIZER] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/pixelizer.fs", 330))
-	shaders[FX_CROSS_HATCHING] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/cross_hatching.fs", 330))
-	shaders[FX_CROSS_STITCHING] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/cross_stitching.fs", 330))
-	shaders[FX_PREDATOR_VIEW] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/predator.fs", 330))
-	shaders[FX_SCANLINES] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/scanlines.fs", 330))
-	// shaders[FX_FISHEYE] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/fisheye.fs", 330))
-	// shaders[FX_SOBEL] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/sobel.fs", 330))
-	// shaders[FX_BLOOM] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/bloom.fs", 330))
-	// shaders[FX_BLUR] = rl.LoadShader("", fmt.Sprintf("../resources/shaders/glsl%d/blur.fs", 330))
+	shaders[FX_GRAYSCALE] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/grayscale.fs", 330))
+	shaders[FX_POSTERIZATION] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/posterization.fs", 330))
+	shaders[FX_DREAM_VISION] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/dream_vision.fs", 330))
+	shaders[FX_PIXELIZER] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/pixelizer.fs", 330))
+	shaders[FX_CROSS_HATCHING] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/cross_hatching.fs", 330))
+	shaders[FX_CROSS_STITCHING] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/cross_stitching.fs", 330))
+	shaders[FX_PREDATOR_VIEW] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/predator.fs", 330))
+	shaders[FX_SCANLINES] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/scanlines.fs", 330))
+	// shaders[FX_FISHEYE] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/fisheye.fs", 330))
+	// shaders[FX_SOBEL] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/sobel.fs", 330))
+	// shaders[FX_BLOOM] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/bloom.fs", 330))
+	// shaders[FX_BLUR] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/blur.fs", 330))
 
 	currentShader := FX_GRAYSCALE
 

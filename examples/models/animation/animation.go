@@ -27,13 +27,13 @@ func main() {
 	}
 
 	// debug.PrintStack()
-	model := rl.LoadModel("../resources/guy/guy.iqm")
-	texture := rl.LoadTexture("../resources/guy/guytex.png")
+	model := rl.LoadModel("../models/resources/guy/guy.iqm")
+	texture := rl.LoadTexture("../models/resources/guy/guytex.png")
 
 	rl.SetMaterialTexture(model.GetMaterials(0), rl.MAP_DIFFUSE, texture)
 
 	animsCount := int32(0)
-	anims := rl.LoadModelAnimations("../resources/guy/guyanim.iqm", &animsCount)
+	anims := rl.LoadModelAnimations("../models/resources/guy/guyanim.iqm", &animsCount)
 	animFrameCounter := int32(0)
 
 	rl.SetCameraMode(camera, int32(rl.CAMERA_CUSTOM))

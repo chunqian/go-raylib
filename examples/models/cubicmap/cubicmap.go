@@ -24,13 +24,13 @@ func main() {
 		Type:     int32(rl.CAMERA_CUSTOM),
 	}
 
-	image := rl.LoadImage("../resources/cubicmap.png")
+	image := rl.LoadImage("../models/resources/cubicmap.png")
 	cubicmap := rl.LoadTextureFromImage(image)
 
 	mesh := rl.GenMeshCubicmap(image, rl.Vector3{X: 1.0, Y: 1.0, Z: 1.0})
 	model := rl.LoadModelFromMesh(mesh)
 
-	texture := rl.LoadTexture("../resources/cubicmap_atlas.png")
+	texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
 	// model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).SetTexture(&texture)
 	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Self().Texture = *texture.Ref()
 

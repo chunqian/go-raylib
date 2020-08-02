@@ -29,7 +29,7 @@ func main() {
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [textures] example - bunnymark")
 
-	texBunny := rl.LoadTexture("../resources/wabbit_alpha.png")
+	texBunny := rl.LoadTexture("../textures/resources/wabbit_alpha.png")
 	bunnies := make([]Bunny, MAX_BUNNIES)
 
 	bunniesCount := 0
