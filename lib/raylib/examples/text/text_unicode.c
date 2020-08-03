@@ -11,7 +11,7 @@
 *
 ********************************************************************************************/
 
-#include "raylib.h"
+#include "../../src/raylib.h"
 
 #include <stdio.h>
 #include <string.h>

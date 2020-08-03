@@ -27,7 +27,7 @@ func main() {
 	model := rl.LoadModel("../models/resources/models/castle.obj")
 	texture := rl.LoadTexture("../models/resources/models/castle_diffuse.png")
 
-	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).SetTexture(&texture)
+	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture = *texture.Ref()
 
 	bounds := rl.MeshBoundingBox(*model.GetMeshes(0))
 
@@ -51,13 +51,13 @@ func main() {
 					rl.IsFileExtension(string(droppedFiles[0][:]), ".iqm") {
 					rl.UnloadModel(model)
 					model = rl.LoadModel(string(droppedFiles[0][:]))
-					model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).SetTexture(&texture)
+					model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture = *texture.Ref()
 					bounds = rl.MeshBoundingBox(*model.GetMeshes(0))
 				} else if rl.IsFileExtension(string(droppedFiles[0][:]), ".png") {
 
 					rl.UnloadTexture(texture)
 					texture = rl.LoadTexture(string(droppedFiles[0][:]))
-					model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).SetTexture(&texture)
+					model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture = *texture.Ref()
 				}
 			}
 			rl.ClearDroppedFiles()

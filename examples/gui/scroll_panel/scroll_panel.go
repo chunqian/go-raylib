@@ -102,8 +102,11 @@ func main() {
 	rl.InitWindow(screenWidth, screenHeight, "raygui - GuiScrollPanel()")
 
 	panelRec := rg.Rectangle{X: 20, Y: 40, Width: 200, Height: 150}
+	panelRecT := panelRec.Convert()
 	panelContentRec := rg.Rectangle{X: 0, Y: 0, Width: 340, Height: 340}
+	panelContentRecT := panelContentRec.Convert()
 	panelScroll := rg.Vector2{X: 99, Y: -20}
+	panelScrollT := panelScroll.Convert()
 
 	showContentArea := true
 
@@ -115,26 +118,27 @@ func main() {
 
 		rl.ClearBackground(*rl.RayWhite)
 
-		rl.DrawText(fmt.Sprintf("[%f, %f]", panelScroll.Self().X, panelScroll.Self().Y), 4, 4, 20, *rl.Red)
+		rl.DrawText(fmt.Sprintf("[%f, %f]", panelScrollT.X, panelScrollT.Y), 4, 4, 20, *rl.Red)
 
 		view := rg.GuiScrollPanel(panelRec, panelContentRec, &panelScroll)
+		viewT := view.Convert()
 
-		rl.BeginScissorMode(int32(view.Self().X), int32(view.Self().Y), int32(view.Self().Width), int32(view.Self().Height))
+		rl.BeginScissorMode(int32(viewT.X), int32(viewT.Y), int32(viewT.Width), int32(viewT.Height))
 		rg.GuiGrid(
 			rg.Rectangle{
-				X: panelRec.Self().X + panelScroll.Self().X,
-				Y: panelRec.Self().Y + panelScroll.Self().Y,
-				Width: panelContentRec.Self().Width,
-				Height: panelContentRec.Self().Height,
+				X: panelRecT.X + panelScrollT.X,
+				Y: panelRecT.Y + panelScrollT.Y,
+				Width: panelContentRecT.Width,
+				Height: panelContentRecT.Height,
 			}, 16, 3)
 		rl.EndScissorMode()
 
 		if showContentArea {
 			rl.DrawRectangle(
-				int32(panelRec.Self().X+panelScroll.Self().X),
-				int32(panelRec.Self().Y+panelScroll.Self().Y),
-				int32(panelContentRec.Self().Width),
-				int32(panelContentRec.Self().Height),
+				int32(panelRecT.X+panelScrollT.X),
+				int32(panelRecT.Y+panelScrollT.Y),
+				int32(panelContentRecT.Width),
+				int32(panelContentRecT.Height),
 				rl.Fade(*rl.Red, 0.1),
 			)
 		}
@@ -147,17 +151,17 @@ func main() {
 			showContentArea,
 		)
 
-		panelContentRec.Self().Width = rg.GuiSliderBar(
+		panelContentRecT.Width = rg.GuiSliderBar(
 			rg.Rectangle{X: 590, Y: 385, Width: 145, Height: 15},
 			"WIDTH",
-			fmt.Sprintf("%f", panelContentRec.Self().Width),
+			fmt.Sprintf("%f", panelContentRecT.Width),
 			1, 600, 1,
 		)
 
-		panelContentRec.Self().Height = rg.GuiSliderBar(
+		panelContentRecT.Height = rg.GuiSliderBar(
 			rg.Rectangle{X: 590, Y: 410, Width: 145, Height: 15},
 			"HEIGHT",
-			fmt.Sprintf("%f", panelContentRec.Self().Height),
+			fmt.Sprintf("%f", panelContentRecT.Height),
 			1, 400, 1,
 		)
 

@@ -45,14 +45,19 @@ func main() {
 	positions := make([]rl.Vector2, MAX_FONTS)
 
 	for i := 0; i < MAX_FONTS; i++ {
-		measureTextEx := rl.MeasureTextEx(fonts[i], messages[i], float32(fonts[i].Self().BaseSize*2), float32(spacings[i]))
-		positions[i].Self().X = float32(screenWidth/2) - measureTextEx.Self().X/2
-		positions[i].Self().Y = float32(int32(60) + fonts[i].Self().BaseSize + int32(45*i))
+		fontT := fonts[i].Convert()
+		positionT := positions[i].Convert()
+
+		measureText := rl.MeasureTextEx(fonts[i], messages[i], float32(fontT.BaseSize*2), float32(spacings[i]))
+		measureTextT := measureText.Convert()
+
+		positionT.X = float32(screenWidth/2) - measureTextT.X/2
+		positionT.Y = float32(int32(60) + fontT.BaseSize + int32(45*i))
 	}
 
-	positions[3].Self().Y += 8
-	positions[4].Self().Y += 2
-	positions[7].Self().Y += 8
+	positions[3].Convert().Y += 8
+	positions[4].Convert().Y += 2
+	positions[7].Convert().Y += 8
 
 	colors := []rl.Color{
 		*rl.Maroon,
@@ -77,7 +82,7 @@ func main() {
 		rl.DrawLine(220, 50, 590, 50, *rl.DarkGray)
 
 		for i := 0; i < MAX_FONTS; i++ {
-			rl.DrawTextEx(fonts[i], messages[i], positions[i], float32(fonts[i].Self().BaseSize*2), float32(spacings[i]), colors[i])
+			rl.DrawTextEx(fonts[i], messages[i], positions[i], float32(fonts[i].Convert().BaseSize*2), float32(spacings[i]), colors[i])
 		}
 
 		rl.EndDrawing()

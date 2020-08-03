@@ -66,7 +66,7 @@ func main() {
 	model := rl.LoadModel("../shaders/resources/models/church.obj")
 	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
 
-	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Self().Texture = *texture.Ref()
+	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture = *texture.Ref()
 
 	shaders := make([]rl.Shader, MAX_POSTPRO_SHADERS)
 
@@ -131,8 +131,8 @@ func main() {
 			rl.Rectangle{
 				X:      0,
 				Y:      0,
-				Width: float32(target.GetTexture().Self().Width),
-				Height: -float32(target.GetTexture().Self().Height),
+				Width: float32(target.GetTexture().Convert().Width),
+				Height: -float32(target.GetTexture().Convert().Height),
 			},
 			rl.Vector2{X: 0, Y: 0},
 			*rl.White,
