@@ -57,7 +57,7 @@ func main() {
 	}
 
 	music := rl.LoadMusicStream("../audio/resources/mini1111.xm")
-	// if GO struct mapping with C struct please use Convert() to assign value
+	// if Go struct is C struct bind, please use Convert() to assign value
 	// music.Looping = true
 	music.Convert().Looping = true
 
