@@ -17,7 +17,7 @@ func main() {
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera")
 
-	player := rl.Rectangle{X: 400, Y: 280, Width: 40, Height: 40}
+	player := rl.NewRectangle(400, 280, 40, 40)
 	playerT := player.Convert()
 
 	buildings := make([]rl.Rectangle, MAX_BUILDINGS)
@@ -34,21 +34,20 @@ func main() {
 
 		spacing += int32(buildingT.Width)
 
-		buildColors[i] = rl.Color{
-			R: byte(rl.GetRandomValue(200, 240)),
-			G: byte(rl.GetRandomValue(200, 240)),
-			B: byte(rl.GetRandomValue(200, 250)),
-			A: 255,
-		}
-
+		buildColors[i] = rl.NewColor(
+			byte(rl.GetRandomValue(200, 240)),
+			byte(rl.GetRandomValue(200, 240)),
+			byte(rl.GetRandomValue(200, 250)),
+			255,
+		)
 	}
 
-	camera := rl.Camera2D{
-		Target:   rl.Vector2{X: playerT.X + 20, Y: playerT.Y + 20},
-		Offset:   rl.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight / 2)},
-		Rotation: 0.0,
-		Zoom:     1.0,
-	}
+	camera := rl.NewCamera2D(
+		rl.NewVector2(float32(screenWidth/2), float32(screenHeight/2)),
+		rl.NewVector2(playerT.X+20, playerT.Y+20),
+		0.0,
+		1.0,
+	)
 	cameraT := camera.Convert()
 
 	rl.SetTargetFPS(60)
@@ -61,7 +60,7 @@ func main() {
 			playerT.X -= 2
 		}
 
-		cameraT.Target, _ = rl.Vector2{X: playerT.X + 20, Y: playerT.Y + 20}.PassValue()
+		cameraT.Target, _ = rl.NewVector2(playerT.X+20, playerT.Y+20).PassValue()
 
 		if rl.IsKeyDown(int32(rl.KEY_A)) {
 			cameraT.Rotation--

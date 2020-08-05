@@ -30,6 +30,7 @@ func main() {
 	rl.InitWindow(screenWidth, screenHeight, "raylib [textures] example - bunnymark")
 
 	texBunny := rl.LoadTexture("../textures/resources/wabbit_alpha.png")
+	texBunnyT := texBunny.Convert()
 	bunnies := make([]Bunny, MAX_BUNNIES)
 
 	bunniesCount := 0
@@ -48,12 +49,12 @@ func main() {
 					bunnies[bunniesCount].speed.Convert().X = float32(rl.GetRandomValue(-250, 250)) / 60.0
 					bunnies[bunniesCount].speed.Convert().Y = float32(rl.GetRandomValue(-250, 250)) / 60.0
 
-					bunnies[bunniesCount].color = rl.Color{
-						R: byte(rl.GetRandomValue(50, 240)),
-						G: byte(rl.GetRandomValue(80, 240)),
-						B: byte(rl.GetRandomValue(100, 240)),
-						A: 255,
-					}
+					bunnies[bunniesCount].color = rl.NewColor(
+						byte(rl.GetRandomValue(50, 240)),
+						byte(rl.GetRandomValue(80, 240)),
+						byte(rl.GetRandomValue(100, 240)),
+						255,
+					)
 					bunniesCount++
 				}
 			}
@@ -66,12 +67,12 @@ func main() {
 			positionT.X += speedT.X
 			positionT.Y += speedT.Y
 
-			if (positionT.X+float32(texBunny.Width)/2.0) > float32(rl.GetScreenWidth()) ||
-				(positionT.X+float32(texBunny.Width)/2.0) < 0.0 {
+			if (positionT.X+float32(texBunnyT.Width)/2.0) > float32(rl.GetScreenWidth()) ||
+				(positionT.X+float32(texBunnyT.Width)/2.0) < 0.0 {
 				speedT.X *= -1.0
 			}
-			if (positionT.Y+float32(texBunny.Height)/2.0) > float32(rl.GetScreenHeight()) ||
-				(positionT.Y+float32(texBunny.Height)/2.0-40.0) < 0.0 {
+			if (positionT.Y+float32(texBunnyT.Height)/2.0) > float32(rl.GetScreenHeight()) ||
+				(positionT.Y+float32(texBunnyT.Height)/2.0-40.0) < 0.0 {
 				speedT.Y *= -1.0
 			}
 		}

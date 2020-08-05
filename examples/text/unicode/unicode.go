@@ -177,7 +177,7 @@ func main() {
 		}
 
 		mouse := rl.GetMousePosition()
-		pos := rl.Vector2{X: 28.8, Y: 10.0}
+		pos := rl.NewVector2(28.8, 10)
 		posT := pos.Convert()
 		hovered = -1
 
@@ -188,7 +188,12 @@ func main() {
 		for i := 0; i < len(emoji); i++ {
 
 			txt := emojiCodepointsR[emoji[i].Index]
-			emojiRect := rl.Rectangle{X: posT.X, Y: posT.Y, Width: float32(fontEmojiT.BaseSize), Height: float32(fontEmojiT.BaseSize)}
+			emojiRect := rl.NewRectangle(
+				posT.X,
+				posT.Y,
+				float32(fontEmojiT.BaseSize),
+				float32(fontEmojiT.BaseSize),
+			)
 
 			if !rl.CheckCollisionPointRec(mouse, emojiRect) {
 
@@ -237,21 +242,24 @@ func main() {
 			}
 
 			selectedPosT := selectedPos.Convert()
-			msgRect := rl.Rectangle{
-				X:      selectedPosT.X - 38.8,
-				Y:      selectedPosT.Y,
-				Width:  float32(2*horizontalPadding) + szT.X,
-				Height: float32(2*verticalPadding) + szT.Y,
-			}
+
+			msgRect := rl.NewRectangle(
+				selectedPosT.X-38.8,
+				selectedPosT.Y,
+				float32(2*horizontalPadding)+szT.X,
+				float32(2*verticalPadding)+szT.Y,
+			)
 			msgRectT := msgRect.Convert()
 
 			msgRectT.Y -= msgRectT.Height
 
-			a := rl.Vector2{X: selectedPosT.X, Y: msgRectT.Y + msgRectT.Height}
+			a := rl.NewVector2(selectedPosT.X, msgRectT.Y+msgRectT.Height)
 			aT := a.Convert()
-			b := rl.Vector2{X: aT.X + 8, Y: aT.Y + 10}
+
+			b := rl.NewVector2(aT.X+8, aT.Y+10)
 			bT := b.Convert()
-			c := rl.Vector2{X: aT.X + 10, Y: aT.Y}
+
+			c := rl.NewVector2(aT.X+10, aT.Y)
 			cT := c.Convert()
 
 			if msgRectT.X < 10 {
@@ -276,12 +284,12 @@ func main() {
 
 			rl.DrawTriangle(a, b, c, emoji[selected].Color)
 
-			textRect := rl.Rectangle{
-				X:      msgRectT.X + float32(horizontalPadding/2),
-				Y:      msgRectT.Y + float32(verticalPadding/2),
-				Width:  msgRectT.Width - float32(horizontalPadding),
-				Height: msgRectT.Height,
-			}
+			textRect := rl.NewRectangle(
+				msgRectT.X+float32(horizontalPadding/2),
+				msgRectT.Y+float32(verticalPadding/2),
+				msgRectT.Width-float32(horizontalPadding),
+				msgRectT.Height,
+			)
 			textRectT := textRect.Convert()
 
 			rl.DrawTextRec(font, message[msg].Text, textRect, float32(fontT.BaseSize), 1.0, true, *rl.White)
@@ -293,7 +301,10 @@ func main() {
 			sz = rl.MeasureTextEx(rl.GetFontDefault(), info, 10, 1.0)
 			szT = sz.Convert()
 
-			pos := rl.Vector2{X: textRectT.X + textRectT.Width - szT.X, Y: msgRectT.Y + msgRectT.Height - szT.Y - 2}
+			pos := rl.NewVector2(
+				textRectT.X+textRectT.Width-szT.X,
+				msgRectT.Y+msgRectT.Height-szT.Y-2,
+			)
 			posT := pos.Convert()
 			rl.DrawText(info, int32(posT.X), int32(posT.Y), 10, *rl.RayWhite)
 		}
@@ -321,7 +332,7 @@ func RandomizeEmoji() {
 
 		emoji[i].Index = rl.GetRandomValue(0, 179)
 
-		hsv := rl.Vector3{X: float32(start * (i + 1) % 360), Y: 0.6, Z: 0.85}
+		hsv := rl.NewVector3(float32(start*(i+1)%360), 0.6, 0.85)
 		emoji[i].Color = rl.Fade(rl.ColorFromHSV(hsv), 0.8)
 
 		emoji[i].Message = rl.GetRandomValue(0, int32(len(message)-1))

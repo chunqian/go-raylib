@@ -18,13 +18,13 @@ func main() {
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [models] example - model animation")
 
-	camera := rl.Camera{
-		Position: rl.Vector3{X: 10.0, Y: 10.0, Z: 10.0},
-		Target:   rl.Vector3{X: 0.0, Y: 0.0, Z: 0.0},
-		Up:       rl.Vector3{X: 0.0, Y: 1.0, Z: 0.0},
-		Fovy:     45.0,
-		Type:     int32(rl.CAMERA_PERSPECTIVE),
-	}
+	camera := rl.NewCamera(
+		rl.NewVector3(10, 10, 10),
+		rl.NewVector3(0, 0, 0),
+		rl.NewVector3(0, 1.0, 0),
+		45,
+		int32(rl.CAMERA_PERSPECTIVE),
+	)
 
 	// debug.PrintStack()
 	model := rl.LoadModel("../models/resources/guy/guy.iqm")
@@ -55,7 +55,7 @@ func main() {
 		rl.ClearBackground(*rl.RayWhite)
 		rl.BeginMode3D(rl.Camera3D(camera))
 
-		rl.DrawModelEx(model, rl.Vector3{X: 0.0, Y: -5.0, Z: 0.0}, rl.Vector3{X: 1.0, Y: 0.0, Z: 0.0}, -90.0, rl.Vector3{X: 1.0, Y: 1.0, Z: 1.0}, *rl.White)
+		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), *rl.White)
 
 		for i := int32(0); i < model.Convert().BoneCount; i++ {
 			framePose := anims[0].GetFramePoses(animFrameCounter, i)

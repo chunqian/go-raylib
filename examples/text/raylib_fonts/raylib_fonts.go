@@ -82,7 +82,14 @@ func main() {
 		rl.DrawLine(220, 50, 590, 50, *rl.DarkGray)
 
 		for i := 0; i < MAX_FONTS; i++ {
-			rl.DrawTextEx(fonts[i], messages[i], positions[i], float32(fonts[i].Convert().BaseSize*2), float32(spacings[i]), colors[i])
+			rl.DrawTextEx(
+				fonts[i],
+				messages[i],
+				positions[i],
+				float32(fonts[i].Convert().BaseSize*2),
+				float32(spacings[i]),
+				colors[i],
+			)
 		}
 
 		rl.EndDrawing()

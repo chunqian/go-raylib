@@ -33,13 +33,13 @@ func main() {
 
 	rl.PlayAudioStream(stream)
 
-	mousePosition := rl.Vector2{X: -100.0, Y: -100.0}
+	mousePosition := rl.NewVector2(-100, -100)
 	frequency := float32(440.0)
 	oldFrequency := float32(1.0)
 	readCursor := 0
 	waveLength := 1
 
-	position := rl.Vector2{X: 0.0, Y: 0.0}
+	position := rl.NewVector2(0, 0)
 
 	rl.SetTargetFPS(30)
 

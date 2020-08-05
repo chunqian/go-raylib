@@ -26,10 +26,19 @@ func main() {
 
 	phys.InitPhysics()
 
-	floor := phys.CreatePhysicsBodyRectangle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight)}, 500, 100, 10)
+	floor := phys.CreatePhysicsBodyRectangle(
+		phys.NewVector2(float32(screenWidth/2), float32(screenHeight)),
+		500,
+		100,
+		10,
+	)
 	floor.Convert().Enabled = false
 
-	circle := phys.CreatePhysicsBodyCircle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight / 2)}, 45, 10)
+	circle := phys.CreatePhysicsBodyCircle(
+		phys.NewVector2(float32(screenWidth/2), float32(screenHeight/2)),
+		45,
+		10,
+	)
 	circle.Convert().Enabled = false
 
 	rl.SetTargetFPS(60)
@@ -39,10 +48,19 @@ func main() {
 		phys.RunPhysicsStep()
 
 		if needsReset {
-			floor = phys.CreatePhysicsBodyRectangle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight)}, 500, 100, 10)
+			floor = phys.CreatePhysicsBodyRectangle(
+				phys.NewVector2(float32(screenWidth/2), float32(screenHeight)),
+				500,
+				100,
+				10,
+			)
 			floor.Convert().Enabled = false
 
-			circle := phys.CreatePhysicsBodyCircle(phys.Vector2{X: float32(screenWidth / 2), Y: float32(screenHeight / 2)}, 45, 10)
+			circle := phys.CreatePhysicsBodyCircle(
+				phys.NewVector2(float32(screenWidth/2), float32(screenHeight/2)),
+				45,
+				10,
+			)
 			circle.Convert().Enabled = false
 
 			needsReset = false
@@ -56,10 +74,21 @@ func main() {
 		var pos rl.Vector2
 		if rl.IsMouseButtonPressed(int32(rl.MOUSE_LEFT_BUTTON)) {
 			pos = rl.GetMousePosition()
-			phys.CreatePhysicsBodyPolygon(*(*phys.Vector2)(unsafe.Pointer(&pos)), float32(rl.GetRandomValue(20, 80)), rl.GetRandomValue(3, 8), 10)
+
+			phys.CreatePhysicsBodyPolygon(
+				*(*phys.Vector2)(unsafe.Pointer(&pos)),
+				float32(rl.GetRandomValue(20, 80)),
+				rl.GetRandomValue(3, 8),
+				10,
+			)
 		} else if rl.IsMouseButtonPressed(int32(rl.MOUSE_RIGHT_BUTTON)) {
 			pos = rl.GetMousePosition()
-			phys.CreatePhysicsBodyCircle(*(*phys.Vector2)(unsafe.Pointer(&pos)), float32(rl.GetRandomValue(10, 45)), 10)
+
+			phys.CreatePhysicsBodyCircle(
+				*(*phys.Vector2)(unsafe.Pointer(&pos)),
+				float32(rl.GetRandomValue(10, 45)),
+				10,
+			)
 		}
 
 		bodiesCount := phys.GetPhysicsBodiesCount()
@@ -94,7 +123,11 @@ func main() {
 
 					vertexB := phys.GetPhysicsShapeVertex(body, jj)
 
-					rl.DrawLineV(*(*rl.Vector2)(unsafe.Pointer(&vertexA)), *(*rl.Vector2)(unsafe.Pointer(&vertexB)), *rl.Green)
+					rl.DrawLineV(
+						*(*rl.Vector2)(unsafe.Pointer(&vertexA)),
+						*(*rl.Vector2)(unsafe.Pointer(&vertexB)),
+						*rl.Green,
+					)
 				}
 			}
 		}

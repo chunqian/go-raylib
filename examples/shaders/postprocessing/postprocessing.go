@@ -55,13 +55,13 @@ func main() {
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader")
 
-	camera := rl.Camera{
-		Position: rl.Vector3{X: 2.0, Y: 3.0, Z: 2.0},
-		Target:   rl.Vector3{X: 0.0, Y: 1.0, Z: 0.0},
-		Up:       rl.Vector3{X: 0.0, Y: 1.0, Z: 0.0},
-		Fovy:     45.0,
-		Type:     int32(rl.CAMERA_CUSTOM),
-	}
+	camera := rl.NewCamera(
+		rl.NewVector3(2, 3, 2),
+		rl.NewVector3(0, 1, 0),
+		rl.NewVector3(0, 1.0, 0),
+		45,
+		int32(rl.CAMERA_CUSTOM),
+	)
 
 	model := rl.LoadModel("../shaders/resources/models/church.obj")
 	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
@@ -116,7 +116,7 @@ func main() {
 
 		rl.BeginMode3D(rl.Camera3D(camera))
 
-		rl.DrawModel(model, rl.Vector3{X: 0.0, Y: 0.0, Z: 0.0}, 0.1, *rl.White)
+		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 0.1, *rl.White)
 
 		rl.DrawGrid(10, 1.0)
 
@@ -128,13 +128,13 @@ func main() {
 
 		rl.DrawTextureRec(
 			*target.GetTexture(),
-			rl.Rectangle{
-				X:      0,
-				Y:      0,
-				Width: float32(target.GetTexture().Convert().Width),
-				Height: -float32(target.GetTexture().Convert().Height),
-			},
-			rl.Vector2{X: 0, Y: 0},
+			rl.NewRectangle(
+				0,
+				0,
+				float32(target.GetTexture().Convert().Width),
+				-float32(target.GetTexture().Convert().Height),
+			),
+			rl.NewVector2(0, 0),
 			*rl.White,
 		)
 

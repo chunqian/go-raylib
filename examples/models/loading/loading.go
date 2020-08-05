@@ -16,13 +16,13 @@ func main() {
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [models] example - models loading")
 
-	camera := rl.Camera{
-		Position: rl.Vector3{X: 50.0, Y: 50.0, Z: 50.0},
-		Target:   rl.Vector3{X: 0.0, Y: 10.0, Z: 0.0},
-		Up:       rl.Vector3{X: 0.0, Y: 1.0, Z: 0.0},
-		Fovy:     45.0,
-		Type:     int32(rl.CAMERA_PERSPECTIVE),
-	}
+	camera := rl.NewCamera(
+		rl.NewVector3(50, 50, 50),
+		rl.NewVector3(0, 10, 0),
+		rl.NewVector3(0, 1.0, 0),
+		45,
+		int32(rl.CAMERA_PERSPECTIVE),
+	)
 
 	model := rl.LoadModel("../models/resources/models/castle.obj")
 	texture := rl.LoadTexture("../models/resources/models/castle_diffuse.png")
@@ -74,7 +74,7 @@ func main() {
 		rl.BeginDrawing()
 		rl.ClearBackground(*rl.RayWhite)
 		rl.BeginMode3D(rl.Camera3D(camera))
-		rl.DrawModel(model, rl.Vector3{X: 0.0, Y: 0.0, Z: 0.0}, 1.0, *rl.White)
+		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 1.0, *rl.White)
 		rl.DrawGrid(20, 10.0)
 		if selected {
 			rl.DrawBoundingBox(bounds, *rl.Green)
