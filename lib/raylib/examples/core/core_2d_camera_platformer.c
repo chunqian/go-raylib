@@ -11,8 +11,8 @@
 *
 ********************************************************************************************/
 
-#include "raylib.h"
-#include "raymath.h"
+#include "../../src/raylib.h"
+#include "../../src/raymath.h"
 
 #define G 400
 #define PLAYER_JUMP_SPD 350.f
