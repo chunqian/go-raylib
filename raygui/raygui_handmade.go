@@ -24,3 +24,18 @@ func Int2bool(i int) bool {
 	}
 	return false
 }
+
+func NewBytes(str string, count int) []byte {
+
+	bts := []byte(str)
+	bts2 := make([]byte, count)
+	for i := 0; i < count; i++ {
+		if i < len(bts) {
+			bts2[i] = bts[i]
+		} else {
+			btsT := []byte("\x00")
+			bts2[i] = btsT[0]
+		}
+	}
+	return bts2
+}

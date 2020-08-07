@@ -496,6 +496,9 @@ RAYGUIDEF Color GuiColorPanelEx(Rectangle bounds, Color color, float hue);
 RAYGUIDEF float GuiSliderPro(Rectangle bounds, const char *textLeft, const char *textRight, float value, float minValue, float maxValue, int sliderWidth);
 
 #if defined(RAYGUI_SUPPORT_ICONS)
+// Cforgo
+RAYGUIDEF char **GuiLoadIcons(const char *fileName, bool loadIconsName);
+
 // Gui icons functionality
 RAYGUIDEF void GuiDrawIcon(int iconId, Vector2 position, int pixelSize, Color color);
 
