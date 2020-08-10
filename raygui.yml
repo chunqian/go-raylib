@@ -83,6 +83,7 @@ TRANSLATOR:
       - { transform: title }
     function:
       - { action: accept, from: ^Gui }
+      - { action: ignore, from: ^GuiListViewEx$ }
     type:
       - { action: accept, from: ^Vector2 }
       - { action: accept, from: ^Vector3 }
@@ -91,6 +92,7 @@ TRANSLATOR:
       - { action: accept, from: ^Texture2D }
       - { action: accept, from: ^Font }
       - { action: accept, from: ^Gui }
+      - { action: accept, from: ^Text$ }
 
       # ricons
       - { action: accept, from: ^guiIconName$ }

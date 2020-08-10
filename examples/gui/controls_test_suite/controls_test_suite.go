@@ -40,7 +40,8 @@ func main() {
 	listViewExScrollIndex := int32(0)
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
-	listViewExList := []string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"}
+	// listViewExList := []string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"}
+	listViewExList := rg.NewText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
 	multiTextBoxEditMode := false
@@ -157,7 +158,7 @@ func main() {
 		}
 
 		listViewActive = rg.GuiListView(rg.NewRectangle(165, 25, 140, 140), "Charmander;Bulbasaur;#18#Squirtel;Pikachu;Eevee;Pidgey", &listViewScrollIndex, listViewActive)
-		listViewExActive = rg.GuiListViewEx(rg.NewRectangle(165, 180, 140, 200), listViewExList, 8, &listViewExFocus, &listViewExScrollIndex, listViewExActive)
+		listViewExActive = rg.GuiListViewEx(rg.NewRectangle(165, 180, 140, 200), &listViewExList, 8, &listViewExFocus, &listViewExScrollIndex, listViewExActive)
 
 		toggleGroupActive = rg.GuiToggleGroup(rg.NewRectangle(165, 400, 140, 25), "#1#ONE\n#3#TWO\n#8#THREE\n#23#", toggleGroupActive)
 

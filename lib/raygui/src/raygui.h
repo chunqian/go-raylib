@@ -248,6 +248,11 @@
     } Font;
 #endif
 
+// Cforgo
+typedef struct Text {
+    const char **text;
+} Text;
+
 // Style property
 typedef struct GuiStyleProp {
     unsigned short controlId;
