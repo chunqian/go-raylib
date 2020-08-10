@@ -40,7 +40,6 @@ func main() {
 	listViewExScrollIndex := int32(0)
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
-	// listViewExList := []string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"}
 	listViewExList := rg.NewText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
@@ -148,17 +147,39 @@ func main() {
 		comboBoxActive = rg.GuiComboBox(rg.NewRectangle(25, 470, 125, 30), "ONE;TWO;THREE;FOUR", comboBoxActive)
 
 		rg.GuiSetStyle(int32(rg.DROPDOWNBOX), int32(rg.TEXT_ALIGNMENT), int32(rg.GUI_TEXT_ALIGN_LEFT))
-		if rg.GuiDropdownBox(rg.NewRectangle(25, 65, 125, 30), "#01#ONE;#02#TWO;#03#THREE;#04#FOUR", &dropdownBox001Active, dropDown001EditMode) {
+		if rg.GuiDropdownBox(
+			rg.NewRectangle(25, 65, 125, 30),
+			"#01#ONE;#02#TWO;#03#THREE;#04#FOUR",
+			&dropdownBox001Active,
+			dropDown001EditMode,
+		) {
 			dropDown001EditMode = !dropDown001EditMode
 		}
 
 		rg.GuiSetStyle(int32(rg.DROPDOWNBOX), int32(rg.TEXT_ALIGNMENT), int32(rg.GUI_TEXT_ALIGN_CENTER))
-		if rg.GuiDropdownBox(rg.NewRectangle(25, 25, 125, 30), "ONE;TWO;THREE", &dropdownBox000Active, dropDown000EditMode) {
+		if rg.GuiDropdownBox(
+			rg.NewRectangle(25, 25, 125, 30),
+			"ONE;TWO;THREE",
+			&dropdownBox000Active,
+			dropDown000EditMode,
+		) {
 			dropDown000EditMode = !dropDown000EditMode
 		}
 
-		listViewActive = rg.GuiListView(rg.NewRectangle(165, 25, 140, 140), "Charmander;Bulbasaur;#18#Squirtel;Pikachu;Eevee;Pidgey", &listViewScrollIndex, listViewActive)
-		listViewExActive = rg.GuiListViewEx(rg.NewRectangle(165, 180, 140, 200), &listViewExList, 8, &listViewExFocus, &listViewExScrollIndex, listViewExActive)
+		listViewActive = rg.GuiListView(
+			rg.NewRectangle(165, 25, 140, 140),
+			"Charmander;Bulbasaur;#18#Squirtel;Pikachu;Eevee;Pidgey",
+			&listViewScrollIndex,
+			listViewActive,
+		)
+		listViewExActive = rg.GuiListViewEx(
+			rg.NewRectangle(165, 180, 140, 200),
+			&listViewExList,
+			8,
+			&listViewExFocus,
+			&listViewExScrollIndex,
+			listViewExActive,
+		)
 
 		toggleGroupActive = rg.GuiToggleGroup(rg.NewRectangle(165, 400, 140, 25), "#1#ONE\n#3#TWO\n#8#THREE\n#23#", toggleGroupActive)
 
