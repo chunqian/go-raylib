@@ -66,7 +66,7 @@ func main() {
 	model := rl.LoadModel("../shaders/resources/models/church.obj")
 	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
 
-	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture = *texture.Ref()
+	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture, _ = texture.PassValue()
 
 	shaders := make([]rl.Shader, MAX_POSTPRO_SHADERS)
 

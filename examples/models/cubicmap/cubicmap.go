@@ -32,7 +32,7 @@ func main() {
 	model := rl.LoadModelFromMesh(mesh)
 
 	texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
-	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture = *texture.Ref()
+	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture, _ = texture.PassValue()
 
 	rl.UnloadImage(image)
 	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
