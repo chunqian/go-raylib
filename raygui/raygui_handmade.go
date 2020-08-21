@@ -44,7 +44,7 @@ func GuiListViewEx(bounds Rectangle, text *Text, count int32, focus *int32, scro
 	cfocus, _ := (*C.int)(unsafe.Pointer(focus)), cgoAllocsUnknown
 	cscrollIndex, _ := (*C.int)(unsafe.Pointer(scrollIndex)), cgoAllocsUnknown
 	cactive, _ := (C.int)(active), cgoAllocsUnknown
-	__ret := C.GuiListViewEx(cbounds, ctext.text, ccount, cfocus, cscrollIndex, cactive)
-	__v := (int32)(__ret)
-	return __v
+	cret := C.GuiListViewEx(cbounds, ctext.text, ccount, cfocus, cscrollIndex, cactive)
+	gret := (int32)(cret)
+	return gret
 }
