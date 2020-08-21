@@ -23,7 +23,7 @@ TRANSLATOR:
   PtrTips:
     function:
       # defaults
-      - { target: ".", tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
+      - { target: ".", self: ref, tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
   Rules:
     global:
       - { transform: export }
@@ -80,7 +80,7 @@ TRANSLATOR:
       - { action: accept, from: ^PhysicsShape$ }
       - { action: accept, from: ^PhysicsBodyData$ }
       - { action: accept, from: ^PhysicsManifoldData$ }
-      
+
       - { action: replace, from: ^PhysicsBody$, to: "PhysicsBodyData" }
       - { action: replace, from: ^PhysicsManifold$, to: "PhysicsManifoldData" }
     private:
