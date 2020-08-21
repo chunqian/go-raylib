@@ -77,15 +77,3 @@ var (
 	// Ray White (RayLib Logo White)
 	RayWhite = CreateColor(245, 245, 245, 255)
 )
-
-func loadModelAnimationsLength(fileName string, animsCount *int32) int32 {
-	return *animsCount
-}
-
-func getDroppedFilesLength(character *C.char, count *int32) int32 {
-	return int32(0)
-}
-
-func getDirectoryFilesLength(character *C.char, dirPath string, count *int32) int32 {
-	return int32(0)
-}

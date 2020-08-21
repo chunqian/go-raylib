@@ -26,46 +26,11 @@ TRANSLATOR:
     enum: expand
   PtrTips:
     function:
-      - { target: "^GetMonitorName$", self: arr, tips: [sref] }
-      - { target: "^GetClipboardText$", self: arr, tips: [sref] }
-
-      - { target: "^LoadFileData$", self: arr, tips: [sref, sref] }
-      - { target: "^LoadFileText$", self: arr, tips: [sref] }
-      - { target: "^GetExtension$", self: arr, tips: [sref] }
-      - { target: "^GetFileName$", self: arr, tips: [sref] }
-      - { target: "^GetFileNameWithoutExt$", self: arr, tips: [sref] }
-      - { target: "^GetDirectoryPath$", self: arr, tips: [sref] }
-      - { target: "^GetPrevDirectoryPath$", self: arr, tips: [sref] }
-      - { target: "^GetWorkingDirectory$", self: arr, tips: [sref] }
-      - { target: "^GetDirectoryFiles$", self: arr, tips: [sref, sref] }
-      - { target: "^GetDroppedFiles$", self: arr, tips: [sref] }
-
-      - { target: "^CompressData$", self: arr, tips: [sref, sref, sref] }
-      - { target: "^DecompressData$", self: arr, tips: [sref, sref, sref] }
-
-      - { target: "^GetGamepadName$", self: arr, tips: [sref] }
-
-      - { target: "^TextSubtext$", self: arr, tips: [sref, sref, sref] }
-      - { target: "^TextReplace$", self: arr, tips: [sref, sref, sref] }
-      - { target: "^TextInsert$", self: arr, tips: [sref, sref, sref] }
-      - { target: "^TextJoin$", self: arr, tips: [sref, sref, sref] }
       - { target: "^TextSplit$", self: arr, tips: [sref, sref, sref] }
-      - { target: "^TextToUpper$", self: arr, tips: [sref] }
-      - { target: "^TextToLower$", self: arr, tips: [sref] }
-      - { target: "^TextToPascal$", self: arr, tips: [sref] }
-      - { target: "^TextToUtf8$", self: arr, tips: [sref, sref] }
-
-      - { target: "^CodepointToUtf8$", self: arr, tips: [sref, sref] }
-
-      - { target: "^GenImageFontAtlas$", tips: [sref, arr, sref, sref, sref, sref] }
-
-      # Image manipulation functions
-      # - { target: "^GetImageData$", self: arr, tips: [sref] }
-
-      - { target: "^LoadModelAnimations$", self: arr, tips: [sref, sref] }
+      - { target: "^GenImageFontAtlas$", tips: [sref, ref, sref, sref, sref, sref] }
 
       # defaults
-      - { target: ".", tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
+      - { target: ".", self: ref, tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
   Rules:
     global:
       - { transform: export }
