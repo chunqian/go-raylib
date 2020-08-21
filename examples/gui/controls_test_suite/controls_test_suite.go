@@ -82,9 +82,10 @@ func main() {
 		if rl.IsFileDropped() {
 			dropsCount := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&dropsCount)
+			droppedFilePath := rl.ConvertFilesPath(droppedFiles, 0)
 
-			if dropsCount > 0 && rl.IsFileExtension(string(droppedFiles[0]), ".rgs") {
-				rg.GuiLoadStyle(string(droppedFiles[0]))
+			if dropsCount > 0 && rl.IsFileExtension(droppedFilePath, ".rgs") {
+				rg.GuiLoadStyle(droppedFilePath)
 			}
 			rl.ClearDroppedFiles()
 		}

@@ -44,19 +44,20 @@ func main() {
 		if rl.IsFileDropped() {
 			count := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&count)
+			droppedFilePath := rl.ConvertFilesPath(droppedFiles, 0)
 
 			if count == 1 {
-				if rl.IsFileExtension(string(droppedFiles[0][:]), ".obj") ||
-					rl.IsFileExtension(string(droppedFiles[0][:]), ".gltf") ||
-					rl.IsFileExtension(string(droppedFiles[0][:]), ".iqm") {
+				if rl.IsFileExtension(droppedFilePath, ".obj") ||
+					rl.IsFileExtension(droppedFilePath, ".gltf") ||
+					rl.IsFileExtension(droppedFilePath, ".iqm") {
 					rl.UnloadModel(model)
-					model = rl.LoadModel(string(droppedFiles[0][:]))
+					model = rl.LoadModel(droppedFilePath)
 					model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture, _ = texture.PassValue()
 					bounds = rl.MeshBoundingBox(*model.GetMeshes(0))
-				} else if rl.IsFileExtension(string(droppedFiles[0][:]), ".png") {
+				} else if rl.IsFileExtension(droppedFilePath, ".png") {
 
 					rl.UnloadTexture(texture)
-					texture = rl.LoadTexture(string(droppedFiles[0][:]))
+					texture = rl.LoadTexture(droppedFilePath)
 					model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture, _ = texture.PassValue()
 				}
 			}

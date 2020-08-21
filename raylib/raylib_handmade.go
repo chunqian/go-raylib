@@ -9,6 +9,7 @@ import "C"
 
 import (
 	// "fmt"
+	"unsafe"
 )
 
 // NewColor - Returns new Color
@@ -77,3 +78,11 @@ var (
 	// Ray White (RayLib Logo White)
 	RayWhite = CreateColor(245, 245, 245, 255)
 )
+
+func ConvertFilesPath(names **byte, index int32) string {
+
+	ptr0 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(names)) + uintptr(index)*uintptr(sizeOfPtr)))
+	ptrRow := (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(*ptr0))))
+	v0 := C.GoString(ptrRow)
+	return v0
+}
