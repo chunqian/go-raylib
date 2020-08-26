@@ -461,6 +461,11 @@ typedef struct VrDeviceInfo {
     float chromaAbCorrection[4];    // HMD chromatic aberration correction parameters
 } VrDeviceInfo;
 
+// Cforgo
+typedef struct Text {
+    const char **text;
+} Text;
+
 //----------------------------------------------------------------------------------
 // Enumerators Definition
 //----------------------------------------------------------------------------------

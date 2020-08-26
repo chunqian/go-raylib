@@ -386,7 +386,7 @@ TRANSLATOR:
       - { action: accept, from: ^TextSubtext$ }
       - { action: accept, from: ^TextReplace$ }
       - { action: accept, from: ^TextInsert$ }
-      - { action: accept, from: ^TextJoin$ }
+      # - { action: accept, from: ^TextJoin$ }
       - { action: accept, from: ^TextSplit$ }
       - { action: accept, from: ^TextAppend$ }
       - { action: accept, from: ^TextFindIndex$ }
@@ -724,6 +724,7 @@ TRANSLATOR:
       - { action: accept, from: ^Sound$ }
       - { action: accept, from: ^Music$ }
       - { action: accept, from: ^VrDeviceInfo$ }
+      - { action: accept, from: ^Text$ }
 
       - { action: ignore, from: "(?i)Trace" }
 

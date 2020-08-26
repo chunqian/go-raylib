@@ -9,6 +9,7 @@ import "C"
 
 import (
 	// "fmt"
+	"runtime"
 	"unsafe"
 )
 
@@ -98,16 +99,28 @@ func StringFromPString(p0 *string, index int32) (raw string) {
 }
 
 // GenImageFontAtlas function as declared in src/raylib.h:1218
-func GenImageFontAtlas(chars *C.CharInfo, recs **C.Rectangle, charsCount int32, fontSize int32, padding int32, packMethod int32) Image {
-	// cchars, _ := chars.PassRef()
+func GenImageFontAtlas(chars *CharInfo, recs **C.Rectangle, charsCount int32, fontSize int32, padding int32, packMethod int32) Image {
+	cchars, _ := chars.PassRef()
 	// crecs, _ := (*recs).PassMemoryRef()
-	cchars := chars
+	// cchars := chars
 	crecs := recs
 	ccharsCount, _ := (C.int)(charsCount), cgoAllocsUnknown
 	cfontSize, _ := (C.int)(fontSize), cgoAllocsUnknown
 	cpadding, _ := (C.int)(padding), cgoAllocsUnknown
 	cpackMethod, _ := (C.int)(packMethod), cgoAllocsUnknown
-	__ret := C.GenImageFontAtlas(cchars, crecs, ccharsCount, cfontSize, cpadding, cpackMethod)
-	__v := *NewImageRef(unsafe.Pointer(&__ret))
-	return __v
+	ret0 := C.GenImageFontAtlas(cchars, crecs, ccharsCount, cfontSize, cpadding, cpackMethod)
+	v0 := *NewImageRef(unsafe.Pointer(&ret0))
+	return v0
+}
+
+// TextJoin function as declared in src/raylib.h:1244
+func TextJoin(textList *Text, count int32, delimiter string) string {
+	ctextList, _ := textList.PassRef()
+	ccount, _ := (C.int)(count), cgoAllocsUnknown
+	delimiter = safeString(delimiter)
+	cdelimiter, _ := unpackPCharString(delimiter)
+	ret0 := C.TextJoin(ctextList.text, ccount, cdelimiter)
+	runtime.KeepAlive(delimiter)
+	v0 := packPCharString(ret0)
+	return v0
 }

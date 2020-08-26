@@ -22,25 +22,25 @@ func main() {
 	msg := "Signed Distance Fields"
 
 	fontDefault := rl.Font{}
-	fontDefaultPtr := fontDefault.Convert()
+	fontDefaultT := fontDefault.Convert()
 
-	fontDefaultPtr.BaseSize = 16
-	fontDefaultPtr.CharsCount = 95
-	fontDefaultPtr.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
+	fontDefaultT.BaseSize = 16
+	fontDefaultT.CharsCount = 95
+	fontDefaultT.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
 
-	stlas := rl.GenImageFontAtlas(fontDefaultPtr.Chars, &fontDefaultPtr.Recs, 95, 16, 4, 0)
-	fontDefaultPtr.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
+	stlas := rl.GenImageFontAtlas(fontDefault.GetChars(0), &fontDefaultT.Recs, 95, 16, 4, 0)
+	fontDefaultT.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 	rl.UnloadImage(stlas)
 
 	fontSDF := rl.Font{}
-	fontSDFPtr := fontSDF.Convert()
+	fontSDFT := fontSDF.Convert()
 
-	fontSDFPtr.BaseSize = 16
-	fontSDFPtr.CharsCount = 95
-	fontSDFPtr.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF)).PassRef()
+	fontSDFT.BaseSize = 16
+	fontSDFT.CharsCount = 95
+	fontSDFT.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF)).PassRef()
 
-	stlas = rl.GenImageFontAtlas(fontSDFPtr.Chars, &fontSDFPtr.Recs, 95, 16, 0, 1)
-	fontSDFPtr.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
+	stlas = rl.GenImageFontAtlas(fontSDF.GetChars(0), &fontSDFT.Recs, 95, 16, 0, 1)
+	fontSDFT.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 
 	rl.UnloadImage(stlas)
 
