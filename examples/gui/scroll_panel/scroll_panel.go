@@ -110,9 +110,9 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText(fmt.Sprintf("[%f, %f]", panelScrollT.X, panelScrollT.Y), 4, 4, 20, *rl.Red)
+		rl.DrawText(fmt.Sprintf("[%f, %f]", panelScrollT.X, panelScrollT.Y), 4, 4, 20, rl.Red)
 
 		view := rg.GuiScrollPanel(panelRec, panelContentRec, &panelScroll)
 		viewT := view.Convert()
@@ -135,7 +135,7 @@ func main() {
 				int32(panelRecT.Y+panelScrollT.Y),
 				int32(panelContentRecT.Width),
 				int32(panelContentRecT.Height),
-				rl.Fade(*rl.Red, 0.1),
+				rl.Fade(rl.Red, 0.1),
 			)
 		}
 

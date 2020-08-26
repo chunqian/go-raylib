@@ -108,15 +108,15 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginTextureMode(target)
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginMode3D(rl.Camera3D(camera))
 
-		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 0.1, *rl.White)
+		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 0.1, rl.White)
 
 		rl.DrawGrid(10, 1.0)
 
@@ -135,20 +135,20 @@ func main() {
 				-float32(target.GetTexture().Convert().Height),
 			),
 			rl.NewVector2(0, 0),
-			*rl.White,
+			rl.White,
 		)
 
 		rl.EndShaderMode()
 
-		rl.DrawRectangle(0, 9, 580, 30, rl.Fade(*rl.LightGray, 0.7))
+		rl.DrawRectangle(0, 9, 580, 30, rl.Fade(rl.LightGray, 0.7))
 
-		rl.DrawText("(c) Church 3D model by Alberto Cano", screenWidth-200, screenHeight-20, 10, *rl.Gray)
+		rl.DrawText("(c) Church 3D model by Alberto Cano", screenWidth-200, screenHeight-20, 10, rl.Gray)
 
-		rl.DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, *rl.Black)
+		rl.DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, rl.Black)
 
-		rl.DrawText(postproShaderText[currentShader], 330, 15, 20, *rl.Red)
+		rl.DrawText(postproShaderText[currentShader], 330, 15, 20, rl.Red)
 
-		rl.DrawText("< >", 540, 10, 30, *rl.DarkBlue)
+		rl.DrawText("< >", 540, 10, 30, rl.DarkBlue)
 
 		rl.DrawFPS(700, 15)
 

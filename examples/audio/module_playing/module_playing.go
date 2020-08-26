@@ -29,7 +29,7 @@ func main() {
 
 	rl.InitAudioDevice()
 
-	colors := []*rl.Color{
+	colors := []rl.Color{
 		rl.Orange,
 		rl.Red,
 		rl.Gold,
@@ -55,7 +55,7 @@ func main() {
 
 		circles[i].position = rl.NewVector2(px, py)
 		circles[i].speed = float32(rl.GetRandomValue(1, 100)) / 2000.0
-		circles[i].color = *colors[rl.GetRandomValue(0, 13)]
+		circles[i].color = colors[rl.GetRandomValue(0, 13)]
 	}
 
 	music := rl.LoadMusicStream("../audio/resources/mini1111.xm")
@@ -106,21 +106,21 @@ func main() {
 				circles[i].position.Convert().X = px
 				circles[i].position.Convert().Y = py
 				circles[i].speed = float32(rl.GetRandomValue(1, 100)) / 2000.0
-				circles[i].color = *colors[rl.GetRandomValue(0, 13)]
+				circles[i].color = colors[rl.GetRandomValue(0, 13)]
 			}
 		}
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		for i := (MAX_CIRCLES - 1); i >= 0; i-- {
 			rl.DrawCircleV(circles[i].position, circles[i].radius, rl.Fade(circles[i].color, circles[i].alpha))
 		}
 
-		rl.DrawRectangle(20, screenHeight-20-12, screenWidth-40, 12, *rl.LightGray)
-		rl.DrawRectangle(20, screenHeight-20-12, int32(timePlayed), 12, *rl.Maroon)
-		rl.DrawRectangleLines(20, screenHeight-20-12, screenWidth-40, 12, *rl.Gray)
+		rl.DrawRectangle(20, screenHeight-20-12, screenWidth-40, 12, rl.LightGray)
+		rl.DrawRectangle(20, screenHeight-20-12, int32(timePlayed), 12, rl.Maroon)
+		rl.DrawRectangleLines(20, screenHeight-20-12, screenWidth-40, 12, rl.Gray)
 
 		rl.EndDrawing()
 	}

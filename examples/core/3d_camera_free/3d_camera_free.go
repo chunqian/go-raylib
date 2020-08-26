@@ -40,26 +40,26 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginMode3D(camera)
 
-		rl.DrawCube(cubePosition, 2.0, 2.0, 2.0, *rl.Red)
-		rl.DrawCubeWires(cubePosition, 2.0, 2.0, 2.0, *rl.Maroon)
+		rl.DrawCube(cubePosition, 2.0, 2.0, 2.0, rl.Red)
+		rl.DrawCubeWires(cubePosition, 2.0, 2.0, 2.0, rl.Maroon)
 
 		rl.DrawGrid(10, 1.0)
 
 		rl.EndMode3D()
 
-		rl.DrawRectangle(10, 10, 320, 133, rl.Fade(*rl.SkyBlue, 0.5))
-		rl.DrawRectangleLines(10, 10, 320, 133, *rl.Blue)
+		rl.DrawRectangle(10, 10, 320, 133, rl.Fade(rl.SkyBlue, 0.5))
+		rl.DrawRectangleLines(10, 10, 320, 133, rl.Blue)
 
-		rl.DrawText("Free camera default controls:", 20, 20, 10, *rl.Black)
-		rl.DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, *rl.DarkGray)
-		rl.DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10, *rl.DarkGray)
-		rl.DrawText("- Alt + Mouse Wheel Pressed to Rotate", 40, 80, 10, *rl.DarkGray)
-		rl.DrawText("- Alt + Ctrl + Mouse Wheel Pressed for Smooth Zoom", 40, 100, 10, *rl.DarkGray)
-		rl.DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, *rl.DarkGray)
+		rl.DrawText("Free camera default controls:", 20, 20, 10, rl.Black)
+		rl.DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, rl.DarkGray)
+		rl.DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10, rl.DarkGray)
+		rl.DrawText("- Alt + Mouse Wheel Pressed to Rotate", 40, 80, 10, rl.DarkGray)
+		rl.DrawText("- Alt + Ctrl + Mouse Wheel Pressed for Smooth Zoom", 40, 100, 10, rl.DarkGray)
+		rl.DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, rl.DarkGray)
 
 		rl.EndDrawing()
 	}

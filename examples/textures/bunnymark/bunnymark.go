@@ -79,17 +79,17 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		for i := 0; i < bunniesCount; i++ {
 			rl.DrawTexture(texBunny, int32(bunnies[i].position.Convert().X), int32(bunnies[i].position.Convert().Y), bunnies[i].color)
 		}
 
-		rl.DrawRectangle(0, 0, screenWidth, 40, *rl.Black)
+		rl.DrawRectangle(0, 0, screenWidth, 40, rl.Black)
 
-		rl.DrawText(fmt.Sprintf("bunnies: %d", bunniesCount), 120, 10, 20, *rl.Green)
+		rl.DrawText(fmt.Sprintf("bunnies: %d", bunniesCount), 120, 10, 20, rl.Green)
 
-		rl.DrawText(fmt.Sprintf("batched draw calls: %d", 1+bunniesCount/MAX_BATCH_ELEMENTS), 320, 10, 20, *rl.Maroon)
+		rl.DrawText(fmt.Sprintf("batched draw calls: %d", 1+bunniesCount/MAX_BATCH_ELEMENTS), 320, 10, 20, rl.Maroon)
 
 		rl.DrawFPS(10, 10)
 

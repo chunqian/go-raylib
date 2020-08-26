@@ -183,7 +183,7 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		for i := 0; i < len(emoji); i++ {
 
@@ -201,7 +201,7 @@ func main() {
 				if selected == i {
 					color = emoji[i].Color
 				} else {
-					color = rl.Fade(*rl.LightGray, 0.4)
+					color = rl.Fade(rl.LightGray, 0.4)
 				}
 				rl.DrawTextEx(fontEmoji, string(txt), pos, float32(fontEmojiT.BaseSize), 1.0, color)
 			} else {
@@ -292,7 +292,7 @@ func main() {
 			)
 			textRectT := textRect.Convert()
 
-			rl.DrawTextRec(font, message[msg].Text, textRect, float32(fontT.BaseSize), 1.0, true, *rl.White)
+			rl.DrawTextRec(font, message[msg].Text, textRect, float32(fontT.BaseSize), 1.0, true, rl.White)
 
 			size := len(message[msg].Text)
 			len := rl.GetCodepointsCount(message[msg].Text)
@@ -306,11 +306,11 @@ func main() {
 				msgRectT.Y+msgRectT.Height-szT.Y-2,
 			)
 			posT := pos.Convert()
-			rl.DrawText(info, int32(posT.X), int32(posT.Y), 10, *rl.RayWhite)
+			rl.DrawText(info, int32(posT.X), int32(posT.Y), 10, rl.RayWhite)
 		}
 
-		rl.DrawText("These emojis have something to tell you, click each to find out!", (screenWidth-650)/2, screenHeight-40, 20, *rl.Gray)
-		rl.DrawText("Each emoji is a unicode character from a font, not a texture... Press [SPACEBAR] to refresh", (screenWidth-484)/2, screenHeight-16, 10, *rl.Gray)
+		rl.DrawText("These emojis have something to tell you, click each to find out!", (screenWidth-650)/2, screenHeight-40, 20, rl.Gray)
+		rl.DrawText("Each emoji is a unicode character from a font, not a texture... Press [SPACEBAR] to refresh", (screenWidth-484)/2, screenHeight-16, 10, rl.Gray)
 
 		rl.EndDrawing()
 	}

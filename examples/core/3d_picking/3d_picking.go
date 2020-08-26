@@ -65,27 +65,27 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginMode3D(camera)
 
 		cubeSizeT := cubeSize.Convert()
 		if collision {
-			rl.DrawCube(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, *rl.Red)
-			rl.DrawCubeWires(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, *rl.Maroon)
+			rl.DrawCube(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.Red)
+			rl.DrawCubeWires(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.Maroon)
 
-			rl.DrawCubeWires(cubePosition, cubeSizeT.X+0.2, cubeSizeT.Y+0.2, cubeSizeT.Z+0.2, *rl.Green)
+			rl.DrawCubeWires(cubePosition, cubeSizeT.X+0.2, cubeSizeT.Y+0.2, cubeSizeT.Z+0.2, rl.Green)
 		} else {
-			rl.DrawCube(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, *rl.Gray)
-			rl.DrawCubeWires(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, *rl.DarkGray)
+			rl.DrawCube(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.Gray)
+			rl.DrawCubeWires(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.DarkGray)
 		}
 
-		rl.DrawRay(ray, *rl.Maroon)
+		rl.DrawRay(ray, rl.Maroon)
 		rl.DrawGrid(10, 1.0)
 
 		rl.EndMode3D()
 
-		rl.DrawText("Try selecting the box with mouse!", 240, 10, 20, *rl.DarkGray)
+		rl.DrawText("Try selecting the box with mouse!", 240, 10, 20, rl.DarkGray)
 
 		if collision {
 			rl.DrawText(
@@ -93,7 +93,7 @@ func main() {
 				(screenWidth-rl.MeasureText("BOX SELECTED", 30))/2,
 				int32(float32(screenHeight)*0.1),
 				30,
-				*rl.Green,
+				rl.Green,
 			)
 		}
 

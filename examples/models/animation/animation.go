@@ -52,21 +52,21 @@ func main() {
 		}
 
 		rl.BeginDrawing()
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 		rl.BeginMode3D(rl.Camera3D(camera))
 
-		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), *rl.White)
+		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), rl.White)
 
 		for i := int32(0); i < model.Convert().BoneCount; i++ {
 			framePose := anims.Offset(0).GetFramePoses(animFrameCounter, i)
-			rl.DrawCube(*framePose.GetTranslation(), 0.2, 0.2, 0.2, *rl.Red)
+			rl.DrawCube(*framePose.GetTranslation(), 0.2, 0.2, 0.2, rl.Red)
 		}
 
 		rl.DrawGrid(10, 1.0)
 		rl.EndMode3D()
 
-		rl.DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, *rl.Maroon)
-		rl.DrawText("(c) Guy IQM 3D model by @culacant", screenWidth-200, screenHeight-20, 10, *rl.Gray)
+		rl.DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, rl.Maroon)
+		rl.DrawText("(c) Guy IQM 3D model by @culacant", screenWidth-200, screenHeight-20, 10, rl.Gray)
 
 		rl.DrawFPS(10, 30)
 		rl.EndDrawing()

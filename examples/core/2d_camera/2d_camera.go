@@ -89,39 +89,39 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginMode2D(camera)
 
-		rl.DrawRectangle(-6000, 320, 13000, 8000, *rl.DarkGray)
+		rl.DrawRectangle(-6000, 320, 13000, 8000, rl.DarkGray)
 
 		for i := 0; i < MAX_BUILDINGS; i++ {
 			rl.DrawRectangleRec(buildings[i], buildColors[i])
 		}
 
-		rl.DrawRectangleRec(player, *rl.Red)
+		rl.DrawRectangleRec(player, rl.Red)
 
 		targetT := camera.GetTarget().Convert()
-		rl.DrawLine(int32(targetT.X), -screenHeight*10, int32(targetT.X), screenHeight*10, *rl.Green)
-		rl.DrawLine(-screenWidth*10, int32(targetT.Y), screenWidth*10, int32(targetT.Y), *rl.Green)
+		rl.DrawLine(int32(targetT.X), -screenHeight*10, int32(targetT.X), screenHeight*10, rl.Green)
+		rl.DrawLine(-screenWidth*10, int32(targetT.Y), screenWidth*10, int32(targetT.Y), rl.Green)
 
 		rl.EndMode2D()
 
-		rl.DrawText("SCREEN AREA", 640, 10, 20, *rl.Red)
+		rl.DrawText("SCREEN AREA", 640, 10, 20, rl.Red)
 
-		rl.DrawRectangle(0, 0, screenWidth, 5, *rl.Red)
-		rl.DrawRectangle(0, 5, 5, screenHeight-10, *rl.Red)
-		rl.DrawRectangle(screenWidth-5, 5, 5, screenHeight-10, *rl.Red)
-		rl.DrawRectangle(0, screenHeight-5, screenWidth, 5, *rl.Red)
+		rl.DrawRectangle(0, 0, screenWidth, 5, rl.Red)
+		rl.DrawRectangle(0, 5, 5, screenHeight-10, rl.Red)
+		rl.DrawRectangle(screenWidth-5, 5, 5, screenHeight-10, rl.Red)
+		rl.DrawRectangle(0, screenHeight-5, screenWidth, 5, rl.Red)
 
-		rl.DrawRectangle(10, 10, 250, 113, rl.Fade(*rl.SkyBlue, 0.5))
-		rl.DrawRectangleLines(10, 10, 250, 113, *rl.Blue)
+		rl.DrawRectangle(10, 10, 250, 113, rl.Fade(rl.SkyBlue, 0.5))
+		rl.DrawRectangleLines(10, 10, 250, 113, rl.Blue)
 
-		rl.DrawText("Free 2d camera controls:", 20, 20, 10, *rl.Black)
-		rl.DrawText("- Right/Left to move Offset", 40, 40, 10, *rl.DarkGray)
-		rl.DrawText("- Mouse Wheel to Zoom in-out", 40, 60, 10, *rl.DarkGray)
-		rl.DrawText("- A / S to Rotate", 40, 80, 10, *rl.DarkGray)
-		rl.DrawText("- R to reset Zoom and Rotation", 40, 100, 10, *rl.DarkGray)
+		rl.DrawText("Free 2d camera controls:", 20, 20, 10, rl.Black)
+		rl.DrawText("- Right/Left to move Offset", 40, 40, 10, rl.DarkGray)
+		rl.DrawText("- Mouse Wheel to Zoom in-out", 40, 60, 10, rl.DarkGray)
+		rl.DrawText("- A / S to Rotate", 40, 80, 10, rl.DarkGray)
+		rl.DrawText("- R to reset Zoom and Rotation", 40, 100, 10, rl.DarkGray)
 
 		rl.EndDrawing()
 	}

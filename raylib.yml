@@ -26,8 +26,8 @@ TRANSLATOR:
     enum: expand
   PtrTips:
     function:
-      - { target: "^TextSplit$", self: arr, tips: [sref, sref, sref] }
-      - { target: "^GenImageFontAtlas$", tips: [sref, ref, sref, sref, sref, sref] }
+      # - { target: "^LoadFontData$", tips: [sref, sref, arr, sref, sref, sref] }
+      # - { target: "^GenImageFontAtlas$", tips: [sref, ref, sref, sref, sref, sref] }
 
       # defaults
       - { target: ".", self: ref, tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
@@ -365,7 +365,7 @@ TRANSLATOR:
       - { action: accept, from: ^LoadFontEx$ }
       - { action: accept, from: ^LoadFontFromImage$ }
       - { action: accept, from: ^LoadFontData$ }
-      - { action: accept, from: ^GenImageFontAtlas$ }
+      # - { action: accept, from: ^GenImageFontAtlas$ }
       - { action: accept, from: ^UnloadFont$ }
 
       - { action: accept, from: ^DrawFPS$ }

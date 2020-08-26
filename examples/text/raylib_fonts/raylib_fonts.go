@@ -60,14 +60,14 @@ func main() {
 	positions[7].Convert().Y += 8
 
 	colors := []rl.Color{
-		*rl.Maroon,
-		*rl.Orange,
-		*rl.DarkGreen,
-		*rl.DarkBlue,
-		*rl.DarkPurple,
-		*rl.Lime,
-		*rl.Gold,
-		*rl.Red,
+		rl.Maroon,
+		rl.Orange,
+		rl.DarkGreen,
+		rl.DarkBlue,
+		rl.DarkPurple,
+		rl.Lime,
+		rl.Gold,
+		rl.Red,
 	}
 
 	rl.SetTargetFPS(60)
@@ -76,10 +76,10 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText("free fonts included with raylib", 250, 20, 20, *rl.DarkGray)
-		rl.DrawLine(220, 50, 590, 50, *rl.DarkGray)
+		rl.DrawText("free fonts included with raylib", 250, 20, 20, rl.DarkGray)
+		rl.DrawLine(220, 50, 590, 50, rl.DarkGray)
 
 		for i := 0; i < MAX_FONTS; i++ {
 			rl.DrawTextEx(

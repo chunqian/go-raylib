@@ -101,7 +101,7 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.Black)
+		rl.ClearBackground(rl.Black)
 
 		rl.DrawFPS(screenWidth-90, screenHeight-30)
 
@@ -126,18 +126,18 @@ func main() {
 					rl.DrawLineV(
 						*(*rl.Vector2)(unsafe.Pointer(&vertexA)),
 						*(*rl.Vector2)(unsafe.Pointer(&vertexB)),
-						*rl.Green,
+						rl.Green,
 					)
 				}
 			}
 		}
 
-		rl.DrawText("Left mouse button to create a polygon", 10, 10, 10, *rl.White)
-		rl.DrawText("Right mouse button to create a circle", 10, 25, 10, *rl.White)
-		rl.DrawText("Press 'R' to reset example", 10, 40, 10, *rl.White)
+		rl.DrawText("Left mouse button to create a polygon", 10, 10, 10, rl.White)
+		rl.DrawText("Right mouse button to create a circle", 10, 25, 10, rl.White)
+		rl.DrawText("Press 'R' to reset example", 10, 40, 10, rl.White)
 
-		rl.DrawText("Physac", logoX, logoY, 30, *rl.White)
-		rl.DrawText("Powered by", logoX+50, logoY-7, 10, *rl.White)
+		rl.DrawText("Physac", logoX, logoY, 30, rl.White)
+		rl.DrawText("Powered by", logoX+50, logoY-7, 10, rl.White)
 
 		rl.EndDrawing()
 	}

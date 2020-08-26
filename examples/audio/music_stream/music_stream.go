@@ -52,16 +52,16 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, *rl.LightGray)
+		rl.DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, rl.LightGray)
 
-		rl.DrawRectangle(200, 200, 400, 12, *rl.LightGray)
-		rl.DrawRectangle(200, 200, int32(timePlayed), 12, *rl.Maroon)
-		rl.DrawRectangleLines(200, 200, 400, 12, *rl.Gray)
+		rl.DrawRectangle(200, 200, 400, 12, rl.LightGray)
+		rl.DrawRectangle(200, 200, int32(timePlayed), 12, rl.Maroon)
+		rl.DrawRectangleLines(200, 200, 400, 12, rl.Gray)
 
-		rl.DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, *rl.LightGray)
-		rl.DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, *rl.LightGray)
+		rl.DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, rl.LightGray)
+		rl.DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, rl.LightGray)
 
 		rl.EndDrawing()
 	}

@@ -13,15 +13,9 @@ import (
 )
 
 // NewColor - Returns new Color
-func CreateColor(r, g, b, a uint8) *Color {
-	// color := Color{
-	// 	R: byte(r),
-	// 	G: byte(g),
-	// 	B: byte(b),
-	// 	A: byte(a),
-	// }
+func CreateColor(r, g, b, a uint8) Color {
 	color := NewColor(byte(r), byte(g), byte(b), byte(a))
-	return &color
+	return color
 }
 
 var (
@@ -79,10 +73,41 @@ var (
 	RayWhite = CreateColor(245, 245, 245, 255)
 )
 
-func ConvertFilesPath(names **byte, index int32) string {
+func StringFromPPByte(names **byte, index int32) (raw string) {
 
 	ptr0 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(names)) + uintptr(index)*uintptr(sizeOfPtr)))
 	ptrRow := (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(*ptr0))))
-	v0 := C.GoString(ptrRow)
-	return v0
+	raw = C.GoString(ptrRow)
+	return
+}
+
+func StringFromPString(p0 *string, index int32) (raw string) {
+
+	h0 := (*stringHeader)(unsafe.Pointer(p0))
+	ptr0 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(&(h0.Data))) + uintptr(index)*uintptr(sizeOfPtr)))
+	p := *ptr0
+	if p != nil && *p != 0 {
+		h := (*stringHeader)(unsafe.Pointer(&raw))
+		h.Data = unsafe.Pointer(p)
+		for *p != 0 {
+			p = (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(p)) + 1)) // p++
+		}
+		h.Len = int(uintptr(unsafe.Pointer(p)) - uintptr(h.Data))
+	}
+	return
+}
+
+// GenImageFontAtlas function as declared in src/raylib.h:1218
+func GenImageFontAtlas(chars *C.CharInfo, recs **C.Rectangle, charsCount int32, fontSize int32, padding int32, packMethod int32) Image {
+	// cchars, _ := chars.PassRef()
+	// crecs, _ := (*recs).PassMemoryRef()
+	cchars := chars
+	crecs := recs
+	ccharsCount, _ := (C.int)(charsCount), cgoAllocsUnknown
+	cfontSize, _ := (C.int)(fontSize), cgoAllocsUnknown
+	cpadding, _ := (C.int)(padding), cgoAllocsUnknown
+	cpackMethod, _ := (C.int)(packMethod), cgoAllocsUnknown
+	__ret := C.GenImageFontAtlas(cchars, crecs, ccharsCount, cfontSize, cpadding, cpackMethod)
+	__v := *NewImageRef(unsafe.Pointer(&__ret))
+	return __v
 }

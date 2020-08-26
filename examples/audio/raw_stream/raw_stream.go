@@ -91,10 +91,10 @@ func main() {
 		}
 
 		rl.BeginDrawing()
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText(fmt.Sprintf("sine frequency: %d", int(frequency)), rl.GetScreenWidth()-220, 10, 20, *rl.Red)
-		rl.DrawText("click mouse button to change frequency", 10, 10, 20, *rl.DarkGray)
+		rl.DrawText(fmt.Sprintf("sine frequency: %d", int(frequency)), rl.GetScreenWidth()-220, 10, 20, rl.Red)
+		rl.DrawText("click mouse button to change frequency", 10, 10, 20, rl.DarkGray)
 
 		for i := int32(0); i < screenWidth; i++ {
 			px := float32(i)
@@ -102,7 +102,7 @@ func main() {
 			position.Convert().X = px
 			position.Convert().Y = py
 
-			rl.DrawPixelV(position, *rl.Red)
+			rl.DrawPixelV(position, rl.Red)
 		}
 		rl.EndDrawing()
 	}

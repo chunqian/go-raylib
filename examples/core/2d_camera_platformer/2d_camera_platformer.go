@@ -46,27 +46,27 @@ func main() {
 		{
 			Rect:     rl.NewRectangle(0, 0, 1000, 400),
 			Blocking: false,
-			Color:    *rl.LightGray,
+			Color:    rl.LightGray,
 		},
 		{
 			Rect:     rl.NewRectangle(0, 400, 1000, 200),
 			Blocking: true,
-			Color:    *rl.Gray,
+			Color:    rl.Gray,
 		},
 		{
 			Rect:     rl.NewRectangle(300, 200, 400, 10),
 			Blocking: true,
-			Color:    *rl.Gray,
+			Color:    rl.Gray,
 		},
 		{
 			Rect:     rl.NewRectangle(250, 300, 100, 10),
 			Blocking: true,
-			Color:    *rl.Gray,
+			Color:    rl.Gray,
 		},
 		{
 			Rect:     rl.NewRectangle(650, 300, 100, 10),
 			Blocking: true,
-			Color:    *rl.Gray,
+			Color:    rl.Gray,
 		},
 	}
 
@@ -128,7 +128,7 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.LightGray)
+		rl.ClearBackground(rl.LightGray)
 
 		rl.BeginMode2D(camera)
 
@@ -137,17 +137,17 @@ func main() {
 		}
 
 		playerRect := rl.NewRectangle(playerPositionT.X-20, playerPositionT.Y-40, 40, 40)
-		rl.DrawRectangleRec(playerRect, *rl.Red)
+		rl.DrawRectangleRec(playerRect, rl.Red)
 
 		rl.EndMode2D()
 
-		rl.DrawText("Controls:", 20, 20, 10, *rl.Black)
-		rl.DrawText("- Right/Left to move", 40, 40, 10, *rl.DarkGray)
-		rl.DrawText("- Space to jump", 40, 60, 10, *rl.DarkGray)
-		rl.DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, *rl.DarkGray)
-		rl.DrawText("- C to change camera mode", 40, 100, 10, *rl.DarkGray)
-		rl.DrawText("Current camera mode:", 20, 120, 10, *rl.Black)
-		rl.DrawText(cameraDescriptions[cameraOption], 40, 140, 10, *rl.DarkGray)
+		rl.DrawText("Controls:", 20, 20, 10, rl.Black)
+		rl.DrawText("- Right/Left to move", 40, 40, 10, rl.DarkGray)
+		rl.DrawText("- Space to jump", 40, 60, 10, rl.DarkGray)
+		rl.DrawText("- Mouse Wheel to Zoom in-out, R to reset zoom", 40, 80, 10, rl.DarkGray)
+		rl.DrawText("- C to change camera mode", 40, 100, 10, rl.DarkGray)
+		rl.DrawText("Current camera mode:", 20, 120, 10, rl.Black)
+		rl.DrawText(cameraDescriptions[cameraOption], 40, 140, 10, rl.DarkGray)
 
 		rl.EndDrawing()
 	}

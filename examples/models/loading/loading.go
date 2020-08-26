@@ -44,7 +44,7 @@ func main() {
 		if rl.IsFileDropped() {
 			count := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&count)
-			droppedFilePath := rl.ConvertFilesPath(droppedFiles, 0)
+			droppedFilePath := rl.StringFromPPByte(droppedFiles, 0)
 
 			if count == 1 {
 				if rl.IsFileExtension(droppedFilePath, ".obj") ||
@@ -73,19 +73,19 @@ func main() {
 		}
 
 		rl.BeginDrawing()
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 		rl.BeginMode3D(rl.Camera3D(camera))
-		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 1.0, *rl.White)
+		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 1.0, rl.White)
 		rl.DrawGrid(20, 10.0)
 		if selected {
-			rl.DrawBoundingBox(bounds, *rl.Green)
+			rl.DrawBoundingBox(bounds, rl.Green)
 		}
 		rl.EndMode3D()
-		rl.DrawText("Drag & drop model to load mesh/texture.", 10, rl.GetScreenHeight()-20, 10, *rl.DarkGray)
+		rl.DrawText("Drag & drop model to load mesh/texture.", 10, rl.GetScreenHeight()-20, 10, rl.DarkGray)
 		if selected {
-			rl.DrawText("MODEL SELECTED", rl.GetScreenWidth()-110, 10, 10, *rl.Green)
+			rl.DrawText("MODEL SELECTED", rl.GetScreenWidth()-110, 10, 10, rl.Green)
 		}
-		rl.DrawText("(c) Castle 3D model by Alberto Cano", screenWidth-200, screenHeight-20, 10, *rl.Gray)
+		rl.DrawText("(c) Castle 3D model by Alberto Cano", screenWidth-200, screenHeight-20, 10, rl.Gray)
 		rl.DrawFPS(10, 10)
 		rl.EndDrawing()
 	}

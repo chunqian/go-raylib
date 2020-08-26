@@ -44,7 +44,7 @@ func main() {
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
 	multiTextBoxEditMode := false
-	colorPickerValue := *(*rg.Color)(unsafe.Pointer(rl.Red))
+	colorPickerValue := *(*rg.Color)(unsafe.Pointer(&rl.Red))
 
 	sliderValue := float32(50)
 	sliderBarValue := float32(60)
@@ -82,7 +82,7 @@ func main() {
 		if rl.IsFileDropped() {
 			dropsCount := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&dropsCount)
-			droppedFilePath := rl.ConvertFilesPath(droppedFiles, 0)
+			droppedFilePath := rl.StringFromPPByte(droppedFiles, 0)
 
 			if dropsCount > 0 && rl.IsFileExtension(droppedFilePath, ".rgs") {
 				rg.GuiLoadStyle(droppedFilePath)
@@ -200,7 +200,7 @@ func main() {
 		alphaValue = rg.GuiColorBarAlpha(rg.NewRectangle(320, 490, 200, 30), alphaValue)
 
 		if showMessageBox {
-			rl.DrawRectangle(0, 0, rl.GetScreenWidth(), rl.GetScreenHeight(), rl.Fade(*rl.RayWhite, 0.8))
+			rl.DrawRectangle(0, 0, rl.GetScreenWidth(), rl.GetScreenHeight(), rl.Fade(rl.RayWhite, 0.8))
 
 			result := rg.GuiMessageBox(
 				rg.NewRectangle(float32(rl.GetScreenWidth()/2-125), float32(rl.GetScreenHeight()/2-50), 250, 100),
@@ -216,7 +216,7 @@ func main() {
 		}
 
 		if showTextInputBox {
-			rl.DrawRectangle(0, 0, rl.GetScreenWidth(), rl.GetScreenHeight(), rl.Fade(*rl.RayWhite, 0.8))
+			rl.DrawRectangle(0, 0, rl.GetScreenWidth(), rl.GetScreenHeight(), rl.Fade(rl.RayWhite, 0.8))
 
 			result := rg.GuiTextInputBox(
 				rg.NewRectangle(float32(rl.GetScreenWidth()/2-120), float32(rl.GetScreenHeight()/2-60), 240, 140),

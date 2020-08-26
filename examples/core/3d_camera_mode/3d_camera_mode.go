@@ -32,18 +32,18 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginMode3D(camera)
 
-		rl.DrawCube(cubePosition, 2.0, 2.0, 2.0, *rl.Red)
-		rl.DrawCubeWires(cubePosition, 2.0, 2.0, 2.0, *rl.Maroon)
+		rl.DrawCube(cubePosition, 2.0, 2.0, 2.0, rl.Red)
+		rl.DrawCubeWires(cubePosition, 2.0, 2.0, 2.0, rl.Maroon)
 
 		rl.DrawGrid(10, 1.0)
 
 		rl.EndMode3D()
 
-		rl.DrawText("Welcome to the third dimension!", 10, 40, 20, *rl.DarkGray)
+		rl.DrawText("Welcome to the third dimension!", 10, 40, 20, rl.DarkGray)
 
 		rl.DrawFPS(10, 10)
 

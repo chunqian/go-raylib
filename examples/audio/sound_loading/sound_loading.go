@@ -32,10 +32,10 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, *rl.LightGray)
-		rl.DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, *rl.LightGray)
+		rl.DrawText("Press SPACE to PLAY the WAV sound!", 200, 180, 20, rl.LightGray)
+		rl.DrawText("Press ENTER to PLAY the OGG sound!", 200, 220, 20, rl.LightGray)
 
 		rl.EndDrawing()
 	}

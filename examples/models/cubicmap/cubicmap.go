@@ -44,23 +44,23 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
 		rl.BeginMode3D(rl.Camera3D(camera))
 
-		rl.DrawModel(model, rl.NewVector3(-16, 0, -8), 1.0, *rl.White)
+		rl.DrawModel(model, rl.NewVector3(-16, 0, -8), 1.0, rl.White)
 
 		rl.EndMode3D()
 
 		rl.DrawTextureEx(cubicmap,
 			rl.NewVector2(float32(screenWidth-cubicmapT.Width*4-20), 20),
 			0, 4.0,
-			*rl.White,
+			rl.White,
 		)
-		rl.DrawRectangleLines(screenWidth-cubicmapT.Width*4-20, 20, cubicmapT.Width*4, cubicmapT.Height*4, *rl.Green)
+		rl.DrawRectangleLines(screenWidth-cubicmapT.Width*4-20, 20, cubicmapT.Width*4, cubicmapT.Height*4, rl.Green)
 
-		rl.DrawText("cubicmap image used to", 658, 90, 10, *rl.Gray)
-		rl.DrawText("generate map 3d model", 658, 104, 10, *rl.Gray)
+		rl.DrawText("cubicmap image used to", 658, 90, 10, rl.Gray)
+		rl.DrawText("generate map 3d model", 658, 104, 10, rl.Gray)
 
 		rl.DrawFPS(10, 10)
 

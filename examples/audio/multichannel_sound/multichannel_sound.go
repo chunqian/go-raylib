@@ -35,13 +35,13 @@ func main() {
 
 		rl.BeginDrawing()
 
-		rl.ClearBackground(*rl.RayWhite)
+		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText("MULTICHANNEL SOUND PLAYING", 20, 20, 20, *rl.Gray)
-		rl.DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, *rl.LightGray)
-		rl.DrawText("Press ENTER to play new wav instance!", 200, 180, 20, *rl.LightGray)
+		rl.DrawText("MULTICHANNEL SOUND PLAYING", 20, 20, 20, rl.Gray)
+		rl.DrawText("Press SPACE to play new ogg instance!", 200, 120, 20, rl.LightGray)
+		rl.DrawText("Press ENTER to play new wav instance!", 200, 180, 20, rl.LightGray)
 
-		rl.DrawText(fmt.Sprintf("CONCURRENT SOUNDS PLAYING: %d", rl.GetSoundsPlaying()), 220, 280, 20, *rl.Red)
+		rl.DrawText(fmt.Sprintf("CONCURRENT SOUNDS PLAYING: %d", rl.GetSoundsPlaying()), 220, 280, 20, rl.Red)
 
 		rl.EndDrawing()
 	}
