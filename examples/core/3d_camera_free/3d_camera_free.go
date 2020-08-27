@@ -27,6 +27,7 @@ func main() {
 	cubePosition := rl.NewVector3(0, 0, 0)
 
 	rl.SetCameraMode(rl.Camera(camera), int32(rl.CAMERA_FREE))
+	rl.SetCameraSmoothZoomControl(int32(rl.KEY_LEFT_SHIFT))
 
 	rl.SetTargetFPS(60)
 
@@ -58,7 +59,7 @@ func main() {
 		rl.DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10, rl.DarkGray)
 		rl.DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10, rl.DarkGray)
 		rl.DrawText("- Alt + Mouse Wheel Pressed to Rotate", 40, 80, 10, rl.DarkGray)
-		rl.DrawText("- Alt + Ctrl + Mouse Wheel Pressed for Smooth Zoom", 40, 100, 10, rl.DarkGray)
+		rl.DrawText("- Alt + Left Shift + Mouse Wheel Pressed for Smooth Zoom", 40, 100, 10, rl.DarkGray)
 		rl.DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10, rl.DarkGray)
 
 		rl.EndDrawing()
