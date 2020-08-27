@@ -45,8 +45,8 @@ func main() {
 
 		if rl.IsKeyDown(int32(rl.KEY_SPACE)) {
 			animFrameCounter++
-			rl.UpdateModelAnimation(model, *anims.Offset(0), animFrameCounter)
-			if animFrameCounter >= anims.Offset(0).Convert().FrameCount {
+			rl.UpdateModelAnimation(model, *anims.Index(0), animFrameCounter)
+			if animFrameCounter >= anims.Index(0).Convert().FrameCount {
 				animFrameCounter = 0
 			}
 		}
@@ -58,7 +58,7 @@ func main() {
 		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), rl.White)
 
 		for i := int32(0); i < model.Convert().BoneCount; i++ {
-			framePose := anims.Offset(0).GetFramePoses(animFrameCounter, i)
+			framePose := anims.Index(0).GetFramePoses(animFrameCounter, i)
 			rl.DrawCube(*framePose.GetTranslation(), 0.2, 0.2, 0.2, rl.Red)
 		}
 
@@ -74,7 +74,7 @@ func main() {
 
 	rl.UnloadTexture(texture)
 	for i := int32(0); i < animsCount; i++ {
-		rl.UnloadModelAnimation(*anims.Offset(i))
+		rl.UnloadModelAnimation(*anims.Index(i))
 	}
 
 	rl.UnloadModel(model)
