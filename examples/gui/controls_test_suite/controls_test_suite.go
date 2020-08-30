@@ -68,7 +68,7 @@ func main() {
 
 	// textInputFileName := ""
 
-	rl.SetTargetFPS(60)
+	rl.SetTargetFPS(30)
 
 	for !exitWindow {
 		exitWindow = rl.WindowShouldClose()

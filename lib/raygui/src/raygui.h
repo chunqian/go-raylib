@@ -249,9 +249,9 @@
 #endif
 
 // Cforgo
-typedef struct Text {
-    const char **text;
-} Text;
+// typedef struct Text {
+//     const char **text;
+// } Text;
 
 // Style property
 typedef struct GuiStyleProp {

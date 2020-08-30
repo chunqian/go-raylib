@@ -104,7 +104,7 @@ func main() {
 
 	showContentArea := true
 
-	rl.SetTargetFPS(60)
+	rl.SetTargetFPS(30)
 
 	for !rl.WindowShouldClose() {
 
