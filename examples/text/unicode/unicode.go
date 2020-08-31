@@ -171,7 +171,7 @@ func main() {
 		if rl.IsMouseButtonPressed(int32(rl.MOUSE_LEFT_BUTTON)) && (hovered != -1) && (hovered != selected) {
 
 			selected = hovered
-			// if Go struct is C struct bind, please use *.This to assign value
+			// if Go struct is C struct binding, please use *.This to assign value
 			// selectedPos = hoveredPos
 			*selectedPos.This = *hoveredPos.This
 			rl.SetClipboardText(message[emoji[selected].Message].Text)
@@ -207,7 +207,7 @@ func main() {
 			} else {
 				rl.DrawTextEx(fontEmoji, string(txt), pos, float32(fontEmoji.This.BaseSize), 1.0, emoji[i].Color)
 				hovered = i
-				// if Go struct is C struct bind, please use *.This to assign value
+				// if Go struct is C struct binding, please use *.This to assign value
 				// hoveredPos = pos
 				*hoveredPos.This = *pos.This
 			}

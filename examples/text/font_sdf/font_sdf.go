@@ -28,7 +28,7 @@ func main() {
 	fontDefault.This.CharsCount = 95
 	fontDefault.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
 
-	stlas := rl.GenImageFontAtlas(fontDefault.GetChars(0), &fontDefault.This.Recs, 95, 16, 4, 0)
+	stlas := rl.GenImageFontAtlas(fontDefault.Chars(0), &fontDefault.This.Recs, 95, 16, 4, 0)
 	fontDefault.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 	rl.UnloadImage(stlas)
 
@@ -39,13 +39,13 @@ func main() {
 	fontSDF.This.CharsCount = 95
 	fontSDF.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF)).PassRef()
 
-	stlas = rl.GenImageFontAtlas(fontSDF.GetChars(0), &fontSDF.This.Recs, 95, 16, 0, 1)
+	stlas = rl.GenImageFontAtlas(fontSDF.Chars(0), &fontSDF.This.Recs, 95, 16, 0, 1)
 	fontSDF.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 
 	rl.UnloadImage(stlas)
 
 	shader := rl.LoadShader("", fmt.Sprintf("../text/resources/shaders/glsl%d/sdf.fs", GLSL_VERSION))
-	rl.SetTextureFilter(*fontSDF.GetTexture(), int32(rl.FILTER_BILINEAR))
+	rl.SetTextureFilter(*fontSDF.Texture(), int32(rl.FILTER_BILINEAR))
 
 	fontPosition := rl.NewVector2(40, float32(screenHeight/2-50))
 	textSize := rl.NewVector2(0, 0)
@@ -87,10 +87,10 @@ func main() {
 			rl.DrawTextEx(fontSDF, msg, fontPosition, fontSize, 0, rl.Black)
 			rl.EndShaderMode()
 
-			rl.DrawTexture(*fontSDF.GetTexture(), 10, 10, rl.Black)
+			rl.DrawTexture(*fontSDF.Texture(), 10, 10, rl.Black)
 		} else {
 			rl.DrawTextEx(fontDefault, msg, fontPosition, fontSize, 0, rl.Black)
-			rl.DrawTexture(*fontDefault.GetTexture(), 10, 10, rl.Black)
+			rl.DrawTexture(*fontDefault.Texture(), 10, 10, rl.Black)
 		}
 
 		if currentFont == 1 {

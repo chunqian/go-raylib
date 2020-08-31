@@ -94,7 +94,7 @@ func main() {
 		bodiesCount := phys.GetPhysicsBodiesCount()
 		for i := bodiesCount - 1; i >= 0; i-- {
 			body := phys.GetPhysicsBody(i)
-			if body != nil && int32(body.GetPosition().This.Y) > screenHeight*2 {
+			if body != nil && int32(body.Position().This.Y) > screenHeight*2 {
 				phys.DestroyPhysicsBody(body)
 			}
 		}

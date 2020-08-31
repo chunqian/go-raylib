@@ -100,16 +100,16 @@ func main() {
 		rl.DrawRectangleRec(player, rl.Red)
 
 		rl.DrawLine(
-			int32(camera.GetTarget().This.X),
+			int32(camera.Target().This.X),
 			-screenHeight*10,
-			int32(camera.GetTarget().This.X),
+			int32(camera.Target().This.X),
 			screenHeight*10, rl.Green,
 		)
 		rl.DrawLine(
 			-screenWidth*10,
-			int32(camera.GetTarget().This.Y),
+			int32(camera.Target().This.Y),
 			screenWidth*10,
-			int32(camera.GetTarget().This.Y),
+			int32(camera.Target().This.Y),
 			rl.Green,
 		)
 
