@@ -11,7 +11,7 @@ ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
 ### Version
-Synchronized update with raylib.
+Synchronized update with [raylib](https://github.com/raysan5/raylib).
 
 
 ### Build
