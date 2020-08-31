@@ -10,6 +10,9 @@ raygui.h   | :heavy_check_mark: |
 ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
+### Version
+Synchronized update with raylib.
+
 
 ### Build
 
