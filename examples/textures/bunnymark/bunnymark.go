@@ -30,9 +30,12 @@ func main() {
 	rl.InitWindow(screenWidth, screenHeight, "raylib [textures] example - bunnymark")
 
 	texBunny := rl.LoadTexture("../textures/resources/wabbit_alpha.png")
-	texBunnyT := texBunny.Convert()
-	bunnies := make([]Bunny, MAX_BUNNIES)
 
+	bunnies := make([]Bunny, MAX_BUNNIES)
+	for i := range bunnies {
+		bunnies[i].position.PassRef()
+		bunnies[i].speed.PassRef()
+	}
 	bunniesCount := 0
 
 	rl.SetTargetFPS(60)
@@ -46,8 +49,8 @@ func main() {
 				if bunniesCount < MAX_BUNNIES {
 					bunnies[bunniesCount].position = rl.GetMousePosition()
 
-					bunnies[bunniesCount].speed.Convert().X = float32(rl.GetRandomValue(-250, 250)) / 60.0
-					bunnies[bunniesCount].speed.Convert().Y = float32(rl.GetRandomValue(-250, 250)) / 60.0
+					bunnies[bunniesCount].speed.This.X = float32(rl.GetRandomValue(-250, 250)) / 60.0
+					bunnies[bunniesCount].speed.This.Y = float32(rl.GetRandomValue(-250, 250)) / 60.0
 
 					bunnies[bunniesCount].color = rl.NewColor(
 						byte(rl.GetRandomValue(50, 240)),
@@ -61,19 +64,17 @@ func main() {
 		}
 
 		for i := 0; i < bunniesCount; i++ {
-			positionT := bunnies[i].position.Convert()
-			speedT := bunnies[i].speed.Convert()
 
-			positionT.X += speedT.X
-			positionT.Y += speedT.Y
+			bunnies[i].position.This.X += bunnies[i].speed.This.X
+			bunnies[i].position.This.Y += bunnies[i].speed.This.Y
 
-			if (positionT.X+float32(texBunnyT.Width)/2.0) > float32(rl.GetScreenWidth()) ||
-				(positionT.X+float32(texBunnyT.Width)/2.0) < 0.0 {
-				speedT.X *= -1.0
+			if (bunnies[i].position.This.X+float32(texBunny.This.Width)/2.0) > float32(rl.GetScreenWidth()) ||
+				(bunnies[i].position.This.X+float32(texBunny.This.Width)/2.0) < 0.0 {
+				bunnies[i].speed.This.X *= -1.0
 			}
-			if (positionT.Y+float32(texBunnyT.Height)/2.0) > float32(rl.GetScreenHeight()) ||
-				(positionT.Y+float32(texBunnyT.Height)/2.0-40.0) < 0.0 {
-				speedT.Y *= -1.0
+			if (bunnies[i].position.This.Y+float32(texBunny.This.Height)/2.0) > float32(rl.GetScreenHeight()) ||
+				(bunnies[i].position.This.Y+float32(texBunny.This.Height)/2.0-40.0) < 0.0 {
+				bunnies[i].speed.This.Y *= -1.0
 			}
 		}
 
@@ -82,7 +83,7 @@ func main() {
 		rl.ClearBackground(rl.RayWhite)
 
 		for i := 0; i < bunniesCount; i++ {
-			rl.DrawTexture(texBunny, int32(bunnies[i].position.Convert().X), int32(bunnies[i].position.Convert().Y), bunnies[i].color)
+			rl.DrawTexture(texBunny, int32(bunnies[i].position.This.X), int32(bunnies[i].position.This.Y), bunnies[i].color)
 		}
 
 		rl.DrawRectangle(0, 0, screenWidth, 40, rl.Black)

@@ -36,7 +36,7 @@ func main() {
 		rl.UpdateCamera((*rl.Camera)(&camera))
 
 		if rl.IsKeyDown(int32(rl.KEY_Z)) {
-			camera.Convert().Target, _ = rl.NewVector3(0, 0, 0).PassValue()
+			camera.This.Target, _ = rl.NewVector3(0, 0, 0).PassValue()
 		}
 
 		rl.BeginDrawing()

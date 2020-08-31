@@ -22,25 +22,25 @@ func main() {
 	msg := "Signed Distance Fields"
 
 	fontDefault := rl.Font{}
-	fontDefaultT := fontDefault.Convert()
+	fontDefault.PassRef()
 
-	fontDefaultT.BaseSize = 16
-	fontDefaultT.CharsCount = 95
-	fontDefaultT.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
+	fontDefault.This.BaseSize = 16
+	fontDefault.This.CharsCount = 95
+	fontDefault.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
 
-	stlas := rl.GenImageFontAtlas(fontDefault.GetChars(0), &fontDefaultT.Recs, 95, 16, 4, 0)
-	fontDefaultT.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
+	stlas := rl.GenImageFontAtlas(fontDefault.GetChars(0), &fontDefault.This.Recs, 95, 16, 4, 0)
+	fontDefault.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 	rl.UnloadImage(stlas)
 
 	fontSDF := rl.Font{}
-	fontSDFT := fontSDF.Convert()
+	fontSDF.PassRef()
 
-	fontSDFT.BaseSize = 16
-	fontSDFT.CharsCount = 95
-	fontSDFT.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF)).PassRef()
+	fontSDF.This.BaseSize = 16
+	fontSDF.This.CharsCount = 95
+	fontSDF.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF)).PassRef()
 
-	stlas = rl.GenImageFontAtlas(fontSDF.GetChars(0), &fontSDFT.Recs, 95, 16, 0, 1)
-	fontSDFT.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
+	stlas = rl.GenImageFontAtlas(fontSDF.GetChars(0), &fontSDF.This.Recs, 95, 16, 0, 1)
+	fontSDF.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 
 	rl.UnloadImage(stlas)
 
@@ -75,8 +75,8 @@ func main() {
 			textSize = rl.MeasureTextEx(fontSDF, msg, fontSize, 0)
 		}
 
-		fontPosition.Convert().X = float32(rl.GetScreenWidth())/2 - textSize.Convert().X/2
-		fontPosition.Convert().Y = float32(rl.GetScreenHeight())/2 - textSize.Convert().Y/2 + 80
+		fontPosition.This.X = float32(rl.GetScreenWidth())/2 - textSize.This.X/2
+		fontPosition.This.Y = float32(rl.GetScreenHeight())/2 - textSize.This.Y/2 + 80
 
 		rl.BeginDrawing()
 

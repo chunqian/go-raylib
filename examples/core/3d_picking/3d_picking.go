@@ -47,14 +47,14 @@ func main() {
 					ray,
 					rl.NewBoundingBox(
 						rl.NewVector3(
-							cubePosition.Convert().X-cubeSize.Convert().X/2,
-							cubePosition.Convert().Y-cubeSize.Convert().Y/2,
-							cubePosition.Convert().Z-cubeSize.Convert().Z/2,
+							cubePosition.This.X-cubeSize.This.X/2,
+							cubePosition.This.Y-cubeSize.This.Y/2,
+							cubePosition.This.Z-cubeSize.This.Z/2,
 						),
 						rl.NewVector3(
-							cubePosition.Convert().X+cubeSize.Convert().X/2,
-							cubePosition.Convert().Y+cubeSize.Convert().Y/2,
-							cubePosition.Convert().Z+cubeSize.Convert().Z/2,
+							cubePosition.This.X+cubeSize.This.X/2,
+							cubePosition.This.Y+cubeSize.This.Y/2,
+							cubePosition.This.Z+cubeSize.This.Z/2,
 						),
 					),
 				)
@@ -69,15 +69,14 @@ func main() {
 
 		rl.BeginMode3D(camera)
 
-		cubeSizeT := cubeSize.Convert()
 		if collision {
-			rl.DrawCube(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.Red)
-			rl.DrawCubeWires(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.Maroon)
+			rl.DrawCube(cubePosition, cubeSize.This.X, cubeSize.This.Y, cubeSize.This.Z, rl.Red)
+			rl.DrawCubeWires(cubePosition, cubeSize.This.X, cubeSize.This.Y, cubeSize.This.Z, rl.Maroon)
 
-			rl.DrawCubeWires(cubePosition, cubeSizeT.X+0.2, cubeSizeT.Y+0.2, cubeSizeT.Z+0.2, rl.Green)
+			rl.DrawCubeWires(cubePosition, cubeSize.This.X+0.2, cubeSize.This.Y+0.2, cubeSize.This.Z+0.2, rl.Green)
 		} else {
-			rl.DrawCube(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.Gray)
-			rl.DrawCubeWires(cubePosition, cubeSizeT.X, cubeSizeT.Y, cubeSizeT.Z, rl.DarkGray)
+			rl.DrawCube(cubePosition, cubeSize.This.X, cubeSize.This.Y, cubeSize.This.Z, rl.Gray)
+			rl.DrawCubeWires(cubePosition, cubeSize.This.X, cubeSize.This.Y, cubeSize.This.Z, rl.DarkGray)
 		}
 
 		rl.DrawRay(ray, rl.Maroon)

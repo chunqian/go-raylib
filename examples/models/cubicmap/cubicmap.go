@@ -26,13 +26,12 @@ func main() {
 
 	image := rl.LoadImage("../models/resources/cubicmap.png")
 	cubicmap := rl.LoadTextureFromImage(image)
-	cubicmapT := cubicmap.Convert()
 
 	mesh := rl.GenMeshCubicmap(image, rl.NewVector3(1, 1, 1))
 	model := rl.LoadModelFromMesh(mesh)
 
 	texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
-	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).Convert().Texture, _ = texture.PassValue()
+	model.GetMaterials(0).GetMaps(rl.MAP_DIFFUSE).This.Texture, _ = texture.PassValue()
 
 	rl.UnloadImage(image)
 	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
@@ -53,11 +52,11 @@ func main() {
 		rl.EndMode3D()
 
 		rl.DrawTextureEx(cubicmap,
-			rl.NewVector2(float32(screenWidth-cubicmapT.Width*4-20), 20),
+			rl.NewVector2(float32(screenWidth-cubicmap.This.Width*4-20), 20),
 			0, 4.0,
 			rl.White,
 		)
-		rl.DrawRectangleLines(screenWidth-cubicmapT.Width*4-20, 20, cubicmapT.Width*4, cubicmapT.Height*4, rl.Green)
+		rl.DrawRectangleLines(screenWidth-cubicmap.This.Width*4-20, 20, cubicmap.This.Width*4, cubicmap.This.Height*4, rl.Green)
 
 		rl.DrawText("cubicmap image used to", 658, 90, 10, rl.Gray)
 		rl.DrawText("generate map 3d model", 658, 104, 10, rl.Gray)

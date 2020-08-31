@@ -45,19 +45,17 @@ func main() {
 	positions := make([]rl.Vector2, MAX_FONTS)
 
 	for i := 0; i < MAX_FONTS; i++ {
-		fontT := fonts[i].Convert()
-		positionT := positions[i].Convert()
+		
+		positions[i].PassRef()
+		measureText := rl.MeasureTextEx(fonts[i], messages[i], float32(fonts[i].This.BaseSize*2), float32(spacings[i]))
 
-		measureText := rl.MeasureTextEx(fonts[i], messages[i], float32(fontT.BaseSize*2), float32(spacings[i]))
-		measureTextT := measureText.Convert()
-
-		positionT.X = float32(screenWidth/2) - measureTextT.X/2
-		positionT.Y = float32(int32(60) + fontT.BaseSize + int32(45*i))
+		positions[i].This.X = float32(screenWidth/2) - measureText.This.X/2
+		positions[i].This.Y = float32(int32(60) + fonts[i].This.BaseSize + int32(45*i))
 	}
 
-	positions[3].Convert().Y += 8
-	positions[4].Convert().Y += 2
-	positions[7].Convert().Y += 8
+	positions[3].This.Y += 8
+	positions[4].This.Y += 2
+	positions[7].This.Y += 8
 
 	colors := []rl.Color{
 		rl.Maroon,
@@ -86,7 +84,7 @@ func main() {
 				fonts[i],
 				messages[i],
 				positions[i],
-				float32(fonts[i].Convert().BaseSize*2),
+				float32(fonts[i].This.BaseSize*2),
 				float32(spacings[i]),
 				colors[i],
 			)
