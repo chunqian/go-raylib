@@ -1,7 +1,7 @@
 # go-raylib
 
-### Bindings
 
+### Bindings
 Header     | Supported          |
 ---------  | ------------------ |
 raylib.h   | :heavy_check_mark: |
@@ -10,8 +10,38 @@ raygui.h   | :heavy_check_mark: |
 ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
-### Examples
 
+### Version
+Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.1dev.
+
+
+### Performance
+Same performance as the Raylib C version. Enjoy it!.
+
+
+### Memory
+Automated management. You don't need to worry about memory when you write code.
+
+
+### Build
+```bash
+$ git clone https://github.com/chunqian/go-raylib.git
+$ cd go-raylib/lib/raylib/src
+$ export MACOSX_DEPLOYMENT_TARGET=10.9
+$ make
+$ cd ../../..
+$ go build -o examples/audio/module_playing/module_playing examples/audio/module_playing/module_playing.go
+```
+
+
+### Run
+```bash
+$ cd examples/audio/module_playing
+$ ./module_playing
+```
+
+
+### Examples
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
 audio      | module_playing         | :heavy_check_mark: |
@@ -43,36 +73,6 @@ text       | raylib_fonts           | :heavy_check_mark: |
 text       | unicode                | :heavy_check_mark: |
 textures   | bunnymark              | :heavy_check_mark: |
 
-### Version
-Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.1dev.
-
-
-### Performance
-Same performance as the Raylib C version. Enjoy it!.
-
-
-### Memory
-Automated management. You don't need to worry about memory when you write code.
-
-
-### Build
-
-```bash
-$ git clone https://github.com/chunqian/go-raylib.git
-$ cd go-raylib/lib/raylib/src
-$ export MACOSX_DEPLOYMENT_TARGET=10.9
-$ make
-$ cd ../../..
-$ go build -o examples/audio/module_playing/module_playing examples/audio/module_playing/module_playing.go
-```
-
-### Run
-
-```bash
-$ cd examples/audio/module_playing
-$ ./module_playing
-```
 
 ### License
-
 go-raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
