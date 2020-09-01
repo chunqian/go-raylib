@@ -45,6 +45,14 @@ textures   | bunnymark              | :heavy_check_mark: |
 Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.1dev.
 
 
+### Performance
+Same performance as the Raylib C version. Enjoy it!.
+
+
+### Memory
+Automated management. You don't need to worry about memory when you write code.
+
+
 ### Build
 
 ```bash
