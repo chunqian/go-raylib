@@ -29,6 +29,8 @@ core       | basic_window           | :heavy_check_mark: |
 core       | drop_files             | :heavy_check_mark: |
 core       | input_gestures         | :heavy_check_mark: |
 core       | input_keys             | :heavy_check_mark: |
+core       | input_mouse            | :heavy_check_mark: |
+core       | input_mouse_wheel      | :heavy_check_mark: |
 gui        | controls_test_suite    | :heavy_check_mark: |
 gui        | scroll_panel           | :heavy_check_mark: |
 models     | animation              | :heavy_check_mark: |
