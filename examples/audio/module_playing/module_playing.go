@@ -26,8 +26,10 @@ func main() {
 	rl.SetConfigFlags(uint32(rl.FLAG_MSAA_4X_HINT))
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)")
+	defer rl.CloseWindow()
 
 	rl.InitAudioDevice()
+	defer rl.CloseAudioDevice()
 
 	colors := []rl.Color{
 		rl.Orange,
@@ -59,6 +61,7 @@ func main() {
 	}
 
 	music := rl.LoadMusicStream("../audio/resources/mini1111.xm")
+	defer rl.UnloadMusicStream(music)
 	// if Go struct is C struct binding, please use *.This to assign value
 	// music.Looping = true
 	music.This.Looping = true
@@ -124,10 +127,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadMusicStream(music)
-
-	rl.CloseAudioDevice()
-
-	rl.CloseWindow()
 }

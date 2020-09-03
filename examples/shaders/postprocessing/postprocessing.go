@@ -54,6 +54,7 @@ func main() {
 	rl.SetConfigFlags(uint32(rl.FLAG_MSAA_4X_HINT))
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader")
+	defer rl.CloseWindow()
 
 	camera := rl.NewCamera(
 		rl.NewVector3(2, 3, 2),
@@ -64,7 +65,10 @@ func main() {
 	)
 
 	model := rl.LoadModel("../shaders/resources/models/church.obj")
+	defer rl.UnloadModel(model)
+
 	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
+	defer rl.UnloadTexture(texture)
 
 	model.Materials(0).Maps(rl.MAP_DIFFUSE).This.Texture, _ = texture.PassValue()
 
@@ -82,10 +86,16 @@ func main() {
 	// shaders[FX_SOBEL] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/sobel.fs", 330))
 	// shaders[FX_BLOOM] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/bloom.fs", 330))
 	// shaders[FX_BLUR] = rl.LoadShader("", fmt.Sprintf("../shaders/resources/shaders/glsl%d/blur.fs", 330))
+	defer func() {
+		for i := 0; i < MAX_POSTPRO_SHADERS; i++ {
+			rl.UnloadShader(shaders[i])
+		}
+	}()
 
 	currentShader := FX_GRAYSCALE
 
 	target := rl.LoadRenderTexture(screenWidth, screenHeight)
+	defer rl.UnloadRenderTexture(target)
 
 	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
 
@@ -154,14 +164,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	for i := 0; i < MAX_POSTPRO_SHADERS; i++ {
-		rl.UnloadShader(shaders[i])
-	}
-
-	rl.UnloadTexture(texture)
-	rl.UnloadModel(model)
-	rl.UnloadRenderTexture(target)
-
-	rl.CloseWindow()
 }

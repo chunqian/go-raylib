@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files")
+	defer rl.CloseWindow()
 
 	count := int32(0)
 	var droppedFiles **byte
@@ -52,6 +53,4 @@ func main() {
 	}
 
 	rl.ClearDroppedFiles()
-
-	rl.CloseWindow()
 }

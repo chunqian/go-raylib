@@ -17,6 +17,8 @@ func main() {
 	screenHeight := int32(560)
 
 	rl.InitWindow(screenWidth, screenHeight, "raygui - controls test suite")
+	defer rl.CloseWindow()
+	
 	rl.SetExitKey(0)
 
 	dropdownBox000Active := int32(0)
@@ -239,6 +241,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

@@ -35,6 +35,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera")
+	defer rl.CloseWindow()
 
 	player := Player{
 		Position: rl.NewVector2(400, 280),

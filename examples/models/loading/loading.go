@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [models] example - models loading")
+	defer rl.CloseWindow()
 
 	camera := rl.NewCamera(
 		rl.NewVector3(50, 50, 50),
@@ -25,7 +26,10 @@ func main() {
 	)
 
 	model := rl.LoadModel("../models/resources/models/castle.obj")
+	defer rl.UnloadModel(model)
+
 	texture := rl.LoadTexture("../models/resources/models/castle_diffuse.png")
+	defer rl.UnloadTexture(texture)
 
 	model.Materials(0).Maps(rl.MAP_DIFFUSE).This.Texture, _ = texture.PassValue()
 
@@ -89,8 +93,4 @@ func main() {
 		rl.DrawFPS(10, 10)
 		rl.EndDrawing()
 	}
-
-	rl.UnloadTexture(texture)
-	rl.UnloadModel(model)
-	rl.CloseWindow()
 }

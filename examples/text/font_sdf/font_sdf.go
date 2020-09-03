@@ -18,6 +18,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [text] example - SDF fonts")
+	defer rl.CloseWindow()
 
 	msg := "Signed Distance Fields"
 
@@ -31,6 +32,7 @@ func main() {
 	stlas := rl.GenImageFontAtlas(fontDefault.Chars(0), &fontDefault.This.Recs, 95, 16, 4, 0)
 	fontDefault.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
 	rl.UnloadImage(stlas)
+	defer rl.UnloadFont(fontDefault)
 
 	fontSDF := rl.Font{}
 	fontSDF.PassRef()
@@ -41,10 +43,12 @@ func main() {
 
 	stlas = rl.GenImageFontAtlas(fontSDF.Chars(0), &fontSDF.This.Recs, 95, 16, 0, 1)
 	fontSDF.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
-
 	rl.UnloadImage(stlas)
+	defer rl.UnloadFont(fontSDF)
 
 	shader := rl.LoadShader("", fmt.Sprintf("../text/resources/shaders/glsl%d/sdf.fs", GLSL_VERSION))
+	defer rl.UnloadShader(shader)
+
 	rl.SetTextureFilter(*fontSDF.Texture(), int32(rl.FILTER_BILINEAR))
 
 	fontPosition := rl.NewVector2(40, float32(screenHeight/2-50))
@@ -107,11 +111,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadFont(fontDefault)
-	rl.UnloadFont(fontSDF)
-
-	rl.UnloadShader(shader)
-
-	rl.CloseWindow()
 }

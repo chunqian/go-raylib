@@ -17,6 +17,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [models] example - model animation")
+	defer rl.CloseWindow()
 
 	camera := rl.NewCamera(
 		rl.NewVector3(10, 10, 10),
@@ -28,12 +29,21 @@ func main() {
 
 	// debug.PrintStack()
 	model := rl.LoadModel("../models/resources/guy/guy.iqm")
+	defer rl.UnloadModel(model)
+
 	texture := rl.LoadTexture("../models/resources/guy/guytex.png")
+	defer rl.UnloadTexture(texture)
 
 	rl.SetMaterialTexture(model.Materials(0), rl.MAP_DIFFUSE, texture)
 
 	animsCount := int32(0)
 	anims := rl.LoadModelAnimations("../models/resources/guy/guyanim.iqm", &animsCount)
+	defer func() {
+		for i := int32(0); i < animsCount; i++ {
+			rl.UnloadModelAnimation(*anims.Index(i))
+		}
+	}()
+
 	animFrameCounter := int32(0)
 
 	rl.SetCameraMode(camera, int32(rl.CAMERA_CUSTOM))
@@ -71,12 +81,4 @@ func main() {
 		rl.DrawFPS(10, 30)
 		rl.EndDrawing()
 	}
-
-	rl.UnloadTexture(texture)
-	for i := int32(0); i < animsCount; i++ {
-		rl.UnloadModelAnimation(*anims.Index(i))
-	}
-
-	rl.UnloadModel(model)
-	rl.CloseWindow()
 }

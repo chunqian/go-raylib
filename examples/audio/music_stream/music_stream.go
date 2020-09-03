@@ -14,9 +14,13 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [audio] example - music playing (streaming)")
+	defer rl.CloseWindow()
+
 	rl.InitAudioDevice()
+	defer rl.CloseAudioDevice()
 
 	music := rl.LoadMusicStream("../audio/resources/country.mp3")
+	defer rl.UnloadMusicStream(music)
 
 	rl.PlayMusicStream(music)
 
@@ -65,10 +69,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadMusicStream(music)
-
-	rl.CloseAudioDevice()
-
-	rl.CloseWindow()
 }

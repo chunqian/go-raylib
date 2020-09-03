@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
+	defer rl.CloseWindow()
 
 	rl.SetTargetFPS(60)
 
@@ -28,6 +29,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

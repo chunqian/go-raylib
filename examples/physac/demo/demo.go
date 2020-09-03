@@ -19,6 +19,7 @@ func main() {
 	rl.SetConfigFlags(uint32(rl.FLAG_MSAA_4X_HINT))
 
 	rl.InitWindow(screenWidth, screenHeight, "Physac [raylib] - Physics demo")
+	defer rl.CloseWindow()
 
 	logoX := screenWidth - rl.MeasureText("Physac", 30) - 10
 	logoY := int32(15)
@@ -143,5 +144,4 @@ func main() {
 	}
 
 	phys.ClosePhysics()
-	rl.CloseWindow()
 }

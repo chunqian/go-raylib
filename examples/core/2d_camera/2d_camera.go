@@ -16,6 +16,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera")
+	defer rl.CloseWindow()
 
 	player := rl.NewRectangle(400, 280, 40, 40)
 
@@ -133,6 +134,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

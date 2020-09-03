@@ -15,10 +15,16 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [audio] example - Multichannel sound playing")
+	defer rl.CloseWindow()
+
 	rl.InitAudioDevice()
+	defer rl.CloseAudioDevice()
 
 	fxWav := rl.LoadSound("../audio/resources/sound.wav")
+	defer rl.UnloadSound(fxWav)
+	
 	fxOgg := rl.LoadSound("../audio/resources/target.ogg")
+	defer rl.UnloadSound(fxOgg)
 
 	rl.SetSoundVolume(fxWav, 0.2)
 
@@ -47,11 +53,4 @@ func main() {
 	}
 
 	rl.StopSoundMulti()
-
-	rl.UnloadSound(fxWav)
-	rl.UnloadSound(fxOgg)
-
-	rl.CloseAudioDevice()
-
-	rl.CloseWindow()
 }

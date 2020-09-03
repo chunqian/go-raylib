@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [models] example - cubesmap loading and drawing")
+	defer rl.CloseWindow()
 
 	camera := rl.NewCamera(
 		rl.NewVector3(16, 14, 16),
@@ -26,11 +27,16 @@ func main() {
 
 	image := rl.LoadImage("../models/resources/cubicmap.png")
 	cubicmap := rl.LoadTextureFromImage(image)
+	defer rl.UnloadTexture(cubicmap)
 
 	mesh := rl.GenMeshCubicmap(image, rl.NewVector3(1, 1, 1))
+
 	model := rl.LoadModelFromMesh(mesh)
+	defer rl.UnloadModel(model)
 
 	texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
+	defer rl.UnloadTexture(texture)
+
 	model.Materials(0).Maps(rl.MAP_DIFFUSE).This.Texture, _ = texture.PassValue()
 
 	rl.UnloadImage(image)
@@ -65,10 +71,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadTexture(cubicmap)
-	rl.UnloadTexture(texture)
-	rl.UnloadModel(model)
-
-	rl.CloseWindow()
 }

@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input")
+	defer rl.CloseWindow()
 
 	ballPosition := rl.NewVector2(float32(screenWidth/2), float32(screenHeight/2))
 
@@ -45,6 +46,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

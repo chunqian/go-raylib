@@ -18,6 +18,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - input multitouch")
+	defer rl.CloseWindow()
 
 	ballPosition := rl.NewVector2(-100, -100)
 	ballColor := rl.Beige
@@ -79,6 +80,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

@@ -92,6 +92,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raygui - GuiScrollPanel()")
+	defer rl.CloseWindow()
 
 	panelRec := rg.NewRectangle(20, 40, 200, 150)
 
@@ -159,6 +160,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

@@ -16,6 +16,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel")
+	defer rl.CloseWindow()
 
 	boxPositionY := screenHeight/2 - 40
 	scrollSpeed := int32(4)
@@ -35,6 +36,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

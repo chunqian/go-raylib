@@ -16,6 +16,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - generate random values")
+	defer rl.CloseWindow()
 
 	framesCounter := 0
 
@@ -43,6 +44,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

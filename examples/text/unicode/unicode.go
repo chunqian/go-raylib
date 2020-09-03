@@ -149,10 +149,16 @@ func main() {
 	rl.SetConfigFlags(uint32(rl.FLAG_MSAA_4X_HINT | rl.FLAG_VSYNC_HINT))
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [text] example - unicode")
+	defer rl.CloseWindow()
 
 	fontDefault := rl.LoadFont("../text/resources/dejavu.fnt")
 	fontAsian := rl.LoadFont("../text/resources/noto_cjk.fnt")
 	fontEmoji := rl.LoadFont("../text/resources/symbola.fnt")
+	defer func() {
+		rl.UnloadFont(fontDefault)
+		rl.UnloadFont(fontAsian)
+		rl.UnloadFont(fontEmoji)
+	}()
 
 	var hoveredPos, selectedPos rl.Vector2
 	hoveredPos.PassRef()
@@ -302,12 +308,6 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadFont(fontDefault)
-	rl.UnloadFont(fontAsian)
-	rl.UnloadFont(fontEmoji)
-
-	rl.CloseWindow()
 }
 
 func RandomizeEmoji() {

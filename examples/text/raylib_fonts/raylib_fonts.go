@@ -17,6 +17,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [text] example - raylib fonts")
+	defer rl.CloseWindow()
 
 	fonts := make([]rl.Font, MAX_FONTS)
 
@@ -28,6 +29,11 @@ func main() {
 	fonts[5] = rl.LoadFont("../text/resources/fonts/pixantiqua.png")
 	fonts[6] = rl.LoadFont("../text/resources/fonts/alpha_beta.png")
 	fonts[7] = rl.LoadFont("../text/resources/fonts/jupiter_crash.png")
+	defer func() {
+		for i := 0; i < MAX_FONTS; i++ {
+			rl.UnloadFont(fonts[i])
+		}
+	}()
 
 	messages := []string{
 		"ALAGARD FONT designed by Hewett Tsoi",
@@ -45,7 +51,7 @@ func main() {
 	positions := make([]rl.Vector2, MAX_FONTS)
 
 	for i := 0; i < MAX_FONTS; i++ {
-		
+
 		positions[i].PassRef()
 		measureText := rl.MeasureTextEx(fonts[i], messages[i], float32(fonts[i].This.BaseSize*2), float32(spacings[i]))
 
@@ -92,11 +98,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	for i := 0; i < MAX_FONTS; i++ {
-		rl.UnloadFont(fonts[i])
-	}
-
-	rl.CloseWindow()
-
 }

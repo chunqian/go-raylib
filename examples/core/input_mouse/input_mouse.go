@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - mouse input")
+	defer rl.CloseWindow()
 
 	ballPosition := rl.NewVector2(-100, -100)
 	ballColor := rl.DarkBlue
@@ -43,6 +44,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

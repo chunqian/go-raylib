@@ -17,6 +17,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - input gestures")
+	defer rl.CloseWindow()
 
 	touchPosition := rl.NewVector2(0, 0)
 	touchArea := rl.NewRectangle(220, 10, float32(screenWidth-230), float32(screenHeight-20))
@@ -119,6 +120,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }

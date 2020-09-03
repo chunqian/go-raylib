@@ -23,10 +23,13 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [audio] example - raw audio streaming")
+	defer rl.CloseWindow()
 
 	rl.InitAudioDevice()
+	defer rl.CloseAudioDevice()
 
 	stream := rl.InitAudioStream(22050, 16, 1)
+	defer rl.CloseAudioStream(stream)
 
 	data := make([]int16, MAX_SAMPLES)
 	writeBuf := make([]int16, MAX_SAMPLES_PER_UPDATE)
@@ -79,7 +82,7 @@ func main() {
 				if writeLength > readLength {
 					writeLength = readLength
 				}
-				// write the slice
+				
 				for i := 0; i < writeLength; i++ {
 					writeBuf[writeCursor+i] = data[readCursor+i]
 				}
@@ -106,8 +109,4 @@ func main() {
 		}
 		rl.EndDrawing()
 	}
-
-	rl.CloseAudioStream(stream)
-	rl.CloseAudioDevice()
-	rl.CloseWindow()
 }

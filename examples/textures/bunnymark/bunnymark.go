@@ -28,8 +28,10 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [textures] example - bunnymark")
+	defer rl.CloseWindow()
 
 	texBunny := rl.LoadTexture("../textures/resources/wabbit_alpha.png")
+	defer rl.UnloadTexture(texBunny)
 
 	bunnies := make([]Bunny, MAX_BUNNIES)
 	for i := range bunnies {
@@ -96,8 +98,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadTexture(texBunny)
-
-	rl.CloseWindow()
 }

@@ -14,10 +14,16 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [audio] example - sound loading and playing")
+	defer rl.CloseWindow()
+
 	rl.InitAudioDevice()
+	defer rl.CloseAudioDevice()
 
 	fxWav := rl.LoadSound("../audio/resources/sound.wav")
+	defer rl.UnloadSound(fxWav)
+
 	fxOgg := rl.LoadSound("../audio/resources/target.ogg")
+	defer rl.UnloadSound(fxOgg)
 
 	rl.SetTargetFPS(60)
 
@@ -39,11 +45,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.UnloadSound(fxWav)
-	rl.UnloadSound(fxOgg)
-
-	rl.CloseAudioDevice()
-
-	rl.CloseWindow()
 }

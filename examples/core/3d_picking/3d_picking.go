@@ -15,6 +15,7 @@ func main() {
 	screenHeight := int32(450)
 
 	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking")
+	defer rl.CloseWindow()
 
 	camera := rl.NewCamera3D(
 		rl.NewVector3(10, 10, 10),
@@ -100,6 +101,4 @@ func main() {
 
 		rl.EndDrawing()
 	}
-
-	rl.CloseWindow()
 }
