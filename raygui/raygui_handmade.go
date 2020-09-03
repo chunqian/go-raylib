@@ -12,14 +12,28 @@ import (
 	"unsafe"
 )
 
-func Bool2int(b bool) int {
+func IntFromBool(b bool) int {
 	if b {
 		return 1
 	}
 	return 0
 }
 
-func Int2bool(i int) bool {
+func Int32FromBool(b bool) int32 {
+	if b {
+		return 1
+	}
+	return 0
+}
+
+func BoolFromInt(i int) bool {
+	if i >= 1 {
+		return true
+	}
+	return false
+}
+
+func BoolFromInt32(i int32) bool {
 	if i >= 1 {
 		return true
 	}
