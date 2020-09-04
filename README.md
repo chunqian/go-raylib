@@ -182,6 +182,11 @@ core       | input_mouse            | :heavy_check_mark: |
 core       | input_mouse_wheel      | :heavy_check_mark: |
 core       | input_multitouch       | :heavy_check_mark: |
 core       | random_values          | :heavy_check_mark: |
+core       | scissor                | :heavy_check_mark: |
+core       | storage_values         | :heavy_check_mark: |
+core       | vr_simulator           | :heavy_check_mark: |
+core       | window_letterbox       | :heavy_check_mark: |
+core       | world_screen           | :heavy_check_mark: |
 gui        | controls_test_suite    | :heavy_check_mark: |
 gui        | scroll_panel           | :heavy_check_mark: |
 models     | animation              | :heavy_check_mark: |
