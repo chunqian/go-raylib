@@ -194,9 +194,16 @@ models     | cubicmap               | :heavy_check_mark: |
 models     | loading                | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
+text       | font_filters           | :heavy_check_mark: |
+text       | font_loading           | :heavy_check_mark: |
 text       | font_sdf               | :heavy_check_mark: |
+text       | font_spritefont        | :heavy_check_mark: |
+text       | format_text            | :heavy_check_mark: |
+text       | input_box              | :heavy_check_mark: |
 text       | raylib_fonts           | :heavy_check_mark: |
+text       | rectangle_bounds       | :heavy_check_mark: |
 text       | unicode                | :heavy_check_mark: |
+text       | writing_anim           | :heavy_check_mark: |
 textures   | bunnymark              | :heavy_check_mark: |
 
 

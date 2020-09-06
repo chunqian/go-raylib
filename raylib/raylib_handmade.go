@@ -74,6 +74,16 @@ var (
 	RayWhite = CreateColor(245, 245, 245, 255)
 )
 
+func NewBytes(str string, count int) []byte {
+
+	bts := []byte(str + "\x00")
+	bts2 := make([]byte, count)
+	for i := 0; i < len(bts); i++ {
+		bts2[i] = bts[i]
+	}
+	return bts2
+}
+
 func StringFromPPByte(names **byte, index int32) (raw string) {
 
 	ptr0 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(names)) + uintptr(index)*uintptr(sizeOfPtr)))
