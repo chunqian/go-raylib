@@ -134,3 +134,9 @@ func TextJoin(textList *Text, count int32, delimiter string) string {
 	v0 := packPCharString(ret0)
 	return v0
 }
+
+func UnloadColors(color *Color) {
+
+	colorRef, _ := color.PassRef()
+	C.free(unsafe.Pointer(colorRef))
+}

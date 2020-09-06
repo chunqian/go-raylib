@@ -190,7 +190,10 @@ core       | world_screen           | :heavy_check_mark: |
 gui        | controls_test_suite    | :heavy_check_mark: |
 gui        | scroll_panel           | :heavy_check_mark: |
 models     | animation              | :heavy_check_mark: |
+models     | billboard              | :heavy_check_mark: |
+models     | box_collisions         | :heavy_check_mark: |
 models     | cubicmap               | :heavy_check_mark: |
+models     | first_person_maze      | :heavy_check_mark: |
 models     | loading                | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
