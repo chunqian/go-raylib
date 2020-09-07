@@ -43,7 +43,7 @@ func main() {
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
 	listViewExList := rg.NewText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
-	listViewExList.GC() // Register to garbage collection
+	listViewExList.GC() // GC register
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
 	multiTextBoxEditMode := false
