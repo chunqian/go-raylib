@@ -18,7 +18,7 @@ func main() {
 
 	rl.InitWindow(screenWidth, screenHeight, "raygui - controls test suite")
 	defer rl.CloseWindow()
-	
+
 	rl.SetExitKey(0)
 
 	dropdownBox000Active := int32(0)
@@ -43,6 +43,7 @@ func main() {
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
 	listViewExList := rg.NewText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+	listViewExList.GC() // Register to garbage collection
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
 	multiTextBoxEditMode := false
