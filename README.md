@@ -20,7 +20,7 @@ Same performance as the Raylib C version. Enjoy it!.
 
 
 ### Memory
-If Cgo memory alloc, call GC() for register, it can be automated management.
+If cgo memory alloc, call GC() for register, it can be automated management.
 
 
 ### Difference
