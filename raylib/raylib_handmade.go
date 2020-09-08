@@ -119,7 +119,7 @@ func GenImageFontAtlas(chars *CharInfo, recs **C.Rectangle, charsCount int32, fo
 	cpadding, _ := (C.int)(padding), cgoAllocsUnknown
 	cpackMethod, _ := (C.int)(packMethod), cgoAllocsUnknown
 	ret0 := C.GenImageFontAtlas(cchars, crecs, ccharsCount, cfontSize, cpadding, cpackMethod)
-	v0 := *NewImageRef(unsafe.Pointer(&ret0))
+	v0 := *newImageRef(unsafe.Pointer(&ret0))
 	return v0
 }
 
