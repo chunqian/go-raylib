@@ -95,16 +95,16 @@ func main() {
 
 		UpdatePlayer(&player, envItems, deltaTime)
 
-		camera.This.Zoom += float32(rl.GetMouseWheelMove()) * 0.05
+		camera.Zoom += float32(rl.GetMouseWheelMove()) * 0.05
 
-		if camera.This.Zoom > 3.0 {
-			camera.This.Zoom = 3.0
-		} else if camera.This.Zoom < 0.25 {
-			camera.This.Zoom = 0.25
+		if camera.Zoom > 3.0 {
+			camera.Zoom = 3.0
+		} else if camera.Zoom < 0.25 {
+			camera.Zoom = 0.25
 		}
 
 		if rl.IsKeyPressed(int32(rl.KEY_R)) {
-			camera.This.Zoom = 1.0
+			camera.Zoom = 1.0
 			player.Position = rl.NewVector2(400, 280)
 		}
 
@@ -134,7 +134,7 @@ func main() {
 			rl.DrawRectangleRec(item.Rect, item.Color)
 		}
 
-		playerRect := rl.NewRectangle(player.Position.This.X-20, player.Position.This.Y-40, 40, 40)
+		playerRect := rl.NewRectangle(player.Position.X-20, player.Position.Y-40, 40, 40)
 		rl.DrawRectangleRec(playerRect, rl.Red)
 
 		rl.EndMode2D()
@@ -154,10 +154,10 @@ func main() {
 func UpdatePlayer(player *Player, envItems []*EnvItem, delta float32) {
 
 	if rl.IsKeyDown(int32(rl.KEY_LEFT)) {
-		player.Position.This.X -= PLAYER_HOR_SPD * delta
+		player.Position.X -= PLAYER_HOR_SPD * delta
 	}
 	if rl.IsKeyDown(int32(rl.KEY_RIGHT)) {
-		player.Position.This.X += PLAYER_HOR_SPD * delta
+		player.Position.X += PLAYER_HOR_SPD * delta
 	}
 	if rl.IsKeyDown(int32(rl.KEY_SPACE)) && player.CanJump {
 		player.Speed = -PLAYER_JUMP_SPD
@@ -168,19 +168,19 @@ func UpdatePlayer(player *Player, envItems []*EnvItem, delta float32) {
 	for _, ei := range envItems {
 
 		if ei.Blocking &&
-			ei.Rect.This.X <= player.Position.This.X &&
-			ei.Rect.This.X+ei.Rect.This.Width >= player.Position.This.X &&
-			ei.Rect.This.Y >= player.Position.This.Y &&
-			ei.Rect.This.Y < player.Position.This.Y+player.Speed*delta {
+			ei.Rect.X <= player.Position.X &&
+			ei.Rect.X+ei.Rect.Width >= player.Position.X &&
+			ei.Rect.Y >= player.Position.Y &&
+			ei.Rect.Y < player.Position.Y+player.Speed*delta {
 
 			hitObstacle = true
 			player.Speed = 0.0
-			player.Position.This.Y = ei.Rect.This.Y
+			player.Position.Y = ei.Rect.Y
 		}
 	}
 
 	if !hitObstacle {
-		player.Position.This.Y += player.Speed * delta
+		player.Position.Y += player.Speed * delta
 		player.Speed += float32(G) * delta
 		player.CanJump = false
 	} else {
@@ -190,39 +190,39 @@ func UpdatePlayer(player *Player, envItems []*EnvItem, delta float32) {
 
 func UpdateCameraCenter(camera *rl.Camera2D, player *Player, width int32, height int32) {
 
-	camera.This.Offset, _ = rl.NewVector2(float32(width/2), float32(height/2)).PassValue()
-	camera.This.Target, _ = player.Position.PassValue()
+	camera.Offset = rl.NewVector2(float32(width/2), float32(height/2))
+	camera.Target = player.Position
 }
 
 func UpdateCameraCenterInsideMap(camera *rl.Camera2D, player *Player, envItems []*EnvItem, width int32, height int32) {
 
-	camera.This.Offset, _ = rl.NewVector2(float32(width/2), float32(height/2)).PassValue()
+	camera.Offset = rl.NewVector2(float32(width/2), float32(height/2))
 
 	minX, minY, maxX, maxY := 1000.0, 1000.0, -1000.0, -1000.0
 
 	for _, ei := range envItems {
 
-		minX = math.Min(float64(ei.Rect.This.X), minX)
-		maxX = math.Max(float64(ei.Rect.This.X+ei.Rect.This.Width), maxX)
-		minY = math.Min(float64(ei.Rect.This.Y), minY)
-		maxY = math.Max(float64(ei.Rect.This.Y+ei.Rect.This.Height), maxY)
+		minX = math.Min(float64(ei.Rect.X), minX)
+		maxX = math.Max(float64(ei.Rect.X+ei.Rect.Width), maxX)
+		minY = math.Min(float64(ei.Rect.Y), minY)
+		maxY = math.Max(float64(ei.Rect.Y+ei.Rect.Height), maxY)
 	}
 
 	max := rl.GetWorldToScreen2D(rl.NewVector2(float32(maxX), float32(maxY)), *camera)
 
 	min := rl.GetWorldToScreen2D(rl.NewVector2(float32(minX), float32(minY)), *camera)
 
-	if max.This.X < float32(width) {
-		camera.Offset().This.X = float32(width - (int32(max.This.X) - width/2))
+	if max.X < float32(width) {
+		camera.Offset.X = float32(width - (int32(max.X) - width/2))
 	}
-	if max.This.Y < float32(height) {
-		camera.Offset().This.Y = float32(height - (int32(max.This.Y) - height/2))
+	if max.Y < float32(height) {
+		camera.Offset.Y = float32(height - (int32(max.Y) - height/2))
 	}
-	if min.This.X > 0 {
-		camera.Offset().This.X = float32(width/2) - min.This.X
+	if min.X > 0 {
+		camera.Offset.X = float32(width/2) - min.X
 	}
-	if min.This.Y > 0 {
-		camera.Offset().This.Y = float32(height/2) - min.This.Y
+	if min.Y > 0 {
+		camera.Offset.Y = float32(height/2) - min.Y
 	}
 }
 
@@ -232,13 +232,13 @@ func UpdateCameraCenterSmoothFollow(camera *rl.Camera2D, player *Player, delta f
 	minEffectLength := 10.0
 	fractionSpeed := 0.8
 
-	camera.This.Offset, _ = rl.NewVector2(float32(width/2), float32(height/2)).PassValue()
-	diff := rl.Vector2Subtract(player.Position, *camera.Target())
+	camera.Offset = rl.NewVector2(float32(width/2), float32(height/2))
+	diff := rl.Vector2Subtract(player.Position, camera.Target)
 	length := rl.Vector2Length(diff)
 
 	if length > float32(minEffectLength) {
 		speed := math.Max(fractionSpeed*float64(length), minSpeed)
-		camera.This.Target, _ = rl.Vector2Add(*camera.Target(), rl.Vector2Scale(diff, float32(speed)*delta/length)).PassValue()
+		camera.Target = rl.Vector2Add(camera.Target, rl.Vector2Scale(diff, float32(speed)*delta/length))
 	}
 }
 
@@ -248,30 +248,30 @@ func UpdateCameraEvenOutOnLanding(camera *rl.Camera2D, player *Player, delta flo
 	eveningOut := false
 	evenOutTarget := float32(0)
 
-	camera.This.Offset, _ = rl.NewVector2(float32(width/2), float32(height/2)).PassValue()
-	camera.Target().This.X = player.Position.This.X
+	camera.Offset = rl.NewVector2(float32(width/2), float32(height/2))
+	camera.Target.X = player.Position.X
 
 	if eveningOut {
-		if evenOutTarget > camera.Target().This.Y {
-			camera.Target().This.Y += evenOutSpeed * delta
+		if evenOutTarget > camera.Target.Y {
+			camera.Target.Y += evenOutSpeed * delta
 
-			if camera.Target().This.Y > evenOutTarget {
-				camera.Target().This.Y = evenOutTarget
+			if camera.Target.Y > evenOutTarget {
+				camera.Target.Y = evenOutTarget
 				eveningOut = false
 			}
 		} else {
-			camera.Target().This.Y -= evenOutSpeed * delta
+			camera.Target.Y -= evenOutSpeed * delta
 
-			if camera.Target().This.Y < evenOutTarget {
-				camera.Target().This.Y = evenOutTarget
+			if camera.Target.Y < evenOutTarget {
+				camera.Target.Y = evenOutTarget
 				eveningOut = false
 			}
 		}
 	} else {
 
-		if (player.CanJump && player.Speed == 0) && (player.Position.This.Y != camera.Target().This.Y) {
+		if (player.CanJump && player.Speed == 0) && (player.Position.Y != camera.Target.Y) {
 			eveningOut = true
-			evenOutTarget = player.Position.This.Y
+			evenOutTarget = player.Position.Y
 		}
 	}
 }
@@ -281,35 +281,35 @@ func UpdateCameraPlayerBoundsPush(camera *rl.Camera2D, player *Player, width int
 
 	bboxWorldMin := rl.GetScreenToWorld2D(
 		rl.NewVector2(
-			(1.0-bbox.This.X)*0.5*float32(width),
-			(1-bbox.This.Y)*0.5*float32(height),
+			(1.0-bbox.X)*0.5*float32(width),
+			(1-bbox.Y)*0.5*float32(height),
 		),
 		*camera,
 	)
 
 	bboxWorldMax := rl.GetScreenToWorld2D(
 		rl.NewVector2(
-			(1.0-bbox.This.X)*0.5*float32(width),
-			(1-bbox.This.Y)*0.5*float32(height),
+			(1.0-bbox.X)*0.5*float32(width),
+			(1-bbox.Y)*0.5*float32(height),
 		),
 		*camera,
 	)
 
-	camera.This.Offset, _ = rl.NewVector2(
-		(1.0-bbox.This.X)*0.5*float32(width),
-		(1-bbox.This.Y)*0.5*float32(height),
-	).PassValue()
+	camera.Offset = rl.NewVector2(
+		(1.0-bbox.X)*0.5*float32(width),
+		(1-bbox.Y)*0.5*float32(height),
+	)
 
-	if player.Position.This.X < bboxWorldMin.This.X {
-		camera.Target().This.X = player.Position.This.X
+	if player.Position.X < bboxWorldMin.X {
+		camera.Target.X = player.Position.X
 	}
-	if player.Position.This.Y < bboxWorldMin.This.Y {
-		camera.Target().This.Y = player.Position.This.Y
+	if player.Position.Y < bboxWorldMin.Y {
+		camera.Target.Y = player.Position.Y
 	}
-	if player.Position.This.X > bboxWorldMax.This.Y {
-		camera.Target().This.X = bboxWorldMin.This.X + (player.Position.This.X - bboxWorldMax.This.X)
+	if player.Position.X > bboxWorldMax.Y {
+		camera.Target.X = bboxWorldMin.X + (player.Position.X - bboxWorldMax.X)
 	}
-	if player.Position.This.Y > bboxWorldMax.This.Y {
-		camera.Target().This.Y = bboxWorldMin.This.Y + (player.Position.This.Y - bboxWorldMax.This.Y)
+	if player.Position.Y > bboxWorldMax.Y {
+		camera.Target.Y = bboxWorldMin.Y + (player.Position.Y - bboxWorldMax.Y)
 	}
 }

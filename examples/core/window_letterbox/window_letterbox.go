@@ -29,7 +29,7 @@ func main() {
 	target := rl.LoadRenderTexture(gameScreenWidth, gameScreenHeight)
 	defer rl.UnloadRenderTexture(target)
 
-	rl.SetTextureFilter(*target.Texture(), int32(rl.FILTER_BILINEAR))
+	rl.SetTextureFilter(target.Texture, int32(rl.FILTER_BILINEAR))
 
 	colors := [10]rl.Color{}
 	for i := range colors {
@@ -66,8 +66,8 @@ func main() {
 
 		mouse := rl.GetMousePosition()
 		virtualMouse := rl.NewVector2(
-			(mouse.This.X-(float32(rl.GetScreenWidth())-(float32(gameScreenWidth)*scale))*0.5)/scale,
-			(mouse.This.Y-(float32(rl.GetScreenHeight())-(float32(gameScreenHeight)*scale))*0.5)/scale,
+			(mouse.X-(float32(rl.GetScreenWidth())-(float32(gameScreenWidth)*scale))*0.5)/scale,
+			(mouse.Y-(float32(rl.GetScreenHeight())-(float32(gameScreenHeight)*scale))*0.5)/scale,
 		)
 		virtualMouse = ClampValue(
 			virtualMouse,
@@ -95,14 +95,14 @@ func main() {
 
 		rl.DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, rl.White)
 
-		rl.DrawText(fmt.Sprintf("Default Mouse: [%d , %d]", int32(mouse.This.X), int32(mouse.This.Y)), 350, 25, 20, rl.Green)
-		rl.DrawText(fmt.Sprintf("Virtual Mouse: [%d , %d]", int32(virtualMouse.This.X), int32(virtualMouse.This.Y)), 350, 55, 20, rl.Yellow)
+		rl.DrawText(fmt.Sprintf("Default Mouse: [%d , %d]", int32(mouse.X), int32(mouse.Y)), 350, 25, 20, rl.Green)
+		rl.DrawText(fmt.Sprintf("Virtual Mouse: [%d , %d]", int32(virtualMouse.X), int32(virtualMouse.Y)), 350, 55, 20, rl.Yellow)
 
 		rl.EndTextureMode()
 
 		rl.DrawTexturePro(
-			*target.Texture(),
-			rl.NewRectangle(0, 0, float32(target.Texture().This.Width), -float32(target.Texture().This.Height)),
+			target.Texture,
+			rl.NewRectangle(0, 0, float32(target.Texture.Width), -float32(target.Texture.Height)),
 			rl.NewRectangle(
 				(float32(rl.GetScreenWidth())-(float32(gameScreenWidth)*scale))*0.5,
 				(float32(rl.GetScreenHeight())-(float32(gameScreenHeight)*scale))*0.5,
@@ -121,17 +121,17 @@ func main() {
 func ClampValue(value rl.Vector2, min rl.Vector2, max rl.Vector2) rl.Vector2 {
 
 	result := value
-	if result.This.X > max.This.X {
-		result.This.X = max.This.X
+	if result.X > max.X {
+		result.X = max.X
 	}
-	if result.This.X < min.This.X {
-		result.This.X = min.This.X
+	if result.X < min.X {
+		result.X = min.X
 	}
-	if result.This.Y > max.This.Y {
-		result.This.Y = max.This.Y
+	if result.Y > max.Y {
+		result.Y = max.Y
 	}
-	if result.This.Y < min.This.Y {
-		result.This.Y = min.This.Y
+	if result.Y < min.Y {
+		result.Y = min.Y
 	}
 	return result
 }

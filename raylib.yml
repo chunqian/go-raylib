@@ -722,7 +722,7 @@ TRANSLATOR:
       - { action: accept, from: ^Sound$ }
       - { action: accept, from: ^Music$ }
       - { action: accept, from: ^VrDeviceInfo$ }
-      - { action: accept, from: ^Text$ }
+      - { action: accept, from: ^MultiText$ }
 
       - { action: ignore, from: "(?i)Trace" }
 

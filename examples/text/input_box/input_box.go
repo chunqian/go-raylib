@@ -73,23 +73,23 @@ func main() {
 		rl.DrawRectangleRec(textBox, rl.LightGray)
 		if mouseOnText {
 			rl.DrawRectangleLines(
-				int32(textBox.This.X),
-				int32(textBox.This.Y),
-				int32(textBox.This.Width),
-				int32(textBox.This.Height),
+				int32(textBox.X),
+				int32(textBox.Y),
+				int32(textBox.Width),
+				int32(textBox.Height),
 				rl.Red,
 			)
 		} else {
 			rl.DrawRectangleLines(
-				int32(textBox.This.X),
-				int32(textBox.This.Y),
-				int32(textBox.This.Width),
-				int32(textBox.This.Height),
+				int32(textBox.X),
+				int32(textBox.Y),
+				int32(textBox.Width),
+				int32(textBox.Height),
 				rl.DarkGray,
 			)
 		}
 
-		rl.DrawText(string(name), int32(textBox.This.X+5), int32(textBox.This.Y+8), 40, rl.Maroon)
+		rl.DrawText(string(name), int32(textBox.X+5), int32(textBox.Y+8), 40, rl.Maroon)
 
 		rl.DrawText(fmt.Sprintf("INPUT CHARS: %d/%d", letterCount, MAX_INPUT_CHARS), 315, 250, 20, rl.DarkGray)
 
@@ -97,8 +97,8 @@ func main() {
 			if letterCount < MAX_INPUT_CHARS {
 				if ((framesCounter / 20) % 2) == 0 {
 					rl.DrawText("_",
-						int32(textBox.This.X)+8+rl.MeasureText(string(name), 40),
-						int32(textBox.This.Y+12),
+						int32(textBox.X)+8+rl.MeasureText(string(name), 40),
+						int32(textBox.Y+12),
 						40,
 						rl.Maroon,
 					)

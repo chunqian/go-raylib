@@ -24,16 +24,16 @@ func main() {
 	for !rl.WindowShouldClose() {
 
 		if rl.IsKeyDown(int32(rl.KEY_RIGHT)) {
-			ballPosition.This.X += 2.0
+			ballPosition.X += 2.0
 		}
 		if rl.IsKeyDown(int32(rl.KEY_LEFT)) {
-			ballPosition.This.X -= 2.0
+			ballPosition.X -= 2.0
 		}
 		if rl.IsKeyDown(int32(rl.KEY_UP)) {
-			ballPosition.This.Y -= 2.0
+			ballPosition.Y -= 2.0
 		}
 		if rl.IsKeyDown(int32(rl.KEY_DOWN)) {
-			ballPosition.This.Y += 2.0
+			ballPosition.Y += 2.0
 		}
 
 		rl.BeginDrawing()

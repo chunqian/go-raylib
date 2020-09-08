@@ -26,19 +26,18 @@ func main() {
 	defer rl.CloseVrSimulator()
 
 	hmd := rl.VrDeviceInfo{}
-	hmd.PassRef()
 
-	hmd.This.HResolution = 2160
-	hmd.This.VResolution = 1200
-	hmd.This.HScreenSize = 0.133793
-	hmd.This.VScreenSize = 0.0669
-	hmd.This.VScreenCenter = 0.04678
-	hmd.This.EyeToScreenDistance = 0.041
-	hmd.This.LensSeparationDistance = 0.07
-	hmd.This.InterpupillaryDistance = 0.07
+	hmd.HResolution = 2160
+	hmd.VResolution = 1200
+	hmd.HScreenSize = 0.133793
+	hmd.VScreenSize = 0.0669
+	hmd.VScreenCenter = 0.04678
+	hmd.EyeToScreenDistance = 0.041
+	hmd.LensSeparationDistance = 0.07
+	hmd.InterpupillaryDistance = 0.07
 
-	hmd.This.LensDistortionValues = [4]float32{1.0, 0.22, 0.24, 0}
-	hmd.This.ChromaAbCorrection = [4]float32{0.996, -0.004, 1.014, 0}
+	hmd.LensDistortionValues = [4]float32{1.0, 0.22, 0.24, 0}
+	hmd.ChromaAbCorrection = [4]float32{0.996, -0.004, 1.014, 0}
 
 	distortion := rl.LoadShader("", fmt.Sprintf("../core/resources/distortion%d.fs", GLSL_VERSION))
 	defer rl.UnloadShader(distortion)

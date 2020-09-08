@@ -42,7 +42,7 @@ func main() {
 	listViewExScrollIndex := int32(0)
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
-	listViewExList := rg.NewText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+	listViewExList := rg.NewMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 	listViewExList.GC() // GC register
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)

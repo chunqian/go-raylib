@@ -23,33 +23,33 @@ func main() {
 	msg := "Signed Distance Fields"
 
 	fontDefault := rl.Font{}
-	fontDefault.PassRef()
 
-	fontDefault.This.BaseSize = 16
-	fontDefault.This.CharsCount = 95
-	fontDefault.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
+	fontDefault.BaseSize = 16
+	fontDefault.CharsCount = 95
+	*fontDefault.Chars(0) = *rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT))
 
-	stlas := rl.GenImageFontAtlas(fontDefault.Chars(0), &fontDefault.This.Recs, 95, 16, 4, 0)
-	fontDefault.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
+	recs := fontDefault.Recs(0)
+	stlas := rl.GenImageFontAtlas(fontDefault.Chars(0), &recs, 95, 16, 4, 0)
+	fontDefault.Texture = rl.LoadTextureFromImage(stlas)
 	rl.UnloadImage(stlas)
 	defer rl.UnloadFont(fontDefault)
 
 	fontSDF := rl.Font{}
-	fontSDF.PassRef()
 
-	fontSDF.This.BaseSize = 16
-	fontSDF.This.CharsCount = 95
-	fontSDF.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF)).PassRef()
+	fontSDF.BaseSize = 16
+	fontSDF.CharsCount = 95
+	*fontSDF.Chars(0) = *rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF))
 
-	stlas = rl.GenImageFontAtlas(fontSDF.Chars(0), &fontSDF.This.Recs, 95, 16, 0, 1)
-	fontSDF.This.Texture, _ = rl.LoadTextureFromImage(stlas).PassValue()
+	recs = fontSDF.Recs(0)
+	stlas = rl.GenImageFontAtlas(fontSDF.Chars(0), &recs, 95, 16, 0, 1)
+	fontSDF.Texture = rl.LoadTextureFromImage(stlas)
 	rl.UnloadImage(stlas)
 	defer rl.UnloadFont(fontSDF)
 
 	shader := rl.LoadShader("", fmt.Sprintf("../text/resources/shaders/glsl%d/sdf.fs", GLSL_VERSION))
 	defer rl.UnloadShader(shader)
 
-	rl.SetTextureFilter(*fontSDF.Texture(), int32(rl.FILTER_BILINEAR))
+	rl.SetTextureFilter(fontSDF.Texture, int32(rl.FILTER_BILINEAR))
 
 	fontPosition := rl.NewVector2(40, float32(screenHeight/2-50))
 	textSize := rl.NewVector2(0, 0)
@@ -79,8 +79,8 @@ func main() {
 			textSize = rl.MeasureTextEx(fontSDF, msg, fontSize, 0)
 		}
 
-		fontPosition.This.X = float32(rl.GetScreenWidth())/2 - textSize.This.X/2
-		fontPosition.This.Y = float32(rl.GetScreenHeight())/2 - textSize.This.Y/2 + 80
+		fontPosition.X = float32(rl.GetScreenWidth())/2 - textSize.X/2
+		fontPosition.Y = float32(rl.GetScreenHeight())/2 - textSize.Y/2 + 80
 
 		rl.BeginDrawing()
 
@@ -91,10 +91,10 @@ func main() {
 			rl.DrawTextEx(fontSDF, msg, fontPosition, fontSize, 0, rl.Black)
 			rl.EndShaderMode()
 
-			rl.DrawTexture(*fontSDF.Texture(), 10, 10, rl.Black)
+			rl.DrawTexture(fontSDF.Texture, 10, 10, rl.Black)
 		} else {
 			rl.DrawTextEx(fontDefault, msg, fontPosition, fontSize, 0, rl.Black)
-			rl.DrawTexture(*fontDefault.Texture(), 10, 10, rl.Black)
+			rl.DrawTexture(fontDefault.Texture, 10, 10, rl.Black)
 		}
 
 		if currentFont == 1 {

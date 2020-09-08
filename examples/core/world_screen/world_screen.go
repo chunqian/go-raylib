@@ -36,7 +36,7 @@ func main() {
 		rl.UpdateCamera(&camera)
 
 		cubeScreenPosition = rl.GetWorldToScreen(
-			rl.NewVector3(cubePosition.This.X, cubePosition.This.Y+2.5, cubePosition.This.Z),
+			rl.NewVector3(cubePosition.X, cubePosition.Y+2.5, cubePosition.Z),
 			camera,
 		)
 
@@ -55,8 +55,8 @@ func main() {
 
 		rl.DrawText(
 			"Enemy: 100 / 100",
-			int32(cubeScreenPosition.This.X)-rl.MeasureText("Enemy: 100/100", 20)/2,
-			int32(cubeScreenPosition.This.Y),
+			int32(cubeScreenPosition.X)-rl.MeasureText("Enemy: 100/100", 20)/2,
+			int32(cubeScreenPosition.Y),
 			20,
 			rl.Black,
 		)

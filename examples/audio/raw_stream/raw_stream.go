@@ -51,7 +51,7 @@ func main() {
 		mousePosition = rl.GetMousePosition()
 
 		if rl.IsMouseButtonDown(int32(rl.MOUSE_LEFT_BUTTON)) {
-			fp := (&mousePosition).This.Y
+			fp := (&mousePosition).Y
 			frequency = 40.0 + fp
 		}
 		if frequency != oldFrequency {
@@ -102,8 +102,8 @@ func main() {
 		for i := int32(0); i < screenWidth; i++ {
 			px := float32(i)
 			py := float32(250.0 + float32(50)*float32(data[i*int32(MAX_SAMPLES)/screenWidth])/float32(32000))
-			position.This.X = px
-			position.This.Y = py
+			position.X = px
+			position.Y = py
 
 			rl.DrawPixelV(position, rl.Red)
 		}

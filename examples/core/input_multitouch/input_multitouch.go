@@ -66,10 +66,10 @@ func main() {
 
 			touchPosition = rl.GetTouchPosition(int32(i))
 
-			if touchPosition.This.X >= 0 && touchPosition.This.Y >= 0 {
+			if touchPosition.X >= 0 && touchPosition.Y >= 0 {
 
 				rl.DrawCircleV(touchPosition, 34, rl.Orange)
-				rl.DrawText(fmt.Sprintf("%d", i), int32(touchPosition.This.X)-10, int32(touchPosition.This.Y)-70, 40, rl.Black)
+				rl.DrawText(fmt.Sprintf("%d", i), int32(touchPosition.X)-10, int32(touchPosition.Y)-70, 40, rl.Black)
 			}
 		}
 

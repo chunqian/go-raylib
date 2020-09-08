@@ -37,7 +37,7 @@ func main() {
 	texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
 	defer rl.UnloadTexture(texture)
 
-	model.Materials(0).Maps(rl.MAP_DIFFUSE).This.Texture, _ = texture.PassValue()
+	model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
 
 	rl.UnloadImage(image)
 	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
@@ -51,18 +51,18 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.BeginMode3D(rl.Camera3D(camera))
+		rl.BeginMode3D(rl.ToCamera3D(camera))
 
 		rl.DrawModel(model, rl.NewVector3(-16, 0, -8), 1.0, rl.White)
 
 		rl.EndMode3D()
 
 		rl.DrawTextureEx(cubicmap,
-			rl.NewVector2(float32(screenWidth-cubicmap.This.Width*4-20), 20),
+			rl.NewVector2(float32(screenWidth-cubicmap.Width*4-20), 20),
 			0, 4.0,
 			rl.White,
 		)
-		rl.DrawRectangleLines(screenWidth-cubicmap.This.Width*4-20, 20, cubicmap.This.Width*4, cubicmap.This.Height*4, rl.Green)
+		rl.DrawRectangleLines(screenWidth-cubicmap.Width*4-20, 20, cubicmap.Width*4, cubicmap.Height*4, rl.Green)
 
 		rl.DrawText("cubicmap image used to", 658, 90, 10, rl.Gray)
 		rl.DrawText("generate map 3d model", 658, 104, 10, rl.Gray)

@@ -28,8 +28,8 @@ func main() {
             scissorMode = !scissorMode
         }
 
-        scissorArea.This.X = float32(rl.GetMouseX()) - scissorArea.This.Width/2
-        scissorArea.This.Y = float32(rl.GetMouseY()) - scissorArea.This.Height/2
+        scissorArea.X = float32(rl.GetMouseX()) - scissorArea.Width/2
+        scissorArea.Y = float32(rl.GetMouseY()) - scissorArea.Height/2
 
         rl.BeginDrawing()
 
@@ -37,10 +37,10 @@ func main() {
 
         if scissorMode {
             rl.BeginScissorMode(
-                int32(scissorArea.This.X),
-                int32(scissorArea.This.Y),
-                int32(scissorArea.This.Width),
-                int32(scissorArea.This.Height),
+                int32(scissorArea.X),
+                int32(scissorArea.Y),
+                int32(scissorArea.Width),
+                int32(scissorArea.Height),
             )
         }
 

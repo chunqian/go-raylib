@@ -42,7 +42,7 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.BeginMode3D(rl.Camera3D(camera))
+		rl.BeginMode3D(rl.ToCamera3D(camera))
 
 		rl.DrawGrid(10, 1.0)
 

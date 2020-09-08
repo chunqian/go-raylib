@@ -36,16 +36,16 @@ func main() {
 
 	fontPosition := [3]rl.Vector2{
 		rl.NewVector2(
-			float32(screenWidth)/2-rl.MeasureTextEx(font[0], msg[0], float32(font[0].This.BaseSize), -3).This.X/2,
-			float32(screenHeight/2-font[0].This.BaseSize/2-80),
+			float32(screenWidth)/2-rl.MeasureTextEx(font[0], msg[0], float32(font[0].BaseSize), -3).X/2,
+			float32(screenHeight/2-font[0].BaseSize/2-80),
 		),
 		rl.NewVector2(
-			float32(screenWidth)/2-rl.MeasureTextEx(font[1], msg[1], float32(font[1].This.BaseSize), -2).This.X/2,
-			float32(screenHeight/2-font[1].This.BaseSize/2-10),
+			float32(screenWidth)/2-rl.MeasureTextEx(font[1], msg[1], float32(font[1].BaseSize), -2).X/2,
+			float32(screenHeight/2-font[1].BaseSize/2-10),
 		),
 		rl.NewVector2(
-			float32(screenWidth)/2-rl.MeasureTextEx(font[2], msg[2], float32(font[2].This.BaseSize), -3).This.X/2,
-			float32(screenHeight/2-font[2].This.BaseSize/2+50),
+			float32(screenWidth)/2-rl.MeasureTextEx(font[2], msg[2], float32(font[2].BaseSize), -3).X/2,
+			float32(screenHeight/2-font[2].BaseSize/2+50),
 		),
 	}
 
@@ -57,9 +57,9 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawTextEx(font[0], msg[0], fontPosition[0], float32(font[0].This.BaseSize), -3, rl.White)
-		rl.DrawTextEx(font[1], msg[1], fontPosition[1], float32(font[1].This.BaseSize), -2, rl.White)
-		rl.DrawTextEx(font[2], msg[2], fontPosition[2], float32(font[2].This.BaseSize), 2, rl.White)
+		rl.DrawTextEx(font[0], msg[0], fontPosition[0], float32(font[0].BaseSize), -3, rl.White)
+		rl.DrawTextEx(font[1], msg[1], fontPosition[1], float32(font[1].BaseSize), -2, rl.White)
+		rl.DrawTextEx(font[2], msg[2], fontPosition[2], float32(font[2].BaseSize), 2, rl.White)
 
 		rl.EndDrawing()
 	}

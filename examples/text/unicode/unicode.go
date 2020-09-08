@@ -161,8 +161,6 @@ func main() {
 	}()
 
 	var hoveredPos, selectedPos rl.Vector2
-	hoveredPos.PassRef()
-	selectedPos.PassRef()
 
 	RandomizeEmoji()
 
@@ -177,9 +175,7 @@ func main() {
 		if rl.IsMouseButtonPressed(int32(rl.MOUSE_LEFT_BUTTON)) && (hovered != -1) && (hovered != selected) {
 
 			selected = hovered
-			// if Go struct is C struct binding, please use *.This to assign value
-			// selectedPos = hoveredPos
-			*selectedPos.This = *hoveredPos.This
+			selectedPos = hoveredPos
 			rl.SetClipboardText(message[emoji[selected].Message].Text)
 		}
 
@@ -195,10 +191,10 @@ func main() {
 
 			txt := emojiCodepointsR[emoji[i].Index]
 			emojiRect := rl.NewRectangle(
-				pos.This.X,
-				pos.This.Y,
-				float32(fontEmoji.This.BaseSize),
-				float32(fontEmoji.This.BaseSize),
+				pos.X,
+				pos.Y,
+				float32(fontEmoji.BaseSize),
+				float32(fontEmoji.BaseSize),
 			)
 
 			if !rl.CheckCollisionPointRec(mouse, emojiRect) {
@@ -209,20 +205,18 @@ func main() {
 				} else {
 					color = rl.Fade(rl.LightGray, 0.4)
 				}
-				rl.DrawTextEx(fontEmoji, string(txt), pos, float32(fontEmoji.This.BaseSize), 1.0, color)
+				rl.DrawTextEx(fontEmoji, string(txt), pos, float32(fontEmoji.BaseSize), 1.0, color)
 			} else {
-				rl.DrawTextEx(fontEmoji, string(txt), pos, float32(fontEmoji.This.BaseSize), 1.0, emoji[i].Color)
+				rl.DrawTextEx(fontEmoji, string(txt), pos, float32(fontEmoji.BaseSize), 1.0, emoji[i].Color)
 				hovered = i
-				// if Go struct is C struct binding, please use *.This to assign value
-				// hoveredPos = pos
-				*hoveredPos.This = *pos.This
+				hoveredPos = pos
 			}
 
 			if i != 0 && (i%EMOJI_PER_WIDTH == 0) {
-				pos.This.Y += float32(fontEmoji.This.BaseSize) + 24.25
-				pos.This.X = 28.8
+				pos.Y += float32(fontEmoji.BaseSize) + 24.25
+				pos.X = 28.8
 			} else {
-				pos.This.X += float32(fontEmoji.This.BaseSize) + 28.8
+				pos.X += float32(fontEmoji.BaseSize) + 28.8
 			}
 		}
 
@@ -237,44 +231,44 @@ func main() {
 				font = fontAsian
 			}
 
-			sz := rl.MeasureTextEx(font, message[msg].Text, float32(font.This.BaseSize), 1.0)
+			sz := rl.MeasureTextEx(font, message[msg].Text, float32(font.BaseSize), 1.0)
 
-			if sz.This.X > 300 {
-				sz.This.Y *= sz.This.X / 300
-				sz.This.X = 300
-			} else if sz.This.X < 160 {
-				sz.This.X = 160
+			if sz.X > 300 {
+				sz.Y *= sz.X / 300
+				sz.X = 300
+			} else if sz.X < 160 {
+				sz.X = 160
 			}
 
 			msgRect := rl.NewRectangle(
-				selectedPos.This.X-38.8,
-				selectedPos.This.Y,
-				float32(2*horizontalPadding)+sz.This.X,
-				float32(2*verticalPadding)+sz.This.Y,
+				selectedPos.X-38.8,
+				selectedPos.Y,
+				float32(2*horizontalPadding)+sz.X,
+				float32(2*verticalPadding)+sz.Y,
 			)
 
-			msgRect.This.Y -= msgRect.This.Height
+			msgRect.Y -= msgRect.Height
 
-			a := rl.NewVector2(selectedPos.This.X, msgRect.This.Y+msgRect.This.Height)
-			b := rl.NewVector2(a.This.X+8, a.This.Y+10)
-			c := rl.NewVector2(a.This.X+10, a.This.Y)
+			a := rl.NewVector2(selectedPos.X, msgRect.Y+msgRect.Height)
+			b := rl.NewVector2(a.X+8, a.Y+10)
+			c := rl.NewVector2(a.X+10, a.Y)
 
-			if msgRect.This.X < 10 {
-				msgRect.This.X += 28
+			if msgRect.X < 10 {
+				msgRect.X += 28
 			}
-			if msgRect.This.Y < 10 {
-				msgRect.This.Y = selectedPos.This.Y + 84
-				a.This.Y = msgRect.This.Y
-				c.This.Y = a.This.Y
-				b.This.Y = a.This.Y - 10
+			if msgRect.Y < 10 {
+				msgRect.Y = selectedPos.Y + 84
+				a.Y = msgRect.Y
+				c.Y = a.Y
+				b.Y = a.Y - 10
 
 				tmp := a
 				a = b
 				b = tmp
 			}
 
-			if (msgRect.This.X + msgRect.This.Width) > float32(screenWidth) {
-				msgRect.This.X -= (msgRect.This.X + msgRect.This.Width) - float32(screenWidth) + 10.0
+			if (msgRect.X + msgRect.Width) > float32(screenWidth) {
+				msgRect.X -= (msgRect.X + msgRect.Width) - float32(screenWidth) + 10.0
 			}
 
 			rl.DrawRectangleRec(msgRect, emoji[selected].Color)
@@ -282,13 +276,13 @@ func main() {
 			rl.DrawTriangle(a, b, c, emoji[selected].Color)
 
 			textRect := rl.NewRectangle(
-				msgRect.This.X+float32(horizontalPadding/2),
-				msgRect.This.Y+float32(verticalPadding/2),
-				msgRect.This.Width-float32(horizontalPadding),
-				msgRect.This.Height,
+				msgRect.X+float32(horizontalPadding/2),
+				msgRect.Y+float32(verticalPadding/2),
+				msgRect.Width-float32(horizontalPadding),
+				msgRect.Height,
 			)
 
-			rl.DrawTextRec(font, message[msg].Text, textRect, float32(font.This.BaseSize), 1.0, true, rl.White)
+			rl.DrawTextRec(font, message[msg].Text, textRect, float32(font.BaseSize), 1.0, true, rl.White)
 
 			size := len(message[msg].Text)
 			len := rl.GetCodepointsCount(message[msg].Text)
@@ -297,10 +291,10 @@ func main() {
 			sz = rl.MeasureTextEx(rl.GetFontDefault(), info, 10, 1.0)
 
 			pos := rl.NewVector2(
-				textRect.This.X+textRect.This.Width-sz.This.X,
-				msgRect.This.Y+msgRect.This.Height-sz.This.Y-2,
+				textRect.X+textRect.Width-sz.X,
+				msgRect.Y+msgRect.Height-sz.Y-2,
 			)
-			rl.DrawText(info, int32(pos.This.X), int32(pos.This.Y), 10, rl.RayWhite)
+			rl.DrawText(info, int32(pos.X), int32(pos.Y), 10, rl.RayWhite)
 		}
 
 		rl.DrawText("These emojis have something to tell you, click each to find out!", (screenWidth-650)/2, screenHeight-40, 20, rl.Gray)

@@ -25,7 +25,7 @@ func main() {
 	wordWrap := true
 
 	container := rl.NewRectangle(25, 25, float32(screenWidth-50), float32(screenHeight-250))
-	resizer := rl.NewRectangle(container.This.X+container.This.Width-17, container.This.Y+container.This.Height-17, 14, 14)
+	resizer := rl.NewRectangle(container.X+container.Width-17, container.Y+container.Height-17, 14, 14)
 
 	minWidth := int32(60)
 	minHeight := int32(60)
@@ -57,31 +57,31 @@ func main() {
 				resizing = false
 			}
 
-			width := int32(container.This.Width + (mouse.This.X - lastMouse.This.X))
+			width := int32(container.Width + (mouse.X - lastMouse.X))
 			if width > maxWidth {
 				width = maxWidth
 			}
 			if width < minWidth {
 				width = minWidth
 			}
-			container.This.Width = float32(width)
+			container.Width = float32(width)
 
-			height := int32(container.This.Height + (mouse.This.Y - lastMouse.This.Y))
+			height := int32(container.Height + (mouse.Y - lastMouse.Y))
 			if height > maxHeight {
 				height = maxHeight
 			}
 			if height < minHeight {
 				height = minHeight
 			}
-			container.This.Height = float32(height)
+			container.Height = float32(height)
 		} else {
 			if rl.IsMouseButtonDown(int32(rl.MOUSE_LEFT_BUTTON)) && rl.CheckCollisionPointRec(mouse, resizer) {
 				resizing = true
 			}
 		}
 
-		resizer.This.X = container.This.X + container.This.Width - 17
-		resizer.This.Y = container.This.Y + container.This.Height - 17
+		resizer.X = container.X + container.Width - 17
+		resizer.Y = container.Y + container.Height - 17
 
 		lastMouse = mouse
 
@@ -95,10 +95,10 @@ func main() {
 			font,
 			text,
 			rl.NewRectangle(
-				container.This.X+4,
-				container.This.Y+4,
-				container.This.Width-4,
-				container.This.Height-4,
+				container.X+4,
+				container.Y+4,
+				container.Width-4,
+				container.Height-4,
 			),
 			20,
 			2,

@@ -462,9 +462,9 @@ typedef struct VrDeviceInfo {
 } VrDeviceInfo;
 
 // Cforgo
-typedef struct Text {
+typedef struct MultiText {
     const char **text;
-} Text;
+} MultiText;
 
 //----------------------------------------------------------------------------------
 // Enumerators Definition

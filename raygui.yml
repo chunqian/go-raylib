@@ -90,7 +90,7 @@ TRANSLATOR:
       - { action: accept, from: ^Texture2D }
       - { action: accept, from: ^Font }
       - { action: accept, from: ^Gui }
-      - { action: accept, from: ^Text$ }
+      - { action: accept, from: ^MultiText$ }
 
       # ricons
       - { action: accept, from: ^guiIconName$ }

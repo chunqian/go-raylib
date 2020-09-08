@@ -28,38 +28,11 @@ There are some differences between the processing in Go and C.
 
 In C
 ```c
-camera.zoom = 1.0f;
-```
-In Go
-```go
-camera.This.Zoom = 1.0
-```
-
-In C
-```c
-camera->offset.x = width - (max.x - width/2);
-```
-In Go
-```go
-camera.Offset().This.X = float32(width - (int32(max.This.X) - width/2))
-```
-
-In C
-```c
-camera->offset = (Vector2){ width/2, height/2 };
-```
-In Go
-```go
-camera.This.Offset, _ = rl.NewVector2(float32(width/2), float32(height/2)).PassValue()
-```
-
-In C
-```c
 const char *listViewExList[8] = { "This", "is", "a", "list view", "with", "disable", "elements", "amazing!" };
 ```
 In Go
 ```go
-listViewExList := rg.NewText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+listViewExList := rg.NewMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 listViewExList.GC() // GC register
 ```
 
@@ -95,7 +68,7 @@ In Go
 ```go
 animFrameCounter++
 rl.UpdateModelAnimation(model, *anims.Index(0), animFrameCounter)
-if animFrameCounter >= anims.Index(0).This.FrameCount {
+if animFrameCounter >= anims.Index(0).FrameCount {
     animFrameCounter = 0
 }
 ```
@@ -108,38 +81,7 @@ model.materials[0].maps[MAP_DIFFUSE].texture = texture;
 In Go
 ```go
 texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
-model.Materials(0).Maps(rl.MAP_DIFFUSE).This.Texture, _ = texture.PassValue()
-```
-
-In C
-```c
-Font fontDefault = { 0 };
-fontDefault.baseSize = 16;
-fontDefault.charsCount = 95;
-fontDefault.chars = LoadFontData("resources/anonymous_pro_bold.ttf", 16, 0, 95, FONT_DEFAULT);
-Image atlas = GenImageFontAtlas(fontDefault.chars, &fontDefault.recs, 95, 16, 4, 0);
-```
-In Go
-```go
-fontDefault := rl.Font{}
-fontDefault.PassRef()
-fontDefault.This.BaseSize = 16
-fontDefault.This.CharsCount = 95
-fontDefault.This.Chars, _ = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT)).PassRef()
-stlas := rl.GenImageFontAtlas(fontDefault.Chars(0), &fontDefault.This.Recs, 95, 16, 4, 0)
-```
-
-In C
-```c
-selected = hovered;
-selectedPos = hoveredPos;
-SetClipboardText(messages[emoji[selected].message].text);
-```
-In Go
-```go
-selected = hovered
-*selectedPos.This = *hoveredPos.This
-rl.SetClipboardText(message[emoji[selected].Message].Text)
+model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
 ```
 
 

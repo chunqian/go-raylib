@@ -47,7 +47,7 @@ func main() {
 				fontBm,
 				msg,
 				rl.NewVector2(20, 100),
-				float32(fontBm.This.BaseSize),
+				float32(fontBm.BaseSize),
 				2,
 				rl.Maroon,
 			)
@@ -57,7 +57,7 @@ func main() {
 				fontTtf,
 				msg,
 				rl.NewVector2(20, 100),
-				float32(fontTtf.This.BaseSize),
+				float32(fontTtf.BaseSize),
 				2,
 				rl.Lime,
 			)

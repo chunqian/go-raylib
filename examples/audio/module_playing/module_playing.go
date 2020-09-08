@@ -62,9 +62,8 @@ func main() {
 
 	music := rl.LoadMusicStream("../audio/resources/mini1111.xm")
 	defer rl.UnloadMusicStream(music)
-	// if Go struct is C struct binding, please use *.This to assign value
-	// music.Looping = true
-	music.This.Looping = true
+
+	music.Looping = true
 
 	rl.PlayMusicStream(music)
 
@@ -106,8 +105,8 @@ func main() {
 				px := float32(rl.GetRandomValue(int32(circles[i].radius), screenWidth-int32(circles[i].radius)))
 				py := float32(rl.GetRandomValue(int32(circles[i].radius), screenHeight-int32(circles[i].radius)))
 
-				circles[i].position.This.X = px
-				circles[i].position.This.Y = py
+				circles[i].position.X = px
+				circles[i].position.Y = py
 				circles[i].speed = float32(rl.GetRandomValue(1, 100)) / 2000.0
 				circles[i].color = colors[rl.GetRandomValue(0, 13)]
 			}

@@ -26,13 +26,12 @@ func main() {
 	spacing := int32(0)
 
 	for i := 0; i < MAX_BUILDINGS; i++ {
-		buildings[i].PassRef()
-		buildings[i].This.Width = float32(rl.GetRandomValue(50, 200))
-		buildings[i].This.Height = float32(rl.GetRandomValue(100, 800))
-		buildings[i].This.Y = float32(screenHeight) - 130 - buildings[i].This.Height
-		buildings[i].This.X = float32(-6000 + spacing)
+		buildings[i].Width = float32(rl.GetRandomValue(50, 200))
+		buildings[i].Height = float32(rl.GetRandomValue(100, 800))
+		buildings[i].Y = float32(screenHeight) - 130 - buildings[i].Height
+		buildings[i].X = float32(-6000 + spacing)
 
-		spacing += int32(buildings[i].This.Width)
+		spacing += int32(buildings[i].Width)
 
 		buildColors[i] = rl.NewColor(
 			byte(rl.GetRandomValue(200, 240)),
@@ -44,7 +43,7 @@ func main() {
 
 	camera := rl.NewCamera2D(
 		rl.NewVector2(float32(screenWidth/2), float32(screenHeight/2)),
-		rl.NewVector2(player.This.X+20, player.This.Y+20),
+		rl.NewVector2(player.X+20, player.Y+20),
 		0.0,
 		1.0,
 	)
@@ -54,36 +53,36 @@ func main() {
 	for !rl.WindowShouldClose() {
 
 		if rl.IsKeyDown(int32(rl.KEY_RIGHT)) {
-			player.This.X += 2
+			player.X += 2
 		} else if rl.IsKeyDown(int32(rl.KEY_LEFT)) {
-			player.This.X -= 2
+			player.X -= 2
 		}
 
-		camera.This.Target, _ = rl.NewVector2(player.This.X+20, player.This.Y+20).PassValue()
+		camera.Target = rl.NewVector2(player.X+20, player.Y+20)
 
 		if rl.IsKeyDown(int32(rl.KEY_A)) {
-			camera.This.Rotation--
+			camera.Rotation--
 		} else if rl.IsKeyDown(int32(rl.KEY_S)) {
-			camera.This.Rotation++
+			camera.Rotation++
 		}
 
-		if camera.This.Rotation > 40 {
-			camera.This.Rotation = 40
-		} else if camera.This.Rotation < -40 {
-			camera.This.Rotation = -40
+		if camera.Rotation > 40 {
+			camera.Rotation = 40
+		} else if camera.Rotation < -40 {
+			camera.Rotation = -40
 		}
 
-		camera.This.Zoom += float32(rl.GetMouseWheelMove()) * 0.05
+		camera.Zoom += float32(rl.GetMouseWheelMove()) * 0.05
 
-		if camera.This.Zoom > 3.0 {
-			camera.This.Zoom = 3.0
-		} else if camera.This.Zoom < 0.1 {
-			camera.This.Zoom = 0.1
+		if camera.Zoom > 3.0 {
+			camera.Zoom = 3.0
+		} else if camera.Zoom < 0.1 {
+			camera.Zoom = 0.1
 		}
 
 		if rl.IsKeyPressed(int32(rl.KEY_R)) {
-			camera.This.Zoom = 1.0
-			camera.This.Rotation = 0.0
+			camera.Zoom = 1.0
+			camera.Rotation = 0.0
 		}
 
 		rl.BeginDrawing()
@@ -101,16 +100,16 @@ func main() {
 		rl.DrawRectangleRec(player, rl.Red)
 
 		rl.DrawLine(
-			int32(camera.Target().This.X),
+			int32(camera.Target.X),
 			-screenHeight*10,
-			int32(camera.Target().This.X),
+			int32(camera.Target.X),
 			screenHeight*10, rl.Green,
 		)
 		rl.DrawLine(
 			-screenWidth*10,
-			int32(camera.Target().This.Y),
+			int32(camera.Target.Y),
 			screenWidth*10,
-			int32(camera.Target().This.Y),
+			int32(camera.Target.Y),
 			rl.Green,
 		)
 

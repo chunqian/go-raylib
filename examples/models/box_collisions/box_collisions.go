@@ -43,13 +43,13 @@ func main() {
 	for !rl.WindowShouldClose() {
 
 		if rl.IsKeyDown(int32(rl.KEY_RIGHT)) {
-			playerPosition.This.X += 0.2
+			playerPosition.X += 0.2
 		} else if rl.IsKeyDown(int32(rl.KEY_LEFT)) {
-			playerPosition.This.X -= 0.2
+			playerPosition.X -= 0.2
 		} else if rl.IsKeyDown(int32(rl.KEY_DOWN)) {
-			playerPosition.This.Z += 0.2
+			playerPosition.Z += 0.2
 		} else if rl.IsKeyDown(int32(rl.KEY_UP)) {
-			playerPosition.This.Z -= 0.2
+			playerPosition.Z -= 0.2
 		}
 
 		collision = false
@@ -57,26 +57,26 @@ func main() {
 		if rl.CheckCollisionBoxes(
 			rl.NewBoundingBox(
 				rl.NewVector3(
-					playerPosition.This.X-playerSize.This.X/2,
-					playerPosition.This.Y-playerSize.This.Y/2,
-					playerPosition.This.Z-playerSize.This.Z/2,
+					playerPosition.X-playerSize.X/2,
+					playerPosition.Y-playerSize.Y/2,
+					playerPosition.Z-playerSize.Z/2,
 				),
 				rl.NewVector3(
-					playerPosition.This.X+playerSize.This.X/2,
-					playerPosition.This.Y+playerSize.This.Y/2,
-					playerPosition.This.Z+playerSize.This.Z/2,
+					playerPosition.X+playerSize.X/2,
+					playerPosition.Y+playerSize.Y/2,
+					playerPosition.Z+playerSize.Z/2,
 				),
 			),
 			rl.NewBoundingBox(
 				rl.NewVector3(
-					enemyBoxPos.This.X-enemyBoxSize.This.X/2,
-					enemyBoxPos.This.Y-enemyBoxSize.This.Y/2,
-					enemyBoxPos.This.Z-enemyBoxSize.This.Z/2,
+					enemyBoxPos.X-enemyBoxSize.X/2,
+					enemyBoxPos.Y-enemyBoxSize.Y/2,
+					enemyBoxPos.Z-enemyBoxSize.Z/2,
 				),
 				rl.NewVector3(
-					enemyBoxPos.This.X+enemyBoxSize.This.X/2,
-					enemyBoxPos.This.Y+enemyBoxSize.This.Y/2,
-					enemyBoxPos.This.Z+enemyBoxSize.This.Z/2,
+					enemyBoxPos.X+enemyBoxSize.X/2,
+					enemyBoxPos.Y+enemyBoxSize.Y/2,
+					enemyBoxPos.Z+enemyBoxSize.Z/2,
 				),
 			),
 		) {
@@ -86,14 +86,14 @@ func main() {
 		if rl.CheckCollisionBoxSphere(
 			rl.NewBoundingBox(
 				rl.NewVector3(
-					playerPosition.This.X-playerSize.This.X/2,
-					playerPosition.This.Y-playerSize.This.Y/2,
-					playerPosition.This.Z-playerSize.This.Z/2,
+					playerPosition.X-playerSize.X/2,
+					playerPosition.Y-playerSize.Y/2,
+					playerPosition.Z-playerSize.Z/2,
 				),
 				rl.NewVector3(
-					playerPosition.This.X+playerSize.This.X/2,
-					playerPosition.This.Y+playerSize.This.Y/2,
-					playerPosition.This.Z+playerSize.This.Z/2,
+					playerPosition.X+playerSize.X/2,
+					playerPosition.Y+playerSize.Y/2,
+					playerPosition.Z+playerSize.Z/2,
 				),
 			),
 			enemySpherePos,
@@ -112,10 +112,10 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.BeginMode3D(rl.Camera3D(camera))
+		rl.BeginMode3D(rl.ToCamera3D(camera))
 
-		rl.DrawCube(enemyBoxPos, enemyBoxSize.This.X, enemyBoxSize.This.Y, enemyBoxSize.This.Z, rl.Gray)
-		rl.DrawCubeWires(enemyBoxPos, enemyBoxSize.This.X, enemyBoxSize.This.Y, enemyBoxSize.This.Z, rl.DarkGray)
+		rl.DrawCube(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, rl.Gray)
+		rl.DrawCubeWires(enemyBoxPos, enemyBoxSize.X, enemyBoxSize.Y, enemyBoxSize.Z, rl.DarkGray)
 
 		rl.DrawSphere(enemySpherePos, enemySphereSize, rl.Gray)
 		rl.DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, rl.DarkGray)

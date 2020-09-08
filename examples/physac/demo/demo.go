@@ -33,14 +33,14 @@ func main() {
 		100,
 		10,
 	)
-	floor.This.Enabled = false
+	floor.Enabled = false
 
 	circle := phys.CreatePhysicsBodyCircle(
 		phys.NewVector2(float32(screenWidth/2), float32(screenHeight/2)),
 		45,
 		10,
 	)
-	circle.This.Enabled = false
+	circle.Enabled = false
 
 	rl.SetTargetFPS(60)
 
@@ -55,14 +55,14 @@ func main() {
 				100,
 				10,
 			)
-			floor.This.Enabled = false
+			floor.Enabled = false
 
 			circle := phys.CreatePhysicsBodyCircle(
 				phys.NewVector2(float32(screenWidth/2), float32(screenHeight/2)),
 				45,
 				10,
 			)
-			circle.This.Enabled = false
+			circle.Enabled = false
 
 			needsReset = false
 		}
@@ -95,7 +95,7 @@ func main() {
 		bodiesCount := phys.GetPhysicsBodiesCount()
 		for i := bodiesCount - 1; i >= 0; i-- {
 			body := phys.GetPhysicsBody(i)
-			if body != nil && int32(body.Position().This.Y) > screenHeight*2 {
+			if body != nil && int32(body.Position.Y) > screenHeight*2 {
 				phys.DestroyPhysicsBody(body)
 			}
 		}

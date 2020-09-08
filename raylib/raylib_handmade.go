@@ -109,23 +109,26 @@ func StringFromPString(p0 *string, index int32) (raw string) {
 }
 
 // GenImageFontAtlas function as declared in src/raylib.h:1218
-func GenImageFontAtlas(chars *CharInfo, recs **C.Rectangle, charsCount int32, fontSize int32, padding int32, packMethod int32) Image {
-	cchars, _ := chars.PassRef()
+func GenImageFontAtlas(chars *CharInfo, recs **Rectangle, charsCount int32, fontSize int32, padding int32, packMethod int32) Image {
+	// cchars, _ := chars.PassRef()
 	// crecs, _ := (*recs).PassMemoryRef()
 	// cchars := chars
-	crecs := recs
+	crecs := (**C.Rectangle)(unsafe.Pointer(recs))
+	cchars := (*C.CharInfo)(unsafe.Pointer(chars))
 	ccharsCount, _ := (C.int)(charsCount), cgoAllocsUnknown
 	cfontSize, _ := (C.int)(fontSize), cgoAllocsUnknown
 	cpadding, _ := (C.int)(padding), cgoAllocsUnknown
 	cpackMethod, _ := (C.int)(packMethod), cgoAllocsUnknown
 	ret0 := C.GenImageFontAtlas(cchars, crecs, ccharsCount, cfontSize, cpadding, cpackMethod)
-	v0 := *newImageRef(unsafe.Pointer(&ret0))
+	v0 := *newImageRef(unsafe.Pointer(&ret0)).convert()
 	return v0
 }
 
 // TextJoin function as declared in src/raylib.h:1244
-func TextJoin(textList *Text, count int32, delimiter string) string {
-	ctextList, _ := textList.PassRef()
+func TextJoin(textList *MultiText, count int32, delimiter string) string {
+	// ctextList, _ := textList.PassRef()
+
+	ctextList := (*C.MultiText)(unsafe.Pointer(textList))
 	ccount, _ := (C.int)(count), cgoAllocsUnknown
 	delimiter = safeString(delimiter)
 	cdelimiter, _ := unpackPCharString(delimiter)
@@ -137,6 +140,12 @@ func TextJoin(textList *Text, count int32, delimiter string) string {
 
 func UnloadColors(color *Color) {
 
-	colorRef, _ := color.PassRef()
-	C.free(unsafe.Pointer(colorRef))
+	// colorRef, _ := color.PassRef()
+	C.free(unsafe.Pointer(color))
+}
+
+func ToCamera3D(camera Camera) Camera3D {
+
+	ret := *(*Camera3D)(unsafe.Pointer(&camera))
+	return ret
 }

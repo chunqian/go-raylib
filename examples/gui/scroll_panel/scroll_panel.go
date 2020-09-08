@@ -106,28 +106,28 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText(fmt.Sprintf("[%f, %f]", panelScroll.This.X, panelScroll.This.Y), 4, 4, 20, rl.Red)
+		rl.DrawText(fmt.Sprintf("[%f, %f]", panelScroll.X, panelScroll.Y), 4, 4, 20, rl.Red)
 
 		view := rg.GuiScrollPanel(panelRec, panelContentRec, &panelScroll)
 
-		rl.BeginScissorMode(int32(view.This.X), int32(view.This.Y), int32(view.This.Width), int32(view.This.Height))
+		rl.BeginScissorMode(int32(view.X), int32(view.Y), int32(view.Width), int32(view.Height))
 
 		rg.GuiGrid(
 			rg.NewRectangle(
-				panelRec.This.X+panelScroll.This.X,
-				panelRec.This.Y+panelScroll.This.Y,
-				panelContentRec.This.Width,
-				panelContentRec.This.Height,
+				panelRec.X+panelScroll.X,
+				panelRec.Y+panelScroll.Y,
+				panelContentRec.Width,
+				panelContentRec.Height,
 			), 16, 3)
 
 		rl.EndScissorMode()
 
 		if showContentArea {
 			rl.DrawRectangle(
-				int32(panelRec.This.X+panelScroll.This.X),
-				int32(panelRec.This.Y+panelScroll.This.Y),
-				int32(panelContentRec.This.Width),
-				int32(panelContentRec.This.Height),
+				int32(panelRec.X+panelScroll.X),
+				int32(panelRec.Y+panelScroll.Y),
+				int32(panelContentRec.Width),
+				int32(panelContentRec.Height),
 				rl.Fade(rl.Red, 0.1),
 			)
 		}
@@ -140,17 +140,17 @@ func main() {
 			showContentArea,
 		)
 
-		panelContentRec.This.Width = rg.GuiSliderBar(
+		panelContentRec.Width = rg.GuiSliderBar(
 			rg.NewRectangle(590, 385, 145, 15),
 			"WIDTH",
-			fmt.Sprintf("%f", panelContentRec.This.Width),
+			fmt.Sprintf("%f", panelContentRec.Width),
 			1, 600, 1,
 		)
 
-		panelContentRec.This.Height = rg.GuiSliderBar(
+		panelContentRec.Height = rg.GuiSliderBar(
 			rg.NewRectangle(590, 410, 145, 15),
 			"HEIGHT",
-			fmt.Sprintf("%f", panelContentRec.This.Height),
+			fmt.Sprintf("%f", panelContentRec.Height),
 			1, 400, 1,
 		)
 

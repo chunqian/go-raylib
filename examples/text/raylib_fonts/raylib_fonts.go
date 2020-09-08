@@ -52,16 +52,15 @@ func main() {
 
 	for i := 0; i < MAX_FONTS; i++ {
 
-		positions[i].PassRef()
-		measureText := rl.MeasureTextEx(fonts[i], messages[i], float32(fonts[i].This.BaseSize*2), float32(spacings[i]))
+		measureText := rl.MeasureTextEx(fonts[i], messages[i], float32(fonts[i].BaseSize*2), float32(spacings[i]))
 
-		positions[i].This.X = float32(screenWidth/2) - measureText.This.X/2
-		positions[i].This.Y = float32(int32(60) + fonts[i].This.BaseSize + int32(45*i))
+		positions[i].X = float32(screenWidth/2) - measureText.X/2
+		positions[i].Y = float32(int32(60) + fonts[i].BaseSize + int32(45*i))
 	}
 
-	positions[3].This.Y += 8
-	positions[4].This.Y += 2
-	positions[7].This.Y += 8
+	positions[3].Y += 8
+	positions[4].Y += 2
+	positions[7].Y += 8
 
 	colors := []rl.Color{
 		rl.Maroon,
@@ -90,7 +89,7 @@ func main() {
 				fonts[i],
 				messages[i],
 				positions[i],
-				float32(fonts[i].This.BaseSize*2),
+				float32(fonts[i].BaseSize*2),
 				float32(spacings[i]),
 				colors[i],
 			)
