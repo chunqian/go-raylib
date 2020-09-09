@@ -26,10 +26,9 @@ func main() {
 
 	fontDefault.BaseSize = 16
 	fontDefault.CharsCount = 95
-	*fontDefault.Chars(0) = *rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT))
+	fontDefault.Chars = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT))
 
-	recs := fontDefault.Recs(0)
-	stlas := rl.GenImageFontAtlas(fontDefault.Chars(0), &recs, 95, 16, 4, 0)
+	stlas := rl.GenImageFontAtlas(fontDefault.Chars, &fontDefault.Recs, 95, 16, 4, 0)
 	fontDefault.Texture = rl.LoadTextureFromImage(stlas)
 	rl.UnloadImage(stlas)
 	defer rl.UnloadFont(fontDefault)
@@ -38,10 +37,9 @@ func main() {
 
 	fontSDF.BaseSize = 16
 	fontSDF.CharsCount = 95
-	*fontSDF.Chars(0) = *rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF))
+	fontSDF.Chars = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF))
 
-	recs = fontSDF.Recs(0)
-	stlas = rl.GenImageFontAtlas(fontSDF.Chars(0), &recs, 95, 16, 0, 1)
+	stlas = rl.GenImageFontAtlas(fontSDF.Chars, &fontSDF.Recs, 95, 16, 0, 1)
 	fontSDF.Texture = rl.LoadTextureFromImage(stlas)
 	rl.UnloadImage(stlas)
 	defer rl.UnloadFont(fontSDF)

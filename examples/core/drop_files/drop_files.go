@@ -44,7 +44,7 @@ func main() {
 				} else {
 					rl.DrawRectangle(0, 85+40*i, screenWidth, 40, rl.Fade(rl.LightGray, 0.3))
 				}
-				rl.DrawText(rl.StringFromPPByte(droppedFiles, i), 120, 100+40*i, 10, rl.Gray)
+				rl.DrawText(rl.ToString(droppedFiles, i), 120, 100+40*i, 10, rl.Gray)
 			}
 
 			rl.DrawText("Drop new files...", 100, 110+40*count, 20, rl.DarkGray)

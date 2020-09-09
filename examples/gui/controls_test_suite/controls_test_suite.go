@@ -43,7 +43,7 @@ func main() {
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
 	listViewExList := rg.NewMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
-	listViewExList.GC() // GC register
+	// listViewExList.GC() // GC register
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
 	multiTextBoxEditMode := false
@@ -85,7 +85,7 @@ func main() {
 		if rl.IsFileDropped() {
 			dropsCount := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&dropsCount)
-			droppedFilePath := rl.StringFromPPByte(droppedFiles, 0)
+			droppedFilePath := rl.ToString(droppedFiles, 0)
 
 			if dropsCount > 0 && rl.IsFileExtension(droppedFilePath, ".rgs") {
 				rg.GuiLoadStyle(droppedFilePath)

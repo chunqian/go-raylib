@@ -8,40 +8,40 @@ package raygui
 import "C"
 
 import (
-	// "fmt"
+	"fmt"
 	"unsafe"
 )
 
-func IntFromBool(b bool) int {
-	if b {
-		return 1
+func ToBool(i interface{}) bool {
+	switch i.(type) {
+	case int:
+		if i.(int) >= 1 {
+			return true
+		}
+		return false
+	case int32:
+		if i.(int32) >= 1 {
+			return true
+		}
+		return false
+	default:
+		panic(fmt.Sprintf("unable to convert %#v of type %T to bool", i, i))
 	}
-	return 0
 }
 
-func Int32FromBool(b bool) int32 {
-	if b {
-		return 1
+func ToInt32(i interface{}) int32 {
+	switch i.(type) {
+	case bool:
+		if i.(bool) {
+			return 1
+		}
+		return 0
+	default:
+		panic(fmt.Sprintf("unable to convert %#v of type %T to int32", i, i))
 	}
-	return 0
-}
-
-func BoolFromInt(i int) bool {
-	if i >= 1 {
-		return true
-	}
-	return false
-}
-
-func BoolFromInt32(i int32) bool {
-	if i >= 1 {
-		return true
-	}
-	return false
 }
 
 func NewBytes(str string, count int) []byte {
-
 	bts := []byte(str + "\x00")
 	bts2 := make([]byte, count)
 	for i := 0; i < len(bts); i++ {
@@ -51,9 +51,9 @@ func NewBytes(str string, count int) []byte {
 }
 
 // GuiListViewEx function as declared in src/raygui.h:479
-func GuiListViewEx(bounds Rectangle, text *Text, count int32, focus *int32, scrollIndex *int32, active int32) int32 {
-	cbounds, _ := bounds.PassValue()
-	ctext, _ := text.PassRef()
+func GuiListViewEx(bounds Rectangle, text *MultiText, count int32, focus *int32, scrollIndex *int32, active int32) int32 {
+	cbounds := *(*C.Rectangle)(unsafe.Pointer(&bounds))
+	ctext := (*C.MultiText)(unsafe.Pointer(text))
 	ccount, _ := (C.int)(count), cgoAllocsUnknown
 	cfocus, _ := (*C.int)(unsafe.Pointer(focus)), cgoAllocsUnknown
 	cscrollIndex, _ := (*C.int)(unsafe.Pointer(scrollIndex)), cgoAllocsUnknown

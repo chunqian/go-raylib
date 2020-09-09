@@ -34,7 +34,7 @@ func main() {
 	texture := rl.LoadTexture("../models/resources/guy/guytex.png")
 	defer rl.UnloadTexture(texture)
 
-	rl.SetMaterialTexture(model.Materials(0), rl.MAP_DIFFUSE, texture)
+	rl.SetMaterialTexture(model.Materials.Index(0), rl.MAP_DIFFUSE, texture)
 
 	animsCount := int32(0)
 	anims := rl.LoadModelAnimations("../models/resources/guy/guyanim.iqm", &animsCount)
@@ -68,7 +68,7 @@ func main() {
 		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), rl.White)
 
 		for i := int32(0); i < model.BoneCount; i++ {
-			framePose := anims.Index(0).FramePoses(animFrameCounter, i)
+			framePose := rl.ToTransform(anims.Index(0).FramePoses, animFrameCounter, i)
 			rl.DrawCube(framePose.Translation, 0.2, 0.2, 0.2, rl.Red)
 		}
 

@@ -75,7 +75,6 @@ var (
 )
 
 func NewBytes(str string, count int) []byte {
-
 	bts := []byte(str + "\x00")
 	bts2 := make([]byte, count)
 	for i := 0; i < len(bts); i++ {
@@ -84,35 +83,71 @@ func NewBytes(str string, count int) []byte {
 	return bts2
 }
 
-func StringFromPPByte(names **byte, index int32) (raw string) {
-
-	ptr0 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(names)) + uintptr(index)*uintptr(sizeOfPtr)))
-	ptrRow := (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(*ptr0))))
-	raw = C.GoString(ptrRow)
-	return
+func ToString(i interface{}, index int32) (raw string) {
+	switch i.(type) {
+	case **byte:
+		ptr0 := i.(**byte)
+		ptr1 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(ptr0)) + uintptr(index)*uintptr(sizeOfPtr)))
+		ptrRow := (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(*ptr1))))
+		raw = C.GoString(ptrRow)
+		return
+	case *string:
+		ptr0 := i.(*string)
+		h0 := (*stringHeader)(unsafe.Pointer(ptr0))
+		ptr1 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(&(h0.Data))) + uintptr(index)*uintptr(sizeOfPtr)))
+		p := *ptr1
+		if p != nil && *p != 0 {
+			h := (*stringHeader)(unsafe.Pointer(&raw))
+			h.Data = unsafe.Pointer(p)
+			for *p != 0 {
+				p = (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(p)) + 1)) // p++
+			}
+			h.Len = int(uintptr(unsafe.Pointer(p)) - uintptr(h.Data))
+		}
+		return
+	default:
+		return
+	}
 }
 
-func StringFromPString(p0 *string, index int32) (raw string) {
-
-	h0 := (*stringHeader)(unsafe.Pointer(p0))
-	ptr0 := (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(&(h0.Data))) + uintptr(index)*uintptr(sizeOfPtr)))
-	p := *ptr0
-	if p != nil && *p != 0 {
-		h := (*stringHeader)(unsafe.Pointer(&raw))
-		h.Data = unsafe.Pointer(p)
-		for *p != 0 {
-			p = (*C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(p)) + 1)) // p++
-		}
-		h.Len = int(uintptr(unsafe.Pointer(p)) - uintptr(h.Data))
+func ToTransform(i interface{}, row int32, column int32) *Transform {
+	switch i.(type) {
+	case **Transform:
+		var ret *Transform
+		ptr0 := i.(**Transform)
+		ptr1 := (**C.Transform)(unsafe.Pointer(uintptr(unsafe.Pointer(ptr0)) + uintptr(row)*uintptr(sizeOfPtr)))
+		ptr2 := (*C.Transform)(unsafe.Pointer(uintptr(unsafe.Pointer(*ptr1)) + uintptr(column)*uintptr(sizeOfTransformValue)))
+		ret = newTransformRef(unsafe.Pointer(ptr2)).convert()
+		return ret
+	default:
+		return nil
 	}
-	return
+}
+
+func ToInt32(i interface{}, index int32) (ret int32) {
+	switch i.(type) {
+	case *int32:
+		const sizeOfPlainValue = unsafe.Sizeof([1]C.int{})
+		ptr0 := i.(*int32)
+		ptr1 := (*C.int)(unsafe.Pointer(uintptr(unsafe.Pointer(ptr0)) + uintptr(index)*uintptr(sizeOfPlainValue)))
+		ret = *(*int32)(unsafe.Pointer(ptr1))
+		return
+	default:
+		return
+	}
+}
+
+func ToCamera3D(camera Camera) Camera3D {
+	ret := *(*Camera3D)(unsafe.Pointer(&camera))
+	return ret
+}
+
+func UnloadColors(color *Color) {
+	C.free(unsafe.Pointer(color))
 }
 
 // GenImageFontAtlas function as declared in src/raylib.h:1218
 func GenImageFontAtlas(chars *CharInfo, recs **Rectangle, charsCount int32, fontSize int32, padding int32, packMethod int32) Image {
-	// cchars, _ := chars.PassRef()
-	// crecs, _ := (*recs).PassMemoryRef()
-	// cchars := chars
 	crecs := (**C.Rectangle)(unsafe.Pointer(recs))
 	cchars := (*C.CharInfo)(unsafe.Pointer(chars))
 	ccharsCount, _ := (C.int)(charsCount), cgoAllocsUnknown
@@ -126,8 +161,6 @@ func GenImageFontAtlas(chars *CharInfo, recs **Rectangle, charsCount int32, font
 
 // TextJoin function as declared in src/raylib.h:1244
 func TextJoin(textList *MultiText, count int32, delimiter string) string {
-	// ctextList, _ := textList.PassRef()
-
 	ctextList := (*C.MultiText)(unsafe.Pointer(textList))
 	ccount, _ := (C.int)(count), cgoAllocsUnknown
 	delimiter = safeString(delimiter)
@@ -136,16 +169,4 @@ func TextJoin(textList *MultiText, count int32, delimiter string) string {
 	runtime.KeepAlive(delimiter)
 	v0 := packPCharString(ret0)
 	return v0
-}
-
-func UnloadColors(color *Color) {
-
-	// colorRef, _ := color.PassRef()
-	C.free(unsafe.Pointer(color))
-}
-
-func ToCamera3D(camera Camera) Camera3D {
-
-	ret := *(*Camera3D)(unsafe.Pointer(&camera))
-	return ret
 }

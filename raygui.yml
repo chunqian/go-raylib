@@ -87,7 +87,9 @@ TRANSLATOR:
       - { action: accept, from: ^Vector3 }
       - { action: accept, from: ^Color }
       - { action: accept, from: ^Rectangle }
+      - { action: accept, from: ^Image$ }
       - { action: accept, from: ^Texture2D }
+      - { action: accept, from: ^CharInfo$ }
       - { action: accept, from: ^Font }
       - { action: accept, from: ^Gui }
       - { action: accept, from: ^MultiText$ }

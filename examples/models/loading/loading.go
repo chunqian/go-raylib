@@ -31,9 +31,9 @@ func main() {
 	texture := rl.LoadTexture("../models/resources/models/castle_diffuse.png")
 	defer rl.UnloadTexture(texture)
 
-	model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
+	model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
 
-	bounds := rl.MeshBoundingBox(*model.Meshes(0))
+	bounds := rl.MeshBoundingBox(*model.Meshes.Index(0))
 
 	rl.SetCameraMode(camera, int32(rl.CAMERA_FREE))
 
@@ -48,7 +48,7 @@ func main() {
 		if rl.IsFileDropped() {
 			count := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&count)
-			droppedFilePath := rl.StringFromPPByte(droppedFiles, 0)
+			droppedFilePath := rl.ToString(droppedFiles, 0)
 
 			if count == 1 {
 				if rl.IsFileExtension(droppedFilePath, ".obj") ||
@@ -56,13 +56,13 @@ func main() {
 					rl.IsFileExtension(droppedFilePath, ".iqm") {
 					rl.UnloadModel(model)
 					model = rl.LoadModel(droppedFilePath)
-					model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
-					bounds = rl.MeshBoundingBox(*model.Meshes(0))
+					model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+					bounds = rl.MeshBoundingBox(*model.Meshes.Index(0))
 				} else if rl.IsFileExtension(droppedFilePath, ".png") {
 
 					rl.UnloadTexture(texture)
 					texture = rl.LoadTexture(droppedFilePath)
-					model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
+					model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
 				}
 			}
 			rl.ClearDroppedFiles()

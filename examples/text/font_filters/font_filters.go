@@ -64,7 +64,7 @@ func main() {
 
 			count := int32(0)
 			droppedFiles := rl.GetDroppedFiles(&count)
-			droppedFilePath := rl.StringFromPPByte(droppedFiles, 0)
+			droppedFilePath := rl.ToString(droppedFiles, 0)
 
 			if rl.IsFileExtension(droppedFilePath, ".ttf") {
 				rl.UnloadFont(font)

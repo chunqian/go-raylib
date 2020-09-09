@@ -4,13 +4,14 @@ import (
 	rl "goray/raylib"
 
 	"runtime"
+	"unsafe"
 )
 
 var (
-	CUBEMAP_SIZE = 512
-	IRRADIANCE_SIZE = 32
+	CUBEMAP_SIZE     = 512
+	IRRADIANCE_SIZE  = 32
 	PREFILTERED_SIZE = 256
-	BRDF_SIZE = 512
+	BRDF_SIZE        = 512
 )
 
 func init() {
@@ -36,7 +37,32 @@ func main() {
 	model := rl.LoadModel("../models/resources/pbr/trooper.obj")
 	defer rl.UnloadModel(model)
 
-	rl.MeshTangents(model.Meshes(0))
+	rl.MeshTangents(model.Meshes)
 
-	rl.UnloadMaterial(*model.Materials(0))
+	rl.UnloadMaterial(*model.Materials)
+
+	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
+
+	rl.SetTargetFPS(60)
+
+	for !rl.WindowShouldClose() {
+
+		rl.UpdateCamera(&camera)
+
+		cameraPos := [3]float32{
+			camera.Position.X,
+			camera.Position.Y,
+			camera.Position.Z,
+		}
+
+		rl.SetShaderValue(
+			model.Materials.Index(0).Shader,
+			rl.ToInt32(
+				model.Materials.Index(0).Shader.Locs,
+				int32(rl.LOC_VECTOR_VIEW),
+			),
+			unsafe.Pointer(&cameraPos),
+			int32(rl.UNIFORM_VEC3),
+		)
+	}
 }

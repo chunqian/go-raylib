@@ -30,11 +30,11 @@ func DrawStyleEditControls() {
 	rg.GuiSpinner(rg.NewRectangle(670, 240, 90, 20), "", &style, 0, 14, false)
 	rg.GuiSetStyle(int32(rg.SCROLLBAR), int32(rg.SLIDER_PADDING), style)
 
-	style = rg.Int32FromBool(
+	style = rg.ToInt32(
 		rg.GuiCheckBox(
 			rg.NewRectangle(565, 280, 20, 20),
 			"ARROWS_VISIBLE",
-			rg.BoolFromInt32(
+			rg.ToBool(
 				rg.GuiGetStyle(int32(rg.SCROLLBAR), int32(rg.ARROWS_VISIBLE)),
 			),
 		),
@@ -58,11 +58,11 @@ func DrawStyleEditControls() {
 	} else {
 		text = "SCROLLBAR: RIGHT"
 	}
-	style = rg.Int32FromBool(
+	style = rg.ToInt32(
 		rg.GuiToggle(
 			rg.NewRectangle(560, 110, 200, 35),
 			text,
-			rg.BoolFromInt32(
+			rg.ToBool(
 				rg.GuiGetStyle(int32(rg.LISTVIEW), int32(rg.SCROLLBAR_SIDE)),
 			),
 		),

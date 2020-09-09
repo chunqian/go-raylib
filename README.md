@@ -20,7 +20,7 @@ Same performance as the Raylib C version. Enjoy it!.
 
 
 ### Memory
-If cgo memory alloc, call GC() for register, it can be automated management.
+Automated management. You don't need to worry about memory when you write code.
 
 
 ### Difference
@@ -33,7 +33,6 @@ const char *listViewExList[8] = { "This", "is", "a", "list view", "with", "disab
 In Go
 ```go
 listViewExList := rg.NewMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
-listViewExList.GC() // GC register
 ```
 
 In C
@@ -55,7 +54,7 @@ In Go
 ```go
 dropsCount := int32(0)
 droppedFiles := rl.GetDroppedFiles(&dropsCount)
-droppedFilePath := rl.StringFromPPByte(droppedFiles, 0)
+droppedFilePath := rl.ToString(droppedFiles, 0)
 ```
 
 In C
@@ -81,7 +80,7 @@ model.materials[0].maps[MAP_DIFFUSE].texture = texture;
 In Go
 ```go
 texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
-model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
+model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
 ```
 
 

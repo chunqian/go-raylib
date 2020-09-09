@@ -33,7 +33,7 @@ func main() {
 	model := rl.LoadModelFromMesh(mesh)
 	defer rl.UnloadModel(model)
 
-	model.Materials(0).Maps(rl.MAP_DIFFUSE).Texture = texture
+	model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
 	mapPosition := rl.NewVector3(-8, 0, -8)
 
 	rl.UnloadImage(image)
