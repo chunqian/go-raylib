@@ -20,7 +20,7 @@ Same performance as the Raylib C version. Enjoy it!.
 
 
 ### Memory
-Automated management. You don't need to worry about memory when you write code.
+If cgo memory alloc, call GC() for register, it can be automated management.
 
 
 ### Difference
@@ -32,7 +32,8 @@ const char *listViewExList[8] = { "This", "is", "a", "list view", "with", "disab
 ```
 In Go
 ```go
-listViewExList := rg.NewMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+listViewExList, mem := rg.AllocMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+listViewExList.GC(mem)
 ```
 
 In C

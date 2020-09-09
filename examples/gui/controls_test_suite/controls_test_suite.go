@@ -42,8 +42,8 @@ func main() {
 	listViewExScrollIndex := int32(0)
 	listViewExActive := int32(2)
 	listViewExFocus := int32(-1)
-	listViewExList := rg.NewMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
-	// listViewExList.GC() // GC register
+	listViewExList, mem := rg.AllocMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+	listViewExList.GC(mem)
 
 	multiTextBoxText := rg.NewBytes("Multi text box", 256)
 	multiTextBoxEditMode := false
@@ -178,7 +178,7 @@ func main() {
 		)
 		listViewExActive = rg.GuiListViewEx(
 			rg.NewRectangle(165, 180, 140, 200),
-			&listViewExList,
+			listViewExList,
 			8,
 			&listViewExFocus,
 			&listViewExScrollIndex,
