@@ -52,6 +52,7 @@ test:
 	go build -o examples/bin/models_cubicmap examples/models/cubicmap/cubicmap.go
 	go build -o examples/bin/models_first_person_maze examples/models/first_person_maze/first_person_maze.go
 	go build -o examples/bin/models_loading examples/models/loading/loading.go
+	go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 	go build -o examples/bin/physac_demo examples/physac/demo/demo.go
 	go build -o examples/bin/shaders_postprocessing examples/shaders/postprocessing/postprocessing.go
 	go build -o examples/bin/text_font_filters examples/text/font_filters/font_filters.go

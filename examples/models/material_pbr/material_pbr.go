@@ -35,12 +35,54 @@ func main() {
 	)
 
 	model := rl.LoadModel("../models/resources/pbr/trooper.obj")
-	defer rl.UnloadModel(model)
+	defer func() {
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_ALBEDO)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_NORMAL)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_METALNESS)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_ROUGHNESS)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_OCCLUSION)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_IRRADIANCE)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_PREFILTER)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_BRDF)).Texture)
+
+		rl.UnloadShader(model.Materialser(0).Shader)
+
+		rl.UnloadModel(model)
+	}()
 
 	rl.MeshTangents(model.Meshes)
 
 	rl.UnloadMaterial(*model.Materials)
 	*model.Materialser(0) = LoadMaterialPBR(rl.NewColor(255, 255, 255, 255), 1.0, 1.0)
+
+	CreateLight(
+		LIGHT_POINT,
+		rl.NewVector3(LIGHT_DISTANCE, LIGHT_HEIGHT, 0),
+		rl.NewVector3(0, 0, 0),
+		rl.NewColor(255, 0, 0, 255),
+		model.Materialser(0).Shader,
+	)
+	CreateLight(
+		LIGHT_POINT,
+		rl.NewVector3(0, LIGHT_HEIGHT, LIGHT_DISTANCE),
+		rl.NewVector3(0, 0, 0),
+		rl.NewColor(0, 255, 0, 255),
+		model.Materialser(0).Shader,
+	)
+	CreateLight(
+		LIGHT_POINT,
+		rl.NewVector3(-LIGHT_DISTANCE, LIGHT_HEIGHT, 0),
+		rl.NewVector3(0, 0, 0),
+		rl.NewColor(0, 0, 255, 255),
+		model.Materialser(0).Shader,
+	)
+	CreateLight(
+		LIGHT_POINT,
+		rl.NewVector3(0, LIGHT_HEIGHT*2.0, -LIGHT_DISTANCE),
+		rl.NewVector3(0, 0, 0),
+		rl.NewColor(255, 0, 255, 255),
+		model.Materialser(0).Shader,
+	)
 
 	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
 
@@ -113,7 +155,7 @@ func LoadMaterialPBR(albedo rl.Color, metalness float32, roughness float32) rl.M
 
 	shdrBRDF := rl.LoadShader("../models/resources/shaders/glsl330/brdf.vs", "../models/resources/shaders/glsl330/brdf.fs")
 
-	i := []int32{1}
+	i := []int32{0, 1}
 	rl.SetShaderValue(shdrCubemap, rl.GetShaderLocation(shdrCubemap, "equirectangularMap"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
 	rl.SetShaderValue(shdrIrradiance, rl.GetShaderLocation(shdrIrradiance, "environmentMap"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
 	rl.SetShaderValue(shdrPrefilter, rl.GetShaderLocation(shdrPrefilter, "environmentMap"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
@@ -139,11 +181,11 @@ func LoadMaterialPBR(albedo rl.Color, metalness float32, roughness float32) rl.M
 	rl.SetTextureFilter(mat.Mapser(int32(rl.MAP_ROUGHNESS)).Texture, int32(rl.FILTER_BILINEAR))
 	rl.SetTextureFilter(mat.Mapser(int32(rl.MAP_OCCLUSION)).Texture, int32(rl.FILTER_BILINEAR))
 
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "albedo.useSampler"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "normals.useSampler"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "metalness.useSampler"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "roughness.useSampler"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "occlusion.useSampler"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "albedo.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "normals.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "metalness.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "roughness.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "occlusion.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
 
 	renderModeLoc := rl.GetShaderLocation(mat.Shader, "renderMode")
 	rl.SetShaderValue(mat.Shader, renderModeLoc, unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))

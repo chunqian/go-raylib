@@ -78,14 +78,14 @@ $ export MACOSX_DEPLOYMENT_TARGET=10.9
 $ make
 $ cd ../../..
 $ mkdir examples/bin
-$ go build -o examples/bin/audio_module_playing examples/audio/module_playing/module_playing.go
+$ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 ```
 
 
 ### Run
 ```bash
 $ cd examples/bin
-$ ./audio_module_playing
+$ ./models_material_pbr
 ```
 
 
@@ -124,6 +124,7 @@ models     | box_collisions         | :heavy_check_mark: |
 models     | cubicmap               | :heavy_check_mark: |
 models     | first_person_maze      | :heavy_check_mark: |
 models     | loading                | :heavy_check_mark: |
+models     | material_pbr           | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
 text       | font_filters           | :heavy_check_mark: |
