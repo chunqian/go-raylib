@@ -68,8 +68,13 @@ func main() {
 		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), rl.White)
 
 		for i := int32(0); i < model.BoneCount; i++ {
-			framePose := rl.ToTransform(anims.FramePoses, animFrameCounter, i)
-			rl.DrawCube(framePose.Translation, 0.2, 0.2, 0.2, rl.Red)
+			rl.DrawCube(
+				anims.FramePoseser(animFrameCounter, i).Translation,
+				0.2,
+				0.2,
+				0.2,
+				rl.Red,
+			)
 		}
 
 		rl.DrawGrid(10, 1.0)

@@ -110,20 +110,6 @@ func ToString(i interface{}, index int32) (raw string) {
 	}
 }
 
-func ToTransform(i interface{}, row int32, column int32) *Transform {
-	switch i.(type) {
-	case **Transform:
-		var ret *Transform
-		ptr0 := i.(**Transform)
-		ptr1 := (**C.Transform)(unsafe.Pointer(uintptr(unsafe.Pointer(ptr0)) + uintptr(row)*uintptr(sizeOfPtr)))
-		ptr2 := (*C.Transform)(unsafe.Pointer(uintptr(unsafe.Pointer(*ptr1)) + uintptr(column)*uintptr(sizeOfTransformValue)))
-		ret = newTransformRef(unsafe.Pointer(ptr2)).convert()
-		return ret
-	default:
-		return nil
-	}
-}
-
 func UnloadColors(color *Color) {
 	C.free(unsafe.Pointer(color))
 }
