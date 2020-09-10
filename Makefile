@@ -25,6 +25,7 @@ test:
 	go build -o examples/bin/audio_music_stream examples/audio/music_stream/music_stream.go
 	go build -o examples/bin/audio_raw_stream examples/audio/raw_stream/raw_stream.go
 	go build -o examples/bin/audio_sound_loading examples/audio/sound_loading/sound_loading.go
+
 	go build -o examples/bin/core_2d_camera examples/core/2d_camera/2d_camera.go
 	go build -o examples/bin/core_2d_camera_platformer examples/core/2d_camera_platformer/2d_camera_platformer.go
 	go build -o examples/bin/core_3d_camera_first_person examples/core/3d_camera_first_person/3d_camera_first_person.go
@@ -44,8 +45,10 @@ test:
 	go build -o examples/bin/core_vr_simulator examples/core/vr_simulator/vr_simulator.go
 	go build -o examples/bin/core_window_letterbox examples/core/window_letterbox/window_letterbox.go
 	go build -o examples/bin/core_world_screen examples/core/world_screen/world_screen.go
+
 	go build -o examples/bin/gui_controls_test_suite examples/gui/controls_test_suite/controls_test_suite.go
 	go build -o examples/bin/gui_scroll_panel examples/gui/scroll_panel/scroll_panel.go
+
 	go build -o examples/bin/models_animation examples/models/animation/animation.go
 	go build -o examples/bin/models_billboard examples/models/billboard/billboard.go
 	go build -o examples/bin/models_box_collisions examples/models/box_collisions/box_collisions.go
@@ -53,8 +56,12 @@ test:
 	go build -o examples/bin/models_first_person_maze examples/models/first_person_maze/first_person_maze.go
 	go build -o examples/bin/models_loading examples/models/loading/loading.go
 	go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
+	go build -o examples/bin/models_mesh_generation examples/models/mesh_generation/mesh_generation.go
+
 	go build -o examples/bin/physac_demo examples/physac/demo/demo.go
+
 	go build -o examples/bin/shaders_postprocessing examples/shaders/postprocessing/postprocessing.go
+
 	go build -o examples/bin/text_font_filters examples/text/font_filters/font_filters.go
 	go build -o examples/bin/text_font_loading examples/text/font_loading/font_loading.go
 	go build -o examples/bin/text_font_sdf examples/text/font_sdf/font_sdf.go
@@ -65,4 +72,5 @@ test:
 	go build -o examples/bin/text_rectangle_bounds examples/text/rectangle_bounds/rectangle_bounds.go
 	go build -o examples/bin/text_unicode examples/text/unicode/unicode.go
 	go build -o examples/bin/text_writing_anim examples/text/writing_anim/writing_anim.go
+
 	go build -o examples/bin/textures_bunnymark examples/textures/bunnymark/bunnymark.go

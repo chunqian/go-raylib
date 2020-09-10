@@ -20,7 +20,21 @@ Same performance as the Raylib C version. Enjoy it!.
 
 
 ### Memory
-If cgo memory alloc, call GC() for register, it can be automated management.
+
+For example
+```go
+multext := rl.NewMultiText([]string{"Hello World!"})
+```
+The method will check if memory is requested through cgo.
+
+If it detects, print **Cgo memory alloced, please use func AllocCamera.**
+
+Rewrite it.
+```go
+multext, men := rl.AllocMultiText([]string{"Hello World!"})
+multext.GC(mem)
+```
+Don't forget, call GC() for register, it can be automated management.
 
 
 ### Difference
@@ -125,6 +139,7 @@ models     | cubicmap               | :heavy_check_mark: |
 models     | first_person_maze      | :heavy_check_mark: |
 models     | loading                | :heavy_check_mark: |
 models     | material_pbr           | :heavy_check_mark: |
+models     | mesh_generation        | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
 text       | font_filters           | :heavy_check_mark: |
