@@ -28,21 +28,21 @@ There are some differences between the processing in Go and C.
 
 In C
 ```c
+char multiTextBoxText[256] = "Multi text box";
+```
+In Go
+```go
+multiTextBoxText := rg.NewBytes("Multi text box", 256)
+```
+
+In C
+```c
 const char *listViewExList[8] = { "This", "is", "a", "list view", "with", "disable", "elements", "amazing!" };
 ```
 In Go
 ```go
 listViewExList, mem := rg.AllocMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 listViewExList.GC(mem)
-```
-
-In C
-```c
-char multiTextBoxText[256] = "Multi text box";
-```
-In Go
-```go
-multiTextBoxText := rg.NewBytes("Multi text box", 256)
 ```
 
 In C
@@ -60,28 +60,13 @@ droppedFilePath := rl.ToString(droppedFiles, 0)
 
 In C
 ```c
-animFrameCounter++;
-UpdateModelAnimation(model, anims[0], animFrameCounter);
-if (animFrameCounter >= anims[0].frameCount) animFrameCounter = 0;
-```
-In Go
-```go
-animFrameCounter++
-rl.UpdateModelAnimation(model, *anims.Index(0), animFrameCounter)
-if animFrameCounter >= anims.Index(0).FrameCount {
-    animFrameCounter = 0
-}
-```
-
-In C
-```c
 Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");
 model.materials[0].maps[MAP_DIFFUSE].texture = texture;
 ```
 In Go
 ```go
 texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
-model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 ```
 
 
