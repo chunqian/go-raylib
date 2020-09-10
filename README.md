@@ -27,9 +27,9 @@ multext := rl.NewMultiText([]string{"Hello World!"})
 ```
 The method will check if memory is requested through cgo.
 
-If it detects, print **Cgo memory alloced, please use func AllocMultiText.**
+If it detects, panic **Cgo memory alloced, please use func AllocMultiText.**
 
-Rewrite it.
+Rewrite.
 ```go
 multext, men := rl.AllocMultiText([]string{"Hello World!"})
 multext.GC(mem)
