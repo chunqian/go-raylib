@@ -59,7 +59,7 @@ func CreateLight(ltype LightType, pos rl.Vector3, targ rl.Vector3, color rl.Colo
 		light.enabledLoc = rl.GetShaderLocation(shader, enabledName)
 		light.typeLoc = rl.GetShaderLocation(shader, typeName)
 		light.posLoc = rl.GetShaderLocation(shader, posName)
-		light.typeLoc = rl.GetShaderLocation(shader, targetName)
+		light.targetLoc = rl.GetShaderLocation(shader, targetName)
 		light.colorLoc = rl.GetShaderLocation(shader, colorName)
 
 		UpdateLightValues(shader, light)

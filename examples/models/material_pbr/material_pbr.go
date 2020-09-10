@@ -7,7 +7,7 @@ import (
 	"unsafe"
 )
 
-var (
+const (
 	CUBEMAP_SIZE     = 512
 	IRRADIANCE_SIZE  = 32
 	PREFILTERED_SIZE = 256
@@ -77,7 +77,7 @@ func main() {
 		model.Materialser(0).Shader,
 	)
 	CreateLight(
-		LIGHT_POINT,
+		LIGHT_DIRECTIONAL,
 		rl.NewVector3(0, LIGHT_HEIGHT*2.0, -LIGHT_DISTANCE),
 		rl.NewVector3(0, 0, 0),
 		rl.NewColor(255, 0, 255, 255),
@@ -155,10 +155,9 @@ func LoadMaterialPBR(albedo rl.Color, metalness float32, roughness float32) rl.M
 
 	shdrBRDF := rl.LoadShader("../models/resources/shaders/glsl330/brdf.vs", "../models/resources/shaders/glsl330/brdf.fs")
 
-	i := []int32{0, 1}
-	rl.SetShaderValue(shdrCubemap, rl.GetShaderLocation(shdrCubemap, "equirectangularMap"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(shdrIrradiance, rl.GetShaderLocation(shdrIrradiance, "environmentMap"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(shdrPrefilter, rl.GetShaderLocation(shdrPrefilter, "environmentMap"), unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(shdrCubemap, rl.GetShaderLocation(shdrCubemap, "equirectangularMap"), unsafe.Pointer(&[1]int32{0}), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(shdrIrradiance, rl.GetShaderLocation(shdrIrradiance, "environmentMap"), unsafe.Pointer(&[1]int32{0}), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(shdrPrefilter, rl.GetShaderLocation(shdrPrefilter, "environmentMap"), unsafe.Pointer(&[1]int32{0}), int32(rl.UNIFORM_INT))
 
 	texHDR := rl.LoadTexture("../models/resources/dresden_square.hdr")
 	cubemap := rl.GenTextureCubemap(shdrCubemap, texHDR, int32(CUBEMAP_SIZE))
@@ -181,14 +180,14 @@ func LoadMaterialPBR(albedo rl.Color, metalness float32, roughness float32) rl.M
 	rl.SetTextureFilter(mat.Mapser(int32(rl.MAP_ROUGHNESS)).Texture, int32(rl.FILTER_BILINEAR))
 	rl.SetTextureFilter(mat.Mapser(int32(rl.MAP_OCCLUSION)).Texture, int32(rl.FILTER_BILINEAR))
 
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "albedo.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "normals.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "metalness.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "roughness.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
-	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "occlusion.useSampler"), unsafe.Pointer(&i[1]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "albedo.useSampler"), unsafe.Pointer(&[1]int32{1}), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "normals.useSampler"), unsafe.Pointer(&[1]int32{1}), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "metalness.useSampler"), unsafe.Pointer(&[1]int32{1}), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "roughness.useSampler"), unsafe.Pointer(&[1]int32{1}), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, rl.GetShaderLocation(mat.Shader, "occlusion.useSampler"), unsafe.Pointer(&[1]int32{1}), int32(rl.UNIFORM_INT))
 
 	renderModeLoc := rl.GetShaderLocation(mat.Shader, "renderMode")
-	rl.SetShaderValue(mat.Shader, renderModeLoc, unsafe.Pointer(&i[0]), int32(rl.UNIFORM_INT))
+	rl.SetShaderValue(mat.Shader, renderModeLoc, unsafe.Pointer(&[1]int32{0}), int32(rl.UNIFORM_INT))
 
 	mat.Mapser(int32(rl.MAP_ALBEDO)).Color = albedo
 	mat.Mapser(int32(rl.MAP_NORMAL)).Color = rl.NewColor(128, 128, 255, 255)
