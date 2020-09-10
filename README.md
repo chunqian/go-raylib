@@ -19,8 +19,8 @@ Synchronized update with [raylib](https://github.com/raysan5/raylib). Current ve
 Same performance as the Raylib C version. Enjoy it!.
 
 
-### Memory
--------
+Memory
+------
 For example
 ```go
 multext := rl.NewMultiText([]string{"Hello World!"})
@@ -37,8 +37,8 @@ multext.GC(mem)
 Don't forget, call GC() for register, it can be automated management.
 
 
-### Difference
--------
+Difference
+----------
 There are some differences between the processing in Go and C.
 
 In C
@@ -104,8 +104,8 @@ $ ./models_material_pbr
 ```
 
 
-### Examples
--------
+Examples
+--------
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
 audio      | module_playing         | :heavy_check_mark: |
@@ -157,6 +157,6 @@ text       | writing_anim           | :heavy_check_mark: |
 textures   | bunnymark              | :heavy_check_mark: |
 
 
-### License
+License
 -------
 go-raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
