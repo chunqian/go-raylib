@@ -20,7 +20,7 @@ Same performance as the Raylib C version. Enjoy it!.
 
 
 ### Memory
-
+-------
 For example
 ```go
 multext := rl.NewMultiText([]string{"Hello World!"})
@@ -38,6 +38,7 @@ Don't forget, call GC() for register, it can be automated management.
 
 
 ### Difference
+-------
 There are some differences between the processing in Go and C.
 
 In C
@@ -104,6 +105,7 @@ $ ./models_material_pbr
 
 
 ### Examples
+-------
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
 audio      | module_playing         | :heavy_check_mark: |
@@ -156,4 +158,5 @@ textures   | bunnymark              | :heavy_check_mark: |
 
 
 ### License
+-------
 go-raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
