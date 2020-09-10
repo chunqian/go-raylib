@@ -33,7 +33,7 @@ func main() {
 	model := rl.LoadModelFromMesh(mesh)
 	defer rl.UnloadModel(model)
 
-	model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 	mapPosition := rl.NewVector3(-8, 0, -8)
 
 	rl.UnloadImage(image)
@@ -50,7 +50,7 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.BeginMode3D(rl.ToCamera3D(camera))
+		rl.BeginMode3D(rl.Camera3D(camera))
 
 		rl.DrawModel(model, mapPosition, 1.0, rl.Red)
 

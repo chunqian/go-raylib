@@ -70,7 +70,7 @@ func main() {
 	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
 	defer rl.UnloadTexture(texture)
 
-	model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 
 	shaders := make([]rl.Shader, MAX_POSTPRO_SHADERS)
 

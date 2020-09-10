@@ -33,7 +33,7 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.BeginMode3D(rl.ToCamera3D(camera))
+		rl.BeginMode3D(rl.Camera3D(camera))
 
 		rl.DrawCube(rl.NewVector3(-4.0, 0, 2.0), 2.0, 5.0, 2.0, rl.Red)
 		rl.DrawCubeWires(rl.NewVector3(-4.0, 0, 2.0), 2.0, 5.0, 2.0, rl.Gold)

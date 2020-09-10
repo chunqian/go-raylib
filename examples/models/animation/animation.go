@@ -34,7 +34,7 @@ func main() {
 	texture := rl.LoadTexture("../models/resources/guy/guytex.png")
 	defer rl.UnloadTexture(texture)
 
-	rl.SetMaterialTexture(model.Materials.Index(0), rl.MAP_DIFFUSE, texture)
+	rl.SetMaterialTexture(model.Materialser(0), rl.MAP_DIFFUSE, texture)
 
 	animsCount := int32(0)
 	anims := rl.LoadModelAnimations("../models/resources/guy/guyanim.iqm", &animsCount)
@@ -55,20 +55,20 @@ func main() {
 
 		if rl.IsKeyDown(int32(rl.KEY_SPACE)) {
 			animFrameCounter++
-			rl.UpdateModelAnimation(model, *anims.Index(0), animFrameCounter)
-			if animFrameCounter >= anims.Index(0).FrameCount {
+			rl.UpdateModelAnimation(model, *anims, animFrameCounter)
+			if animFrameCounter >= anims.FrameCount {
 				animFrameCounter = 0
 			}
 		}
 
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.RayWhite)
-		rl.BeginMode3D(rl.ToCamera3D(camera))
+		rl.BeginMode3D(rl.Camera3D(camera))
 
 		rl.DrawModelEx(model, rl.NewVector3(0, -5, 0), rl.NewVector3(1, 0, 0), -90, rl.NewVector3(1, 1, 1), rl.White)
 
 		for i := int32(0); i < model.BoneCount; i++ {
-			framePose := rl.ToTransform(anims.Index(0).FramePoses, animFrameCounter, i)
+			framePose := rl.ToTransform(anims.FramePoses, animFrameCounter, i)
 			rl.DrawCube(framePose.Translation, 0.2, 0.2, 0.2, rl.Red)
 		}
 

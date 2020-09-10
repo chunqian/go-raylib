@@ -31,9 +31,9 @@ func main() {
 	texture := rl.LoadTexture("../models/resources/models/castle_diffuse.png")
 	defer rl.UnloadTexture(texture)
 
-	model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 
-	bounds := rl.MeshBoundingBox(*model.Meshes.Index(0))
+	bounds := rl.MeshBoundingBox(*model.Meshes)
 
 	rl.SetCameraMode(camera, int32(rl.CAMERA_FREE))
 
@@ -56,13 +56,13 @@ func main() {
 					rl.IsFileExtension(droppedFilePath, ".iqm") {
 					rl.UnloadModel(model)
 					model = rl.LoadModel(droppedFilePath)
-					model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
-					bounds = rl.MeshBoundingBox(*model.Meshes.Index(0))
+					model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
+					bounds = rl.MeshBoundingBox(*model.Meshes)
 				} else if rl.IsFileExtension(droppedFilePath, ".png") {
 
 					rl.UnloadTexture(texture)
 					texture = rl.LoadTexture(droppedFilePath)
-					model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+					model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 				}
 			}
 			rl.ClearDroppedFiles()
@@ -78,7 +78,7 @@ func main() {
 
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.RayWhite)
-		rl.BeginMode3D(rl.ToCamera3D(camera))
+		rl.BeginMode3D(rl.Camera3D(camera))
 		rl.DrawModel(model, rl.NewVector3(0, 0, 0), 1.0, rl.White)
 		rl.DrawGrid(20, 10.0)
 		if selected {

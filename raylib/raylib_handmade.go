@@ -124,24 +124,6 @@ func ToTransform(i interface{}, row int32, column int32) *Transform {
 	}
 }
 
-func ToInt32(i interface{}, index int32) (ret int32) {
-	switch i.(type) {
-	case *int32:
-		const sizeOfPlainValue = unsafe.Sizeof([1]C.int{})
-		ptr0 := i.(*int32)
-		ptr1 := (*C.int)(unsafe.Pointer(uintptr(unsafe.Pointer(ptr0)) + uintptr(index)*uintptr(sizeOfPlainValue)))
-		ret = *(*int32)(unsafe.Pointer(ptr1))
-		return
-	default:
-		return
-	}
-}
-
-func ToCamera3D(camera Camera) Camera3D {
-	ret := *(*Camera3D)(unsafe.Pointer(&camera))
-	return ret
-}
-
 func UnloadColors(color *Color) {
 	C.free(unsafe.Pointer(color))
 }

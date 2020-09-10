@@ -37,7 +37,7 @@ func main() {
 	texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
 	defer rl.UnloadTexture(texture)
 
-	model.Materials.Index(0).Maps.Index(rl.MAP_DIFFUSE).Texture = texture
+	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 
 	rl.UnloadImage(image)
 	rl.SetCameraMode(camera, int32(rl.CAMERA_ORBITAL))
@@ -51,7 +51,7 @@ func main() {
 
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.BeginMode3D(rl.ToCamera3D(camera))
+		rl.BeginMode3D(rl.Camera3D(camera))
 
 		rl.DrawModel(model, rl.NewVector3(-16, 0, -8), 1.0, rl.White)
 
