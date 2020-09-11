@@ -10,6 +10,15 @@ raygui.h   | :heavy_check_mark: |
 ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
+### Platforms
+OS         | Supported          |
+---------  | ------------------ |
+Mac        | :heavy_check_mark: |
+Windows    | :heavy_check_mark: |
+
+You can write your own cross-platform code, see 
+[raylib_darwin.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_darwin.go) 
+[raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
 
 ### Version
 Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.1-dev.
@@ -85,7 +94,9 @@ model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 ```
 
 
-### Build
+Build
+-----
+Mac
 ```bash
 $ git clone https://github.com/chunqian/go-raylib.git
 $ cd go-raylib/lib/raylib/src
@@ -95,14 +106,25 @@ $ cd ../../..
 $ mkdir examples/bin
 $ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 ```
-
-
-### Run
+Run
 ```bash
 $ cd examples/bin
 $ ./models_material_pbr
 ```
-
+Windows
+```bash
+$ git clone https://github.com/chunqian/go-raylib.git
+$ cd go-raylib/lib/raylib/src
+$ make CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ AR=i686-w64-mingw32-ar PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=WINDOWS LANG=en_US
+$ cd ../../..
+$ mkdir examples/bin
+$ CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_material_pbr.exe examples/models/material_pbr/*.go
+```
+Run
+```bash
+$ cd examples/bin
+$ ./models_material_pbr.exe
+```
 
 Examples
 --------
