@@ -101,7 +101,7 @@ Mac
 $ git clone https://github.com/chunqian/go-raylib.git
 $ cd go-raylib/lib/raylib/src
 $ export MACOSX_DEPLOYMENT_TARGET=10.9
-$ make
+$ make PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=OSX
 $ cd ../../..
 $ mkdir examples/bin
 $ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
