@@ -164,6 +164,11 @@ models     | first_person_maze      | :heavy_check_mark: |
 models     | loading                | :heavy_check_mark: |
 models     | material_pbr           | :heavy_check_mark: |
 models     | mesh_generation        | :heavy_check_mark: |
+models     | mesh_picking           | :heavy_check_mark: |
+models     | orthographic_projection| :heavy_check_mark: |
+models     | skybox                 | :heavy_check_mark: |
+models     | waving_cubes           | :heavy_check_mark: |
+models     | yaw_pitch_roll         | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
 text       | font_filters           | :heavy_check_mark: |

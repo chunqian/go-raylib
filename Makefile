@@ -57,6 +57,11 @@ test:
 	go build -o examples/bin/models_loading examples/models/loading/loading.go
 	go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 	go build -o examples/bin/models_mesh_generation examples/models/mesh_generation/mesh_generation.go
+	go build -o examples/bin/models_mesh_picking examples/models/mesh_picking/mesh_picking.go
+	go build -o examples/bin/models_orthographic_projection examples/models/orthographic_projection/orthographic_projection.go
+	go build -o examples/bin/models_skybox examples/models/skybox/skybox.go
+	go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+	go build -o examples/bin/models_yaw_pitch_roll examples/models/yaw_pitch_roll/yaw_pitch_roll.go
 
 	go build -o examples/bin/physac_demo examples/physac/demo/demo.go
 
@@ -113,6 +118,11 @@ testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_loading.exe examples/models/loading/loading.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_material_pbr.exe examples/models/material_pbr/*.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_mesh_generation.exe examples/models/mesh_generation/mesh_generation.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_mesh_picking examples/models/mesh_picking/mesh_picking.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_orthographic_projection examples/models/orthographic_projection/orthographic_projection.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_skybox examples/models/skybox/skybox.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_yaw_pitch_roll examples/models/yaw_pitch_roll/yaw_pitch_roll.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/physac_demo.exe examples/physac/demo/demo.go
 
