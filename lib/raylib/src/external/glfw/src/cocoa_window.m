@@ -1390,8 +1390,13 @@ void _glfwPlatformPollEvents(void)
             break;
 
         [NSApp sendEvent:event];
-        // Cforgo fix mac trackpad click.
-        break;
+
+        // fix raylib trackpad click.
+        NSEventType eventType = [event type];
+        if ((eventType == NSLeftMouseUp || eventType == NSLeftMouseDown) && [event subtype] == NSEventSubtypeTouch)
+        {
+            break;
+        }
     }
 
     } // autoreleasepool
