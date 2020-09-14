@@ -1390,6 +1390,8 @@ void _glfwPlatformPollEvents(void)
             break;
 
         [NSApp sendEvent:event];
+        // Cforgo fix mac trackpad click.
+        break;
     }
 
     } // autoreleasepool
