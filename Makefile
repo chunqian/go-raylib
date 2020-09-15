@@ -66,6 +66,7 @@ test:
 	go build -o examples/bin/physac_demo examples/physac/demo/demo.go
 
 	go build -o examples/bin/shaders_postprocessing examples/shaders/postprocessing/postprocessing.go
+	go build -o examples/bin/shaders_basic_lighting examples/shaders/basic_lighting/*.go
 
 	go build -o examples/bin/text_font_filters examples/text/font_filters/font_filters.go
 	go build -o examples/bin/text_font_loading examples/text/font_loading/font_loading.go
@@ -127,6 +128,7 @@ testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/physac_demo.exe examples/physac/demo/demo.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_postprocessing.exe examples/shaders/postprocessing/postprocessing.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_basic_lighting examples/shaders/basic_lighting/*.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/text_font_filters.exe examples/text/font_filters/font_filters.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/text_font_loading.exe examples/text/font_loading/font_loading.go

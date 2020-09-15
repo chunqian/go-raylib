@@ -171,6 +171,7 @@ models     | waving_cubes           | :heavy_check_mark: |
 models     | yaw_pitch_roll         | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
+shaders    | basic_lighting         | :heavy_check_mark: |
 text       | font_filters           | :heavy_check_mark: |
 text       | font_loading           | :heavy_check_mark: |
 text       | font_sdf               | :heavy_check_mark: |
