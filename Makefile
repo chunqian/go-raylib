@@ -69,6 +69,9 @@ test:
 	go build -o examples/bin/shaders_basic_lighting examples/shaders/basic_lighting/*.go
 	go build -o examples/bin/shaders_eratosthenes examples/shaders/eratosthenes/eratosthenes.go
 	go build -o examples/bin/shaders_fog examples/shaders/fog/*.go
+	go build -o examples/bin/shaders_julia_set examples/shaders/julia_set/julia_set.go
+	go build -o examples/bin/shaders_model_shader examples/shaders/model_shader/model_shader.go
+	go build -o examples/bin/shaders_palette_switch examples/shaders/palette_switch/palette_switch.go
 
 	go build -o examples/bin/text_font_filters examples/text/font_filters/font_filters.go
 	go build -o examples/bin/text_font_loading examples/text/font_loading/font_loading.go
@@ -133,6 +136,9 @@ testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_basic_lighting examples/shaders/basic_lighting/*.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_eratosthenes examples/shaders/eratosthenes/eratosthenes.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_fog examples/shaders/fog/*.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_julia_set examples/shaders/julia_set/julia_set.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_model_shader examples/shaders/model_shader/model_shader.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_palette_switch examples/shaders/palette_switch/palette_switch.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/text_font_filters.exe examples/text/font_filters/font_filters.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/text_font_loading.exe examples/text/font_loading/font_loading.go

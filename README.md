@@ -174,6 +174,9 @@ shaders    | postprocessing         | :heavy_check_mark: |
 shaders    | basic_lighting         | :heavy_check_mark: |
 shaders    | eratosthenes           | :heavy_check_mark: |
 shaders    | fog                    | :heavy_check_mark: |
+shaders    | julia_set              | :heavy_check_mark: |
+shaders    | model_shader           | :heavy_check_mark: |
+shaders    | palette_switch         | :heavy_check_mark: |
 text       | font_filters           | :heavy_check_mark: |
 text       | font_loading           | :heavy_check_mark: |
 text       | font_sdf               | :heavy_check_mark: |
