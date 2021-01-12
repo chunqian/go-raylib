@@ -34,7 +34,7 @@
 *
 **********************************************************************************************/
 
-#include "../../../raylib/src/raylib.h"
+#include "raylib.h"
 
 #define RAYGUI_IMPLEMENTATION
 #define RAYGUI_SUPPORT_ICONS

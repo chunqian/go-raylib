@@ -21,7 +21,7 @@ You can write your own cross-platform code, see
 [raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
 
 ### Version
-Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.1-dev.
+Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.5
 
 
 ### Performance

@@ -27,7 +27,7 @@ int main(void)
 
     Vector2 center = {(GetScreenWidth() - 300)/2, GetScreenHeight()/2 };
 
-    float outerRadius = 180.f;
+    float outerRadius = 180.0f;
     int startAngle = 0;
     int endAngle = 180;
     int segments = 0;
@@ -57,14 +57,14 @@ int main(void)
             
             // Draw GUI controls
             //------------------------------------------------------------------------------
-            startAngle = GuiSliderBar((Rectangle){ 600, 40, 120, 20}, "StartAngle", startAngle, 0, 720, true );
-            endAngle = GuiSliderBar((Rectangle){ 600, 70, 120, 20}, "EndAngle", endAngle, 0, 720, true);
+            startAngle = GuiSliderBar((Rectangle){ 600, 40, 120, 20}, "StartAngle", NULL, startAngle, 0, 720);
+            endAngle = GuiSliderBar((Rectangle){ 600, 70, 120, 20}, "EndAngle", NULL, endAngle, 0, 720);
             
-            outerRadius = GuiSliderBar((Rectangle){ 600, 140, 120, 20}, "Radius", outerRadius, 0, 200, true);
-            segments = GuiSliderBar((Rectangle){ 600, 170, 120, 20}, "Segments", segments, 0, 100, true);
+            outerRadius = GuiSliderBar((Rectangle){ 600, 140, 120, 20}, "Radius", NULL, outerRadius, 0, 200);
+            segments = GuiSliderBar((Rectangle){ 600, 170, 120, 20}, "Segments", NULL, segments, 0, 100);
             //------------------------------------------------------------------------------
             
-            DrawText(FormatText("MODE: %s", (segments >= 4)? "MANUAL" : "AUTO"), 600, 200, 10, (segments >= 4)? MAROON : DARKGRAY);
+            DrawText(TextFormat("MODE: %s", (segments >= 4)? "MANUAL" : "AUTO"), 600, 200, 10, (segments >= 4)? MAROON : DARKGRAY);
             
             DrawFPS(10, 10);
             

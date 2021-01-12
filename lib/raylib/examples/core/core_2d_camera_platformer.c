@@ -11,12 +11,12 @@
 *
 ********************************************************************************************/
 
-#include "../../src/raylib.h"
-#include "../../src/raymath.h"
+#include "raylib.h"
+#include "raymath.h"
 
 #define G 400
-#define PLAYER_JUMP_SPD 350.f
-#define PLAYER_HOR_SPD 200.f
+#define PLAYER_JUMP_SPD 350.0f
+#define PLAYER_HOR_SPD 200.0f
 
 typedef struct Player {
     Vector2 position;

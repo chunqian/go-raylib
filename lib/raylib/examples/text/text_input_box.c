@@ -2,7 +2,7 @@
 *
 *   raylib [text] example - Input Box
 *
-*   This example has been created using raylib 1.7 (www.raylib.com)
+*   This example has been created using raylib 3.5 (www.raylib.com)
 *   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
 *
 *   Copyright (c) 2017 Ramon Santamaria (@raysan5)
@@ -30,7 +30,7 @@ int main(void)
 
     int framesCounter = 0;
 
-    SetTargetFPS(10);               // Set our game to run at 60 frames-per-second
+    SetTargetFPS(10);               // Set our game to run at 10 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -43,8 +43,11 @@ int main(void)
 
         if (mouseOnText)
         {
-            // Get pressed key (character) on the queue
-            int key = GetKeyPressed();
+            // Set the window's cursor to the I-Beam
+            SetMouseCursor(MOUSE_CURSOR_IBEAM);
+
+            // Get char pressed (unicode character) on the queue
+            int key = GetCharPressed();
 
             // Check if more characters have been pressed on the same frame
             while (key > 0)
@@ -56,17 +59,17 @@ int main(void)
                     letterCount++;
                 }
                 
-                key = GetKeyPressed();  // Check next character in the queue
+                key = GetCharPressed();  // Check next character in the queue
             }
 
             if (IsKeyPressed(KEY_BACKSPACE))
             {
                 letterCount--;
-                name[letterCount] = '\0';
-
                 if (letterCount < 0) letterCount = 0;
+                name[letterCount] = '\0';
             }
         }
+        else if (GetMouseCursor() != MOUSE_CURSOR_DEFAULT) SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 
         if (mouseOnText) framesCounter++;
         else framesCounter = 0;
@@ -86,7 +89,7 @@ int main(void)
 
             DrawText(name, textBox.x + 5, textBox.y + 8, 40, MAROON);
 
-            DrawText(FormatText("INPUT CHARS: %i/%i", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
+            DrawText(TextFormat("INPUT CHARS: %i/%i", letterCount, MAX_INPUT_CHARS), 315, 250, 20, DARKGRAY);
 
             if (mouseOnText)
             {

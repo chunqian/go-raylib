@@ -138,25 +138,18 @@
 #endif
 
 // Define functions scope to be used internally (static) or externally (extern) to the module including this file
-#if defined(RAYGUI_STATIC)
-    #define RAYGUIDEF static            // Functions just visible to module including this file
-#else
-    #ifdef __cplusplus
-        #define RAYGUIDEF extern "C"    // Functions visible from other files (no name mangling of functions in C++)
-    #else
-        // NOTE: By default any function declared in a C file is extern
-        #define RAYGUIDEF extern        // Functions visible from other files
-    #endif
-#endif
-
 #if defined(_WIN32)
+    // Microsoft attibutes to tell compiler that symbols are imported/exported from a .dll
     #if defined(BUILD_LIBTYPE_SHARED)
-        #define RAYGUIDEF __declspec(dllexport)     // We are building raygui as a Win32 shared library (.dll).
+        #define RAYGUIDEF __declspec(dllexport)     // We are building raygui as a Win32 shared library (.dll)
     #elif defined(USE_LIBTYPE_SHARED)
         #define RAYGUIDEF __declspec(dllimport)     // We are using raygui as a Win32 shared library (.dll)
+    #else
+        #define RAYGUIDEF   // We are building or using raygui as a static library
     #endif
+#else
+    #define RAYGUIDEF       // We are building or using raygui as a static library (or Linux shared library)
 #endif
-
 
 #if !defined(RAYGUI_MALLOC) && !defined(RAYGUI_CALLOC) && !defined(RAYGUI_FREE)
     #include <stdint.h> // Cforgo
@@ -182,6 +175,10 @@
 #define NUM_PROPS_EXTENDED               8      // Number of extended properties
 
 #define TEXTEDIT_CURSOR_BLINK_FRAMES    20      // Text edit controls cursor blink timming
+
+#if defined(__cplusplus)
+extern "C" {            // Prevents name mangling of functions
+#endif
 
 //----------------------------------------------------------------------------------
 // Types and Structures Definition
@@ -247,11 +244,6 @@
         CharInfo *chars;        // Characters info data
     } Font;
 #endif
-
-// Cforgo
-// typedef struct Text {
-//     const char **text;
-// } Text;
 
 // Style property
 typedef struct GuiStyleProp {
@@ -604,7 +596,7 @@ static bool IsMouseButtonReleased(int button);
 
 static bool IsKeyDown(int key);
 static bool IsKeyPressed(int key);
-static int GetKeyPressed(void);         // -- GuiTextBox(), GuiTextBoxMulti(), GuiValueBox()
+static int GetCharPressed(void);         // -- GuiTextBox(), GuiTextBoxMulti(), GuiValueBox()
 //-------------------------------------------------------------------------------
 
 // Drawing required functions
@@ -913,7 +905,11 @@ Rectangle GuiScrollPanel(Rectangle bounds, Rectangle content, Vector2 *scroll)
                 if (IsKeyDown(KEY_UP)) scrollPos.y += GuiGetStyle(SCROLLBAR, SCROLL_SPEED);
             }
 
-            scrollPos.y += GetMouseWheelMove()*20;
+            int wheelMove = GetMouseWheelMove();
+
+            // Horizontal scroll (Shift + Mouse wheel)
+            if (hasHorizontalScrollBar && (IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT))) scrollPos.x += wheelMove*20;
+            else scrollPos.y += wheelMove*20; // Vertical scroll
         }
     }
 
@@ -1428,7 +1424,7 @@ bool GuiTextBox(Rectangle bounds, char *text, int textSize, bool editMode)
             state = GUI_STATE_PRESSED;
             framesCounter++;
 
-            int key = GetKeyPressed();      // Returns codepoint as Unicode
+            int key = GetCharPressed();      // Returns codepoint as Unicode
             int keyCount = strlen(text);
 
             // Only allow keys in range [32..125]
@@ -1633,7 +1629,7 @@ bool GuiValueBox(Rectangle bounds, const char *text, int *value, int minValue, i
                 int maxWidth = bounds.width;
                 if (GetTextWidth(textValue) < maxWidth)
                 {
-                    int key = GetKeyPressed();
+                    int key = GetCharPressed();
                     if ((key >= 48) && (key <= 57))
                     {
                         textValue[keyCount] = (char)key;
@@ -1740,7 +1736,7 @@ bool GuiTextBoxMulti(Rectangle bounds, char *text, int textSize, bool editMode)
             state = GUI_STATE_PRESSED;
             framesCounter++;
 
-            int key = GetKeyPressed();
+            int character = GetCharPressed();
             int keyCount = strlen(text);
 
             // Introduce characters
@@ -1755,9 +1751,9 @@ bool GuiTextBoxMulti(Rectangle bounds, char *text, int textSize, bool editMode)
                         text[keyCount] = '\n';
                         keyCount++;
                     }
-                    else if (((key >= 32) && (key < 255)))  // TODO: Support Unicode inputs
+                    else if (((character >= 32) && (character < 255)))  // TODO: Support Unicode inputs
                     {
-                        text[keyCount] = (char)key;
+                        text[keyCount] = (char)character;
                         keyCount++;
                     }
                 }
@@ -2798,7 +2794,7 @@ void GuiLoadStyle(const char *fileName)
                         int fontSize = 0;
                         char charmapFileName[256] = { 0 };
                         char fontFileName[256] = { 0 };
-                        sscanf(buffer, "f %d %s %[^\n]s", &fontSize, charmapFileName, fontFileName);
+                        sscanf(buffer, "f %d %s %[^\r\n]s", &fontSize, charmapFileName, fontFileName);
 
                         Font font = { 0 };
 
@@ -3730,3 +3726,7 @@ static const char *CodepointToUtf8(int codepoint, int *byteLength)
 #endif      // RAYGUI_STANDALONE
 
 #endif      // RAYGUI_IMPLEMENTATION
+
+#if defined(__cplusplus)
+}            // Prevents name mangling of functions
+#endif
