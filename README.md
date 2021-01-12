@@ -21,11 +21,11 @@ You can write your own cross-platform code, see
 [raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
 
 ### Version
-Synchronized update with [raylib](https://github.com/raysan5/raylib). Current version is 3.5
+[raylib](https://github.com/raysan5/raylib) C version is 3.5
 
 
 ### Performance
-Same performance as the Raylib C version. Enjoy it!.
+High performance, same as the raylib C version. Enjoy it!.
 
 
 Memory
