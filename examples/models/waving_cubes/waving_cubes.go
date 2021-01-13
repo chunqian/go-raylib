@@ -65,7 +65,7 @@ func main() {
 						float32((float64(z)-float64(numBlocks)/2)*(scale*3.0)+scatter),
 					)
 
-					cubeColor := rl.ColorFromHSV(rl.NewVector3(float32(((x+y+z)*18)%360), 0.75, 0.9))
+					cubeColor := rl.ColorFromHSV(float32(((x+y+z)*18)%360), 0.75, 0.9)
 					cubeSize := float32((2.4 - scale) * blockScale)
 
 					rl.DrawCube(cubePos, cubeSize, cubeSize, cubeSize, cubeColor)

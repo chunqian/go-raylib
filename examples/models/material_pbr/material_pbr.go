@@ -36,7 +36,7 @@ func main() {
 
 	model := rl.LoadModel("../models/resources/pbr/trooper.obj")
 	defer func() {
-		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_ALBEDO)).Texture)
+		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_ALBEDO)).Texture,)
 		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_NORMAL)).Texture)
 		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_METALNESS)).Texture)
 		rl.UnloadTexture(model.Materialser(0).Mapser(int32(rl.MAP_ROUGHNESS)).Texture)

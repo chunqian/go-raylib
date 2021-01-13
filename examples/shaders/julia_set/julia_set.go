@@ -153,7 +153,7 @@ func main() {
 
 		rl.BeginShaderMode(shader)
 
-		rl.DrawTexture(target.Texture, 0, 0, rl.White)
+		rl.DrawTexture(rl.Texture2D(target.Texture), 0, 0, rl.White)
 
 		rl.EndShaderMode()
 

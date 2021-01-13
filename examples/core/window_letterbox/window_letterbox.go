@@ -29,7 +29,7 @@ func main() {
 	target := rl.LoadRenderTexture(gameScreenWidth, gameScreenHeight)
 	defer rl.UnloadRenderTexture(target)
 
-	rl.SetTextureFilter(target.Texture, int32(rl.FILTER_BILINEAR))
+	rl.SetTextureFilter(rl.Texture2D(target.Texture), int32(rl.FILTER_BILINEAR))
 
 	colors := [10]rl.Color{}
 	for i := range colors {
@@ -101,7 +101,7 @@ func main() {
 		rl.EndTextureMode()
 
 		rl.DrawTexturePro(
-			target.Texture,
+			rl.Texture2D(target.Texture),
 			rl.NewRectangle(0, 0, float32(target.Texture.Width), -float32(target.Texture.Height)),
 			rl.NewRectangle(
 				(float32(rl.GetScreenWidth())-(float32(gameScreenWidth)*scale))*0.5,

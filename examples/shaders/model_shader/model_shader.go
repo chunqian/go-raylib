@@ -41,7 +41,7 @@ func main() {
 	}()
 
 	model.Materialser(0).Shader = shader
-	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
+	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = rl.Texture(texture)
 
 	position := rl.NewVector3(0, 0, 0)
 

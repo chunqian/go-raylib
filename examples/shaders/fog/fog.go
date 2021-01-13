@@ -41,9 +41,9 @@ func main() {
 		rl.UnloadModel(modelC)
 	}()
 
-	modelA.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
-	modelB.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
-	modelC.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
+	modelA.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = rl.Texture(texture)
+	modelB.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = rl.Texture(texture)
+	modelC.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = rl.Texture(texture)
 
 	shader := rl.LoadShader(
 		fmt.Sprintf("../shaders/resources/shaders/glsl%d/base_lighting.vs", GLSL_VERSION),

@@ -34,7 +34,7 @@ func main() {
 
 	tower := rl.LoadModel("../models/resources/models/turret.obj")
 	texture := rl.LoadTexture("../models/resources/models/turret_diffuse.png")
-	tower.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
+	tower.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = rl.Texture(texture)
 	defer func() {
 		rl.UnloadTexture(texture)
 		rl.UnloadModel(tower)

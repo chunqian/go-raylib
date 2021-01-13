@@ -45,7 +45,7 @@ func main() {
 		rl.BeginShaderMode(shader)
 
 		rl.DrawTextureRec(
-			target.Texture,
+			rl.Texture2D(target.Texture),
 			rl.NewRectangle(0, 0, float32(target.Texture.Width), -float32(target.Texture.Height)),
 			rl.NewVector2(0, 0),
 			rl.White,

@@ -314,8 +314,8 @@ func RandomizeEmoji() {
 
 		emoji[i].Index = rl.GetRandomValue(0, 179)
 
-		hsv := rl.NewVector3(float32(start*(i+1)%360), 0.6, 0.85)
-		emoji[i].Color = rl.Fade(rl.ColorFromHSV(hsv), 0.8)
+		// hsv := rl.NewVector3(float32(start*(i+1)%360), 0.6, 0.85)
+		emoji[i].Color = rl.Fade(rl.ColorFromHSV(float32(start*(i+1)%360), 0.6, 0.85), 0.8)
 
 		emoji[i].Message = rl.GetRandomValue(0, int32(len(message)-1))
 	}

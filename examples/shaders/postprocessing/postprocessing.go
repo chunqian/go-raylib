@@ -70,7 +70,7 @@ func main() {
 	texture := rl.LoadTexture("../shaders/resources/models/church_diffuse.png")
 	defer rl.UnloadTexture(texture)
 
-	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
+	model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = rl.Texture(texture)
 
 	shaders := make([]rl.Shader, MAX_POSTPRO_SHADERS)
 
@@ -137,7 +137,7 @@ func main() {
 		rl.BeginShaderMode(shaders[currentShader])
 
 		rl.DrawTextureRec(
-			target.Texture,
+			rl.Texture2D(target.Texture),
 			rl.NewRectangle(
 				0,
 				0,

@@ -88,6 +88,7 @@ TRANSLATOR:
       - { action: accept, from: ^Color }
       - { action: accept, from: ^Rectangle }
       - { action: accept, from: ^Image$ }
+      - { action: accept, from: ^Texture }
       - { action: accept, from: ^Texture2D }
       - { action: accept, from: ^CharInfo$ }
       - { action: accept, from: ^Font }

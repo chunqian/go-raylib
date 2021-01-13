@@ -23,13 +23,13 @@ func main() {
 	font := rl.LoadFontEx("../text/resources/KAISG.ttf", 96, nil, 0)
 	defer rl.UnloadFont(font)
 
-	rl.GenTextureMipmaps(&font.Texture)
+	rl.GenTextureMipmaps((*rl.Texture2D)(&font.Texture))
 
-	fontSize := font.BaseSize
+	fontSize := float32(font.BaseSize)
 	fontPosition := rl.NewVector2(40, float32(screenHeight)/2-80)
 	textSize := rl.NewVector2(0, 0)
 
-	rl.SetTextureFilter(font.Texture, int32(rl.FILTER_POINT))
+	rl.SetTextureFilter(rl.Texture2D(font.Texture), int32(rl.FILTER_POINT))
 	currentFontFilter := 0
 
 	rl.SetTargetFPS(60)
@@ -40,19 +40,19 @@ func main() {
 
 		if rl.IsKeyPressed(int32(rl.KEY_ONE)) {
 
-			rl.SetTextureFilter(font.Texture, int32(rl.FILTER_POINT))
+			rl.SetTextureFilter(rl.Texture2D(font.Texture), int32(rl.FILTER_POINT))
 			currentFontFilter = 0
 		} else if rl.IsKeyPressed(int32(rl.KEY_TWO)) {
 
-			rl.SetTextureFilter(font.Texture, int32(rl.FILTER_BILINEAR))
+			rl.SetTextureFilter(rl.Texture2D(font.Texture), int32(rl.FILTER_BILINEAR))
 			currentFontFilter = 1
 		} else if rl.IsKeyPressed(int32(rl.KEY_THREE)) {
 
-			rl.SetTextureFilter(font.Texture, int32(rl.FILTER_TRILINEAR))
+			rl.SetTextureFilter(rl.Texture2D(font.Texture), int32(rl.FILTER_TRILINEAR))
 			currentFontFilter = 2
 		}
 
-		textSize = rl.MeasureTextEx(font, msg, float32(fontSize), 0)
+		textSize = rl.MeasureTextEx(font, msg, fontSize, 0)
 
 		if rl.IsKeyDown(int32(rl.KEY_LEFT)) {
 			fontPosition.X -= 10
@@ -68,7 +68,7 @@ func main() {
 
 			if rl.IsFileExtension(droppedFilePath, ".ttf") {
 				rl.UnloadFont(font)
-				font = rl.LoadFontEx(droppedFilePath, fontSize, nil, 0)
+				font = rl.LoadFontEx(droppedFilePath, int32(fontSize), nil, 0)
 				rl.ClearDroppedFiles()
 			}
 		}
@@ -82,10 +82,10 @@ func main() {
 		rl.DrawText("Use 1, 2, 3 to change texture filter", 20, 60, 10, rl.Gray)
 		rl.DrawText("Drop a new TTF font for dynamic loading", 20, 80, 10, rl.DarkGray)
 
-		rl.DrawTextEx(font, msg, fontPosition, float32(fontSize), 0, rl.Black)
+		rl.DrawTextEx(font, msg, fontPosition, fontSize, 0, rl.Black)
 
 		rl.DrawRectangle(0, screenHeight-80, screenWidth, 80, rl.LightGray)
-		rl.DrawText(fmt.Sprintf("Font size: %2.2f", float32(fontSize)), 20, screenHeight-50, 10, rl.DarkGray)
+		rl.DrawText(fmt.Sprintf("Font size: %2.2f", fontSize), 20, screenHeight-50, 10, rl.DarkGray)
 		rl.DrawText(fmt.Sprintf("Text size: [%2.2f, %2.2f]", textSize.X, textSize.Y), 20, screenHeight-30, 10, rl.DarkGray)
 		rl.DrawText("CURRENT TEXTURE FILTER:", 250, 400, 20, rl.Gray)
 

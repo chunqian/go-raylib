@@ -2,8 +2,8 @@ all: gen
 	
 gen:
 	../c-for-go/c-for-go -out . raylib.yml
-# 	../c-for-go/c-for-go -out . physac.yml
-# 	../c-for-go/c-for-go -out . raygui.yml
+	../c-for-go/c-for-go -out . physac.yml
+	../c-for-go/c-for-go -out . raygui.yml
 
 clean:
 	# raylib
@@ -11,16 +11,16 @@ clean:
 	rm -f raylib/doc.go raylib/types.go raylib/const.go
 	rm -f raylib/raylib.go
 	# physac
-# 	rm -f physac/cgo_helpers.go physac/cgo_helpers.h physac/cgo_helpers.c
-# 	rm -f physac/doc.go physac/types.go physac/const.go
-# 	rm -f physac/physac.go
+	rm -f physac/cgo_helpers.go physac/cgo_helpers.h physac/cgo_helpers.c
+	rm -f physac/doc.go physac/types.go physac/const.go
+	rm -f physac/physac.go
 	# raygui
-# 	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
-# 	rm -f raygui/doc.go raygui/types.go raygui/const.go
-# 	rm -f raygui/raygui.go
+	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
+	rm -f raygui/doc.go raygui/types.go raygui/const.go
+	rm -f raygui/raygui.go
 
 test:
-	go build -o examples/bin/audio_module_playing examples/audio/module_playing/module_playing.go
+# 	go build -o examples/bin/audio_module_playing examples/audio/module_playing/module_playing.go
 # 	go build -o examples/bin/audio_multichannel_sound examples/audio/multichannel_sound/multichannel_sound.go
 # 	go build -o examples/bin/audio_music_stream examples/audio/music_stream/music_stream.go
 # 	go build -o examples/bin/audio_raw_stream examples/audio/raw_stream/raw_stream.go
@@ -55,7 +55,7 @@ test:
 # 	go build -o examples/bin/models_cubicmap examples/models/cubicmap/cubicmap.go
 # 	go build -o examples/bin/models_first_person_maze examples/models/first_person_maze/first_person_maze.go
 # 	go build -o examples/bin/models_loading examples/models/loading/loading.go
-# 	go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
+# # 	go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 # 	go build -o examples/bin/models_mesh_generation examples/models/mesh_generation/mesh_generation.go
 # 	go build -o examples/bin/models_mesh_picking examples/models/mesh_picking/mesh_picking.go
 # 	go build -o examples/bin/models_orthographic_projection examples/models/orthographic_projection/orthographic_projection.go
@@ -75,7 +75,7 @@ test:
 
 # 	go build -o examples/bin/text_font_filters examples/text/font_filters/font_filters.go
 # 	go build -o examples/bin/text_font_loading examples/text/font_loading/font_loading.go
-# 	go build -o examples/bin/text_font_sdf examples/text/font_sdf/font_sdf.go
+	go build -o examples/bin/text_font_sdf examples/text/font_sdf/font_sdf.go
 # 	go build -o examples/bin/text_font_spritefont examples/text/font_spritefont/font_spritefont.go
 # 	go build -o examples/bin/text_format_text examples/text/format_text/format_text.go
 # 	go build -o examples/bin/text_input_box examples/text/input_box/input_box.go

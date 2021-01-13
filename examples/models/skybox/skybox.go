@@ -30,7 +30,9 @@ func main() {
 	cube := rl.GenMeshCube(1.0, 1.0, 1.0)
 	skybox := rl.LoadModelFromMesh(cube)
 	defer func() {
-		rl.UnloadTexture(skybox.Materialser(0).Mapser(int32(rl.MAP_CUBEMAP)).Texture)
+		rl.UnloadTexture(
+			rl.Texture2D(skybox.Materialser(0).Mapser(int32(rl.MAP_CUBEMAP)).Texture),
+		)
 		rl.UnloadShader(skybox.Materialser(0).Shader)
 
 		rl.UnloadModel(skybox)
@@ -59,7 +61,9 @@ func main() {
 	)
 
 	texHDR := rl.LoadTexture("../models/resources/dresden_square.hdr")
-	skybox.Materialser(0).Mapser(int32(rl.MAP_CUBEMAP)).Texture = rl.GenTextureCubemap(shdrCubemap, texHDR, 512)
+	skybox.Materialser(0).Mapser(int32(rl.MAP_CUBEMAP)).Texture = rl.Texture(
+		rl.GenTextureCubemap(shdrCubemap, texHDR, 512, int32(rl.UNCOMPRESSED_R8G8B8A8)),
+	)
 
 	rl.UnloadTexture(texHDR)
 	rl.UnloadShader(shdrCubemap)

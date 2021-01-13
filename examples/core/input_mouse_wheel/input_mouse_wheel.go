@@ -25,7 +25,7 @@ func main() {
 
 	for !rl.WindowShouldClose() {
 
-		boxPositionY -= rl.GetMouseWheelMove() * scrollSpeed
+		boxPositionY -= int32(rl.GetMouseWheelMove()) * scrollSpeed
 
 		rl.BeginDrawing()
 

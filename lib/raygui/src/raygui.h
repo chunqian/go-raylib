@@ -148,7 +148,9 @@
         #define RAYGUIDEF   // We are building or using raygui as a static library
     #endif
 #else
-    #define RAYGUIDEF       // We are building or using raygui as a static library (or Linux shared library)
+    // Cforgo
+    // #define RAYGUIDEF       // We are building or using raygui as a static library (or Linux shared library)
+    #define RAYGUIDEF static
 #endif
 
 #if !defined(RAYGUI_MALLOC) && !defined(RAYGUI_CALLOC) && !defined(RAYGUI_FREE)
