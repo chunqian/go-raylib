@@ -21,6 +21,8 @@ func main() {
 	fontBm := rl.LoadFont("../text/resources/pixantiqua.fnt")
 	defer rl.UnloadFont(fontBm)
 
+	// var fontChars *int32 = nil
+	// fontTtf := rl.LoadFontEx("../text/resources/pixantiqua.ttf", 32, fontChars, 250)
 	fontTtf := rl.LoadFontEx("../text/resources/pixantiqua.ttf", 32, nil, 250)
 	defer rl.UnloadFont(fontTtf)
 

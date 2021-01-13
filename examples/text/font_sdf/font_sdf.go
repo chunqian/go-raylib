@@ -5,6 +5,7 @@ import (
 	rl "goray/raylib"
 
 	"runtime"
+	"unsafe"
 )
 
 var GLSL_VERSION = 330
@@ -22,32 +23,35 @@ func main() {
 
 	msg := "Signed Distance Fields"
 
-	fontDefault := rl.Font{}
+	var fontChars *int32 = nil
 
+	fileSize := 0
+	fileData := rl.LoadFileData("../text/resources/anonymous_pro_bold.ttf", (*uint32)(unsafe.Pointer(&fileSize)))
+
+	fontDefault := rl.Font{}
 	fontDefault.BaseSize = 16
 	fontDefault.CharsCount = 95
-	fontDefault.Chars = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 95, int32(rl.FONT_DEFAULT))
+	fontDefault.Chars = rl.LoadFontData(fileData, int32(fileSize), 16, fontChars, 95, int32(rl.FONT_DEFAULT))
 
 	stlas := rl.GenImageFontAtlas(fontDefault.Chars, &fontDefault.Recs, 95, 16, 4, 0)
-	fontDefault.Texture = rl.LoadTextureFromImage(stlas)
+	fontDefault.Texture = rl.Texture(rl.LoadTextureFromImage(stlas))
 	rl.UnloadImage(stlas)
 	defer rl.UnloadFont(fontDefault)
 
 	fontSDF := rl.Font{}
-
 	fontSDF.BaseSize = 16
 	fontSDF.CharsCount = 95
-	fontSDF.Chars = rl.LoadFontData("../text/resources/anonymous_pro_bold.ttf", 16, nil, 0, int32(rl.FONT_SDF))
+	fontSDF.Chars = rl.LoadFontData(fileData, int32(fileSize), 16, fontChars, 0, int32(rl.FONT_SDF))
 
 	stlas = rl.GenImageFontAtlas(fontSDF.Chars, &fontSDF.Recs, 95, 16, 0, 1)
-	fontSDF.Texture = rl.LoadTextureFromImage(stlas)
+	fontSDF.Texture = rl.Texture(rl.LoadTextureFromImage(stlas))
 	rl.UnloadImage(stlas)
 	defer rl.UnloadFont(fontSDF)
 
 	shader := rl.LoadShader("", fmt.Sprintf("../text/resources/shaders/glsl%d/sdf.fs", GLSL_VERSION))
 	defer rl.UnloadShader(shader)
 
-	rl.SetTextureFilter(fontSDF.Texture, int32(rl.FILTER_BILINEAR))
+	rl.SetTextureFilter(rl.Texture2D(fontSDF.Texture), int32(rl.FILTER_BILINEAR))
 
 	fontPosition := rl.NewVector2(40, float32(screenHeight/2-50))
 	textSize := rl.NewVector2(0, 0)
@@ -89,10 +93,10 @@ func main() {
 			rl.DrawTextEx(fontSDF, msg, fontPosition, fontSize, 0, rl.Black)
 			rl.EndShaderMode()
 
-			rl.DrawTexture(fontSDF.Texture, 10, 10, rl.Black)
+			rl.DrawTexture(rl.Texture2D(fontSDF.Texture), 10, 10, rl.Black)
 		} else {
 			rl.DrawTextEx(fontDefault, msg, fontPosition, fontSize, 0, rl.Black)
-			rl.DrawTexture(fontDefault.Texture, 10, 10, rl.Black)
+			rl.DrawTexture(rl.Texture2D(fontDefault.Texture), 10, 10, rl.Black)
 		}
 
 		if currentFont == 1 {
