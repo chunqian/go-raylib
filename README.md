@@ -28,7 +28,9 @@ go-raylib binding [raylib](https://github.com/raysan5/raylib) C version is 3.5
 High performance, same with the raylib C version. Enjoy it!.
 
 ### Development Tools
-I develop use [sublime text](https://www.sublimetext.com) and customized development tools.
+I use [sublime text](https://www.sublimetext.com) and customize tools.
+
+[c-for-go](https://github.com/chunqian/c-for-go) automatic C-Go bindings generator for raylib C version.
 
 [LSP](https://github.com/chunqian/LSP) use [mistune](https://github.com/lepture/mistune) instead [mdpopups](https://github.com/facelessuser/sublime-markdown-popups).
 
