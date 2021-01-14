@@ -30,11 +30,11 @@ High performance, same with the raylib C version. Enjoy it!.
 ### Development Tools
 I develop use [sublime text](https://www.sublimetext.com) and customized development tools.
 
-[LSP](https://github.com/chunqian/LSP) markdown parser using mistune.
+[LSP](https://github.com/chunqian/LSP) use mistune instead mdpopups.
 
 [language-formatter](https://github.com/chunqian/Language-Formatter) generic code format tool.
 
-[gopls](https://github.com/chunqian/golang-tools) fix code autocomplete slow.
+[gopls](https://github.com/chunqian/golang-tools) fix go-raylib code autocomplete slow.
 
 
 Memory
