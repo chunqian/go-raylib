@@ -30,7 +30,7 @@ High performance, same with the raylib C version. Enjoy it!.
 ### Development Tools
 I develop use [sublime text](https://www.sublimetext.com) and customized development tools.
 
-[LSP](https://github.com/chunqian/LSP) use mistune instead mdpopups.
+[LSP](https://github.com/chunqian/LSP) use [mistune](https://github.com/lepture/mistune) instead [mdpopups](https://github.com/facelessuser/sublime-markdown-popups).
 
 [language-formatter](https://github.com/chunqian/Language-Formatter) generic code format tool.
 
