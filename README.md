@@ -28,9 +28,12 @@ go-raylib binding [raylib](https://github.com/raysan5/raylib) C version is 3.5
 High performance, same with the raylib C version. Enjoy it!.
 
 ### Development Tools
-I development use [sublime text](https://www.sublimetext.com) and customized development tools.
+I develop use [sublime text](https://www.sublimetext.com) and customized development tools.
+
 [LSP](https://github.com/chunqian/LSP) markdown parser using mistune.
+
 [language-formatter](https://github.com/chunqian/Language-Formatter) generic code format tool.
+
 [gopls](https://github.com/chunqian/golang-tools) fix code autocomplete slow.
 
 
