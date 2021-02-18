@@ -1,7 +1,7 @@
 package main
 
 import (
-	rl "goray/raylib"
+	rl "go-raylib/raylib"
 
 	"fmt"
 	"runtime"

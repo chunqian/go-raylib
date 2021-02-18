@@ -17,7 +17,7 @@ Mac        | :heavy_check_mark: |
 Windows    | :heavy_check_mark: |
 
 You can write your own cross-platform code, see 
-[raylib_darwin.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_darwin.go) 
+[raylib_darwin.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_darwin.go)
 [raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
 
 ### Version

@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	rg "goray/raygui"
-	rl "goray/raylib"
+	rg "go-raylib/raygui"
+	rl "go-raylib/raylib"
 	"runtime"
 )
 

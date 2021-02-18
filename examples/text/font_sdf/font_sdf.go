@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	rl "goray/raylib"
+	rl "go-raylib/raylib"
 
 	"runtime"
 	"unsafe"

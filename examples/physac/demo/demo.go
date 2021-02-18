@@ -1,8 +1,8 @@
 package main
 
 import (
-	phys "goray/physac"
-	rl "goray/raylib"
+	phys "go-raylib/physac"
+	rl "go-raylib/raylib"
 
 	"runtime"
 	"unsafe"
