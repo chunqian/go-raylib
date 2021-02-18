@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	rl "go-raylib/raylib"
+	rl "github.com/chunqian/go-raylib/raylib"
 	"runtime"
 )
 

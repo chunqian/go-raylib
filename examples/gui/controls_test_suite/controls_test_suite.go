@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	rg "go-raylib/raygui"
-	rl "go-raylib/raylib"
+	rg "github.com/chunqian/go-raylib/raygui"
+	rl "github.com/chunqian/go-raylib/raylib"
 	"runtime"
 	"unsafe"
 )

@@ -1,8 +1,8 @@
 package main
 
 import (
-	phys "go-raylib/physac"
-	rl "go-raylib/raylib"
+	phys "github.com/chunqian/go-raylib/physac"
+	rl "github.com/chunqian/go-raylib/raylib"
 
 	"runtime"
 	"unsafe"

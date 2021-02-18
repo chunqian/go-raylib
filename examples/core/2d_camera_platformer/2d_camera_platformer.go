@@ -1,7 +1,7 @@
 package main
 
 import (
-	rl "go-raylib/raylib"
+	rl "github.com/chunqian/go-raylib/raylib"
 
 	"math"
 	"runtime"
