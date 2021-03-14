@@ -14,11 +14,13 @@ physac.h   | :heavy_check_mark: |
 OS         | Supported          |
 ---------  | ------------------ |
 Mac        | :heavy_check_mark: |
+Ubuntu     | :heavy_check_mark: |
 Windows    | :heavy_check_mark: |
 
 You can write your own cross-platform code, see 
 [raylib_darwin.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_darwin.go)
 [raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
+[raylib_linux.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_linux.go)
 
 ### Version
 go-raylib binding [raylib](https://github.com/raysan5/raylib) C version is 3.5
@@ -122,6 +124,7 @@ Run
 $ cd examples/bin
 $ ./models_material_pbr
 ```
+
 Windows
 ```bash
 $ git clone https://github.com/chunqian/go-raylib.git
@@ -135,6 +138,21 @@ Run
 ```bash
 $ cd examples/bin
 $ ./models_material_pbr.exe
+```
+
+Ubuntu
+```bash
+$ sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+$ cd go-raylib/lib/raylib/src
+$ make PLATFORM=PLATFORM_DESKTOP
+$ cd ../../..
+$ mkdir examples/bin
+$ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
+```
+Run
+```bash
+$ cd examples/bin
+$ ./models_material_pbr
 ```
 
 Examples
