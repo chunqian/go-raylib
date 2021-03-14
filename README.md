@@ -14,7 +14,7 @@ physac.h   | :heavy_check_mark: |
 OS         | Supported          |
 ---------  | ------------------ |
 Mac        | :heavy_check_mark: |
-Ubuntu     | :heavy_check_mark: |
+Linux      | :heavy_check_mark: |
 Windows    | :heavy_check_mark: |
 
 You can write your own cross-platform code, see 
