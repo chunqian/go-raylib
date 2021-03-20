@@ -1,7 +1,7 @@
 # go-raylib
 
-
 ### Bindings
+
 Header     | Supported          |
 ---------  | ------------------ |
 raylib.h   | :heavy_check_mark: |
@@ -11,84 +11,105 @@ ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
 ### Platforms
+
 OS         | Supported          |
 ---------  | ------------------ |
 Mac        | :heavy_check_mark: |
 Linux      | :heavy_check_mark: |
 Windows    | :heavy_check_mark: |
 
-You can write your own cross-platform code, see 
+You can write your own cross-platform code, see
+
 [raylib_darwin.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_darwin.go)
+
 [raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
+
 [raylib_linux.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_linux.go)
 
 ### Version
+
 go-raylib binding [raylib](https://github.com/raysan5/raylib) C version is 3.5
 
-
 ### Performance
+
 High performance, same with the raylib C version. Enjoy it!.
 
 ### Development Tools
+
 I use [sublime text](https://www.sublimetext.com) and customize tools.
 
 [c-for-go](https://github.com/chunqian/c-for-go) automatic C-Go bindings generator for raylib C version.
 
 [LSP](https://github.com/chunqian/LSP) use [mistune](https://github.com/lepture/mistune) instead [mdpopups](https://github.com/facelessuser/sublime-markdown-popups).
 
-[language-formatter](https://github.com/chunqian/Language-Formatter) generic code format tool.
+[language-formatter](https://github.com/chunqian/Language-Formatter) general code format tool.
 
 [gopls](https://github.com/chunqian/golang-tools) fix go-raylib code autocomplete slow.
 
+[Theme-Mariana](https://github.com/chunqian/Theme-Mariana) general color scheme.
 
 Memory
 ------
+
 For example
+
 ```go
 multext := rl.NewMultiText([]string{"Hello World!"})
 ```
+
 The method will check if memory is requested through cgo.
 
 If it detects, panic **Cgo memory alloced, please use func AllocMultiText.**
 
 Rewrite.
+
 ```go
 multext, men := rl.AllocMultiText([]string{"Hello World!"})
 multext.GC(mem)
 ```
-Don't forget, call GC() for register, it can be automated management.
 
+Don't forget, call GC() for register, it can be automated management.
 
 Difference
 ----------
+
 There are some differences between the processing in Go and C.
 
 In C
+
 ```c
 char multiTextBoxText[256] = "Multi text box";
 ```
+
 In Go
+
 ```go
 multiTextBoxText := rg.NewBytes("Multi text box", 256)
 ```
 
 In C
+
 ```c
 const char *listViewExList[8] = { "This", "is", "a", "list view", "with", "disable", "elements", "amazing!" };
 ```
+
 In Go
+
 ```go
 listViewExList, mem := rg.AllocMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 listViewExList.GC(mem)
 ```
 
 In C
+
 ```c
 int dropsCount = 0;
 char **droppedFiles = GetDroppedFiles(&dropsCount);
 const char *droppedFilePath = droppedFiles[0];
 ```
+
 In Go
+
 ```go
 dropsCount := int32(0)
 droppedFiles := rl.GetDroppedFiles(&dropsCount)
@@ -96,20 +117,23 @@ droppedFilePath := rl.ToString(droppedFiles, 0)
 ```
 
 In C
+
 ```c
 Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");
 model.materials[0].maps[MAP_DIFFUSE].texture = texture;
 ```
 In Go
+
 ```go
 texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
 model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 ```
 
-
 Build
 -----
+
 Mac
+
 ```bash
 $ git clone https://github.com/chunqian/go-raylib.git
 $ cd go-raylib/lib/raylib/src
@@ -119,13 +143,16 @@ $ cd ../../..
 $ mkdir examples/bin
 $ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 ```
+
 Run
+
 ```bash
 $ cd examples/bin
 $ ./models_material_pbr
 ```
 
 Windows
+
 ```bash
 $ git clone https://github.com/chunqian/go-raylib.git
 $ cd go-raylib/lib/raylib/src
@@ -134,13 +161,16 @@ $ cd ../../..
 $ mkdir examples/bin
 $ CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_material_pbr.exe examples/models/material_pbr/*.go
 ```
+
 Run
+
 ```bash
 $ cd examples/bin
 $ ./models_material_pbr.exe
 ```
 
 Ubuntu
+
 ```bash
 $ sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
 $ cd go-raylib/lib/raylib/src
@@ -149,6 +179,7 @@ $ cd ../../..
 $ mkdir examples/bin
 $ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
 ```
+
 Run
 ```bash
 $ cd examples/bin
@@ -157,6 +188,7 @@ $ ./models_material_pbr
 
 Examples
 --------
+
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
 audio      | module_playing         | :heavy_check_mark: |
@@ -218,7 +250,7 @@ text       | unicode                | :heavy_check_mark: |
 text       | writing_anim           | :heavy_check_mark: |
 textures   | bunnymark              | :heavy_check_mark: |
 
-
 License
 -------
+
 go-raylib is licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
