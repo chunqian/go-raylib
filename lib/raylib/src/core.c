@@ -335,8 +335,9 @@ typedef struct {
 } InputEventWorker;
 #endif
 
-typedef struct { int x; int y; } Point;
-typedef struct { unsigned int width; unsigned int height; } Size;
+// cforgo
+typedef struct { int x; int y; } rayPoint;
+typedef struct { unsigned int width; unsigned int height; } raySize;
 
 // Core global state context data
 typedef struct CoreData {
@@ -370,12 +371,13 @@ typedef struct CoreData {
         bool shouldClose;                   // Check if window set for closing
         bool resizedLastFrame;              // Check if window has been resized last frame
 
-        Point position;                     // Window position on screen (required on fullscreen toggle)
-        Size display;                       // Display width and height (monitor, device-screen, LCD, ...)
-        Size screen;                        // Screen width and height (used render area)
-        Size currentFbo;                    // Current render width and height, it could change on BeginTextureMode()
-        Size render;                        // Framebuffer width and height (render area, including black bars if required)
-        Point renderOffset;                 // Offset from render area (must be divided by 2)
+        // cforgo
+        rayPoint position;                     // Window position on screen (required on fullscreen toggle)
+        raySize display;                       // Display width and height (monitor, device-screen, LCD, ...)
+        raySize screen;                        // Screen width and height (used render area)
+        raySize currentFbo;                    // Current render width and height, it could change on BeginTextureMode()
+        raySize render;                        // Framebuffer width and height (render area, including black bars if required)
+        rayPoint renderOffset;                 // Offset from render area (must be divided by 2)
         Matrix screenScale;                 // Matrix to scale screen (framebuffer rendering)
 
         char **dropFilesPath;               // Store dropped files paths as strings

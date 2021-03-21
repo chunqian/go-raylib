@@ -120,6 +120,8 @@ RECENT REVISION HISTORY:
   of the credits.
 */
 
+#pragma once // cforgo
+
 #ifndef STBI_INCLUDE_STB_IMAGE_H
 #define STBI_INCLUDE_STB_IMAGE_H
 
