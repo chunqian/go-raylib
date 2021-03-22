@@ -1,5 +1,7 @@
 # go-raylib
 
+go-raylib is a simple and easy-to-use library to enjoy videogames programming.
+
 ### Bindings
 
 Header     | Supported          |
@@ -32,7 +34,7 @@ go-raylib binding [raylib](https://github.com/raysan5/raylib) C version is 3.5
 
 ### Performance
 
-High performance, same with the raylib C version. Enjoy it!.
+High performance, same with the raylib C version.
 
 ### Development Tools
 
@@ -129,61 +131,57 @@ texture := rl.LoadTexture("../models/resources/cubicmap_atlas.png")
 model.Materialser(0).Mapser(rl.MAP_DIFFUSE).Texture = texture
 ```
 
-Build
+Usage
 -----
 
-Mac
+#### Step 1: Get the go-raylib code
 
 ```bash
-$ git clone https://github.com/chunqian/go-raylib.git
-$ cd go-raylib/lib/raylib/src
-$ export MACOSX_DEPLOYMENT_TARGET=10.9
-$ make PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=OSX
-$ cd ../../..
-$ mkdir examples/bin
-$ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
+go get -u github.com/chunqian/go-raylib
 ```
 
-Run
+#### Step 2: Write the code
 
-```bash
-$ cd examples/bin
-$ ./models_material_pbr
+```golang
+package main
+
+import (
+	rl "github.com/chunqian/go-raylib/raylib"
+
+	"runtime"
+)
+
+func init() {
+	runtime.LockOSThread()
+}
+
+func main() {
+	screenWidth := int32(800)
+	screenHeight := int32(450)
+
+	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
+	defer rl.CloseWindow()
+
+	rl.SetTargetFPS(60)
+
+	for !rl.WindowShouldClose() {
+
+		rl.BeginDrawing()
+
+		rl.ClearBackground(rl.RayWhite)
+
+		rl.DrawText("Congrats! You created your first window!", 190, 200, 20, rl.LightGray)
+
+		rl.EndDrawing()
+	}
+}
 ```
 
-Windows
+#### Step 3: Build the code
 
 ```bash
-$ git clone https://github.com/chunqian/go-raylib.git
-$ cd go-raylib/lib/raylib/src
-$ make CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ AR=i686-w64-mingw32-ar PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=WINDOWS LANG=en_US
-$ cd ../../..
-$ mkdir examples/bin
-$ CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_material_pbr.exe examples/models/material_pbr/*.go
-```
-
-Run
-
-```bash
-$ cd examples/bin
-$ ./models_material_pbr.exe
-```
-
-Ubuntu
-
-```bash
-$ sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
-$ cd go-raylib/lib/raylib/src
-$ make PLATFORM=PLATFORM_DESKTOP
-$ cd ../../..
-$ mkdir examples/bin
-$ go build -o examples/bin/models_material_pbr examples/models/material_pbr/*.go
-```
-
-Run
-```bash
-$ cd examples/bin
-$ ./models_material_pbr
+go mod init github.com/chunqian/go-raylib-example
+go build
 ```
 
 Examples
