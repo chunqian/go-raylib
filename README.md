@@ -146,34 +146,34 @@ go get -u github.com/chunqian/go-raylib
 package main
 
 import (
-	rl "github.com/chunqian/go-raylib/raylib"
+    rl "github.com/chunqian/go-raylib/raylib"
 
-	"runtime"
+    "runtime"
 )
 
 func init() {
-	runtime.LockOSThread()
+    runtime.LockOSThread()
 }
 
 func main() {
-	screenWidth := int32(800)
-	screenHeight := int32(450)
+    screenWidth := int32(800)
+    screenHeight := int32(450)
 
-	rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
-	defer rl.CloseWindow()
+    rl.InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
+    defer rl.CloseWindow()
 
-	rl.SetTargetFPS(60)
+    rl.SetTargetFPS(60)
 
-	for !rl.WindowShouldClose() {
+    for !rl.WindowShouldClose() {
 
-		rl.BeginDrawing()
+        rl.BeginDrawing()
 
-		rl.ClearBackground(rl.RayWhite)
+        rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawText("Congrats! You created your first window!", 190, 200, 20, rl.LightGray)
+        rl.DrawText("Congrats! You created your first window!", 190, 200, 20, rl.LightGray)
 
-		rl.EndDrawing()
-	}
+        rl.EndDrawing()
+    }
 }
 ```
 
@@ -182,6 +182,65 @@ func main() {
 ```bash
 go mod init github.com/chunqian/go-raylib-example
 go build
+```
+
+Develop
+-----
+
+Mac
+
+```bash
+$ git clone https://github.com/chunqian/go-raylib.git
+$ cd go-raylib/lib/raylib/src
+$ make PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=OSX MACOSX_DEPLOYMENT_TARGET=10.9
+$ cp libraylib.a ../a/darwin
+$ cd ../../..
+$ mkdir examples/bin
+$ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+```
+
+Run
+
+```bash
+$ cd examples/bin
+$ ./models_waving_cubes
+```
+
+Windows
+
+```bash
+$ git clone https://github.com/chunqian/go-raylib.git
+$ cd go-raylib/lib/raylib/src
+$ make CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ AR=i686-w64-mingw32-ar PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=WINDOWS LANG=en_US
+$ cp libraylib.a ../a/windows
+$ cd ../../..
+$ mkdir examples/bin
+$ CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+```
+
+Run
+
+```bash
+$ cd examples/bin
+$ ./models_waving_cubes.exe
+```
+
+Ubuntu
+
+```bash
+$ sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+$ cd go-raylib/lib/raylib/src
+$ make PLATFORM=PLATFORM_DESKTOP
+$ cp ../libraylib.a ../a/linux
+$ cd ../../..
+$ mkdir examples/bin
+$ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+```
+
+Run
+```bash
+$ cd examples/bin
+$ ./models_waving_cubes
 ```
 
 Examples
