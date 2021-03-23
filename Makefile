@@ -64,6 +64,7 @@ test:
 	go build -o examples/bin/models_yaw_pitch_roll examples/models/yaw_pitch_roll/yaw_pitch_roll.go
 
 	go build -o examples/bin/physac_demo examples/physac/demo/demo.go
+	go build -o examples/bin/physac_friction examples/physac/friction/friction.go
 
 	go build -o examples/bin/shaders_postprocessing examples/shaders/postprocessing/postprocessing.go
 	go build -o examples/bin/shaders_basic_lighting examples/shaders/basic_lighting/*.go
@@ -131,6 +132,7 @@ testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_yaw_pitch_roll examples/models/yaw_pitch_roll/yaw_pitch_roll.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/physac_demo.exe examples/physac/demo/demo.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/physac_friction.exe examples/physac/friction/friction.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_postprocessing.exe examples/shaders/postprocessing/postprocessing.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/shaders_basic_lighting examples/shaders/basic_lighting/*.go

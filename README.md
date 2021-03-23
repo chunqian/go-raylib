@@ -295,6 +295,7 @@ models     | skybox                 | :heavy_check_mark: |
 models     | waving_cubes           | :heavy_check_mark: |
 models     | yaw_pitch_roll         | :heavy_check_mark: |
 physac     | demo                   | :heavy_check_mark: |
+physac     | friction               | :heavy_check_mark: |
 shaders    | postprocessing         | :heavy_check_mark: |
 shaders    | basic_lighting         | :heavy_check_mark: |
 shaders    | eratosthenes           | :heavy_check_mark: |
