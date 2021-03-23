@@ -30,7 +30,7 @@ You can write your own cross-platform code, see
 
 ### Version
 
-go-raylib binding [raylib](https://github.com/raysan5/raylib) C version is 3.5
+go-raylib binding [raylib](https://github.com/raysan5/raylib) C 3.5 release version
 
 ### Performance
 
@@ -238,6 +238,7 @@ $ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/wavi
 ```
 
 Run
+
 ```bash
 $ cd examples/bin
 $ ./models_waving_cubes
