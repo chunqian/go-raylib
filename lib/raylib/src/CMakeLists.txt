@@ -9,7 +9,9 @@ set(API_VERSION 351)
 
 include("CMakeOptions.txt")
 include(BuildType)
-configure_file(config.h.in ${CMAKE_BINARY_DIR}/cmake/config.h)
+# cforgo
+# configure_file(config.h.in ${CMAKE_BINARY_DIR}/cmake/config.h)
+configure_file(config.h ${CMAKE_BINARY_DIR}/cmake/config.h)
 include_directories(${CMAKE_BINARY_DIR} .)
 
 # Get the sources together

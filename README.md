@@ -190,58 +190,64 @@ Develop
 Mac
 
 ```bash
-$ git clone https://github.com/chunqian/go-raylib.git
-$ cd go-raylib/lib/raylib/src
-$ make PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=OSX MACOSX_DEPLOYMENT_TARGET=10.9
-$ cp libraylib.a ../a/darwin
-$ cd ../../..
-$ mkdir examples/bin
-$ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+git clone https://github.com/chunqian/go-raylib.git
+cd go-raylib/lib/raylib
+mkdir build && cd build
+cmake .. -DCMAKE_SYSTEM_NAME=Darwin -DPLATFORM=Desktop
+make
+cp src/libraylib.a ../plat/darwin
+cd ../../..
+mkdir examples/bin
+go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
 ```
 
 Run
 
 ```bash
-$ cd examples/bin
-$ ./models_waving_cubes
+cd examples/bin
+./models_waving_cubes
 ```
 
 Windows
 
 ```bash
-$ git clone https://github.com/chunqian/go-raylib.git
-$ cd go-raylib/lib/raylib/src
-$ make CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ AR=i686-w64-mingw32-ar PLATFORM=PLATFORM_DESKTOP PLATFORM_OS=WINDOWS LANG=en_US
-$ cp libraylib.a ../a/windows
-$ cd ../../..
-$ mkdir examples/bin
-$ CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+git clone https://github.com/chunqian/go-raylib.git
+cd go-raylib/lib/raylib
+mkdir build && cd build
+cmake .. -G "Unix Makefiles" -DCMAKE_SYSTEM_NAME=Windows -DCMAKE_C_COMPILER=i686-w64-mingw32-gcc -DCMAKE_CXX_COMPILER=i686-w64-mingw32-g++ -DPLATFORM=Desktop -DLANG=en_US
+make
+cp src/libraylib.a ../plat/windows
+cd ../../..
+mkdir examples/bin
+CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_waving_cubes.exe examples/models/waving_cubes/waving_cubes.go
 ```
 
 Run
 
 ```bash
-$ cd examples/bin
-$ ./models_waving_cubes.exe
+cd examples/bin
+./models_waving_cubes.exe
 ```
 
 Ubuntu
 
 ```bash
-$ sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
-$ cd go-raylib/lib/raylib/src
-$ make PLATFORM=PLATFORM_DESKTOP
-$ cp ../libraylib.a ../a/linux
-$ cd ../../..
-$ mkdir examples/bin
-$ go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
+sudo apt install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev libxi-dev xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+cd go-raylib/lib/raylib
+mkdir build && cd build
+cmake .. -DCMAKE_SYSTEM_NAME=Linux -DPLATFORM=Desktop
+make
+cp src/libraylib.a ../plat/linux
+cd ../../..
+mkdir examples/bin
+go build -o examples/bin/models_waving_cubes examples/models/waving_cubes/waving_cubes.go
 ```
 
 Run
 
 ```bash
-$ cd examples/bin
-$ ./models_waving_cubes
+cd examples/bin
+./models_waving_cubes
 ```
 
 Examples
