@@ -103,4 +103,5 @@ GPATH
 GRTAGS
 GTAGS
 
-!a/**/*.a
+# Unignore These compiled binaries
+!plat/**/*.a
