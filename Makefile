@@ -155,3 +155,4 @@ testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/text_writing_anim.exe examples/text/writing_anim/writing_anim.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/textures_bunnymark.exe examples/textures/bunnymark/bunnymark.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/textures_rectangle.exe examples/textures/rectangle/rectangle.go
