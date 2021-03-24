@@ -86,6 +86,7 @@ test:
 	go build -o examples/bin/text_writing_anim examples/text/writing_anim/writing_anim.go
 
 	go build -o examples/bin/textures_bunnymark examples/textures/bunnymark/bunnymark.go
+	go build -o examples/bin/textures_rectangle examples/textures/rectangle/rectangle.go
 
 testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/audio_module_playing.exe examples/audio/module_playing/module_playing.go

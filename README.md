@@ -253,6 +253,8 @@ cd examples/bin
 Examples
 --------
 
+Complete with +60 code examples!
+
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
 audio      | module_playing         | :heavy_check_mark: |
@@ -314,6 +316,7 @@ text       | rectangle_bounds       | :heavy_check_mark: |
 text       | unicode                | :heavy_check_mark: |
 text       | writing_anim           | :heavy_check_mark: |
 textures   | bunnymark              | :heavy_check_mark: |
+textures   | rectangle              | :heavy_check_mark: |
 
 License
 -------
