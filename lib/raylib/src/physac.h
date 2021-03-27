@@ -69,13 +69,13 @@
 *     3. This notice may not be removed or altered from any source distribution.
 *
 **********************************************************************************************/
-#pragma once // Cforgo
+#pragma once // cforgo
 
 #if !defined(PHYSAC_H)
 #define PHYSAC_H
 
 #if !defined(PHYSAC_STANDALONE)
-    #include "raylib.h" // Cforgo
+    #include "raylib.h" // cforgo
 #endif
 
 #if defined(PHYSAC_STATIC)
@@ -132,7 +132,7 @@
 
 typedef enum PhysicsShapeType { PHYSICS_CIRCLE, PHYSICS_POLYGON } PhysicsShapeType;
 
-// Cforgo
+// cforgo
 // Matrix2x2 type (used for polygon shape rotation matrix)
 typedef struct Matrix2x2 {
     float m00;
@@ -149,7 +149,7 @@ typedef struct PolygonData {
 
 typedef struct PhysicsShape {
     PhysicsShapeType type;                      // Physics shape type (circle or polygon)
-    struct PhysicsBodyData *body; // Cforgo
+    struct PhysicsBodyData *body; // cforgo
     // PhysicsBody body;                           // Shape physics body reference
     float radius;                               // Circle shape radius (used for circle shapes)
     Matrix2x2 transform;                        // Vertices transform matrix 2x2
@@ -180,8 +180,8 @@ typedef struct PhysicsBodyData {
 
 typedef struct PhysicsManifoldData {
     unsigned int id;                            // Reference unique identifier
-    struct PhysicsBodyData *bodyA; // Cforgo
-    struct PhysicsBodyData *bodyB; // Cforgo
+    struct PhysicsBodyData *bodyA; // cforgo
+    struct PhysicsBodyData *bodyB; // cforgo
     // PhysicsBody bodyA;                          // Manifold first physics body reference
     // PhysicsBody bodyB;                          // Manifold second physics body reference
     float penetration;                          // Depth of penetration from collision
@@ -236,7 +236,7 @@ PHYSACDEF void ClosePhysics(void);                                              
 *
 ************************************************************************************/
 
-// #if defined(PHYSAC_IMPLEMENTATION) // Cforgo
+// #if defined(PHYSAC_IMPLEMENTATION) // cforgo
 
 #if !defined(PHYSAC_NO_THREADS)
     #include <pthread.h>            // Required for: pthread_t, pthread_create()
@@ -291,7 +291,7 @@ PHYSACDEF void ClosePhysics(void);                                              
 // Data Types Structure Definition
 //----------------------------------------------------------------------------------
 
-// Cforgo
+// cforgo
 // // Matrix2x2 type (used for polygon shape rotation matrix)
 // typedef struct Matrix2x2 {
 //     float m00;
@@ -419,7 +419,7 @@ static void Mat2Set(Matrix2x2 *matrix, float radians);                          
 static inline Matrix2x2 Mat2Transpose(Matrix2x2 matrix);                                                              // Returns the transpose of a given matrix 2x2
 static inline Vector2 Mat2MultiplyVector2(Matrix2x2 matrix, Vector2 vector);                                     // Multiplies a vector by a matrix 2x2
 
-// Cforgo
+// cforgo
 #if defined(PHYSAC_IMPLEMENTATION)
 //----------------------------------------------------------------------------------
 // Module Functions Definition

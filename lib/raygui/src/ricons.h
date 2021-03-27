@@ -7,7 +7,7 @@
 *   Copyright (c) 2019-2020 Ramon Santamaria (@raysan5)
 *
 **********************************************************************************************/
-#pragma once // Cforgo
+#pragma once // cforgo
 
 #ifndef RICONS_H
 #define RICONS_H

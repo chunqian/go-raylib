@@ -1418,7 +1418,7 @@ void _glfwPlatformPollEvents(void)
 
         [NSApp sendEvent:event];
 
-        // Cforgo
+        // cforgo
         // fix raylib trackpad click.
         NSEventType eventType = [event type];
         if ((eventType == NSLeftMouseDown ||
