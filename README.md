@@ -8,7 +8,6 @@ Header     | Supported          |
 ---------  | ------------------ |
 raylib.h   | :heavy_check_mark: |
 raymath.h  | :heavy_check_mark: |
-raygui.h   | :heavy_check_mark: |
 ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
@@ -281,8 +280,6 @@ core       | storage_values         | :heavy_check_mark: |
 core       | vr_simulator           | :heavy_check_mark: |
 core       | window_letterbox       | :heavy_check_mark: |
 core       | world_screen           | :heavy_check_mark: |
-gui        | controls_test_suite    | :heavy_check_mark: |
-gui        | scroll_panel           | :heavy_check_mark: |
 models     | animation              | :heavy_check_mark: |
 models     | billboard              | :heavy_check_mark: |
 models     | box_collisions         | :heavy_check_mark: |
