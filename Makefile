@@ -1,8 +1,5 @@
 all: gen
 
-build:
-	cd lib/raylib/src && make
-
 gen:
 	../c-for-go/c-for-go -out . raylib.yml
 	../c-for-go/c-for-go -out . physac.yml
