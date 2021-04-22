@@ -1968,7 +1968,8 @@ static int SaveWAV(Wave wave, const char *fileName)
 
     unsigned char *fileData = NULL;
     size_t fileDataSize = 0;
-    success = drwav_init_memory_write(&wav, &fileData, &fileDataSize, &format, NULL);
+    // cforgo
+    success = drwav_init_memory_write(&wav, (void **)&fileData, &fileDataSize, &format, NULL);
     if (success) success = (int)drwav_write_pcm_frames(&wav, wave.sampleCount/wave.channels, wave.data);
     drwav_result result = drwav_uninit(&wav);
 
