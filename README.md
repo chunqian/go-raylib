@@ -178,11 +178,11 @@ func main() {
 
 #### Step 3: Build the code
 
-Macos|Linux
+Macos Linux
 
 ```bash
-set GO111MODULE=on
-set CGO_ENABLED=1
+export GO111MODULE="on"
+export CGO_ENABLED=1
 go mod init github.com/chunqian/go-raylib-example
 go build
 ```
@@ -204,7 +204,7 @@ Windows
 
 Installed `i686-w64-mingw32` `git`
 
-`Configure environment variables`
+Configure environment variables
 
 Ubuntu
 
