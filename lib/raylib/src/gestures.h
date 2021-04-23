@@ -142,8 +142,9 @@ float GetGesturePinchAngle(void);                       // Get gesture pinch ang
 
 #if defined(_WIN32)
     // Functions required to query time on Windows
-    int __stdcall QueryPerformanceCounter(unsigned long long int *lpPerformanceCount);
-    int __stdcall QueryPerformanceFrequency(unsigned long long int *lpFrequency);
+    #include <profileapi.h>
+    // int __stdcall QueryPerformanceCounter(unsigned long long int *lpPerformanceCount);
+    // int __stdcall QueryPerformanceFrequency(unsigned long long int *lpFrequency);
 #elif defined(__linux__)
     #if _POSIX_C_SOURCE < 199309L
         #undef _POSIX_C_SOURCE
@@ -522,8 +523,8 @@ static double GetCurrentTime(void)
 #if defined(_WIN32)
     unsigned long long int clockFrequency, currentTime;
 
-    QueryPerformanceFrequency(&clockFrequency);     // BE CAREFUL: Costly operation!
-    QueryPerformanceCounter(&currentTime);
+    QueryPerformanceFrequency((LARGE_INTEGER *)&clockFrequency);     // BE CAREFUL: Costly operation!
+    QueryPerformanceCounter((LARGE_INTEGER *)&currentTime);
 
     time = (double)currentTime/clockFrequency*1000.0f;  // Time in miliseconds
 #endif

@@ -10,6 +10,6 @@ package raylib
 #cgo linux CFLAGS: -I../lib/raylib/src/external/glfw/include -Wno-unused-result -DPLATFORM_DESKTOP
 
 #cgo windows LDFLAGS: -lopengl32 -lgdi32 -lwinmm -lole32
-#cgo windows CFLAGS: -I../lib/raylib/src/external/glfw/include -DPLATFORM_DESKTOP
+#cgo windows CFLAGS: -I../lib/raylib/src/external/glfw/include -I../lib/raylib/src/external/glfw/deps/mingw -DPLATFORM_DESKTOP
 */
 import "C"
