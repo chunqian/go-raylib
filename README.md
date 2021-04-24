@@ -8,7 +8,6 @@ Header     | Supported          |
 ---------  | ------------------ |
 raylib.h   | :heavy_check_mark: |
 raymath.h  | :heavy_check_mark: |
-ricons.h   | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 
 ### Platforms
@@ -18,14 +17,6 @@ OS         | Supported          |
 Mac        | :heavy_check_mark: |
 Linux      | :heavy_check_mark: |
 Windows    | :heavy_check_mark: |
-
-You can write your own cross-platform code, see
-
-[raylib_darwin.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_darwin.go)
-
-[raylib_windows.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_windows.go)
-
-[raylib_linux.go](https://github.com/chunqian/go-raylib/blob/master/raylib/raylib_linux.go)
 
 ### Version
 
@@ -197,14 +188,17 @@ go mod init github.com/chunqian/go-raylib-example
 go build
 ```
 
-Develop
+Require
 -----
+
+MacOS
+
+On MacOS you need Xcode or Command Line Tools for Xcode.
 
 Windows
 
-Installed `i686-w64-mingw32` `git`
-
-Configure environment variables
+On Windows you need C compiler, like [Mingw-w64](https://mingw-w64.org) or [TDM-GCC](http://tdm-gcc.tdragon.net/).
+You can also build binary in [MSYS2](https://msys2.github.io/) shell.
 
 Ubuntu
 
@@ -215,7 +209,7 @@ sudo apt-get install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev lib
 Examples
 --------
 
-Complete with +60 code examples!
+Complete with +50 code examples!
 
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
