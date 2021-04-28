@@ -28,6 +28,9 @@ TRANSLATOR:
       # - { target: "^GenImageFontAtlas$", tips: [sref, ref, sref, sref, sref, sref] }
 
       # defaults
+      - { target: "^LoadImageFromMemory$", self: ref, tips: [sref, arr, sref, sref, sref, sref, sref, sref, sref] }
+      - { target: "^LoadFontFromMemory$", self: ref, tips: [sref, arr, sref, sref, sref, sref, sref, sref, sref] }
+      - { target: "^LoadWaveFromMemory$", self: ref, tips: [sref, arr, sref, sref, sref, sref, sref, sref, sref] }
       - { target: ".", self: ref, tips: [sref, sref, sref, sref, sref, sref, sref, sref, sref] }
   Rules:
     global:
