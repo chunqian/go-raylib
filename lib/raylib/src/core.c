@@ -478,9 +478,10 @@ static CoreData CORE = { 0 };               // Global CORE state context
 static char **dirFilesPath = NULL;          // Store directory files paths as strings
 static int dirFilesCount = 0;               // Count directory files strings
 
-#if defined(SUPPORT_SCREEN_CAPTURE)
+// cforgo
+// #if defined(SUPPORT_SCREEN_CAPTURE)
 static int screenshotCounter = 0;           // Screenshots counter
-#endif
+// #endif
 
 #if defined(SUPPORT_GIF_RECORDING)
 static int gifFramesCounter = 0;            // GIF frames counter
@@ -4629,9 +4630,11 @@ static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, i
                 TRACELOG(LOG_INFO, "SYSTEM: Start animated GIF recording: %s", TextFormat("screenrec%03i.gif", screenshotCounter));
             }
         }
-        else
+        // cforgo
+        // else
 #endif  // SUPPORT_GIF_RECORDING
 #if defined(SUPPORT_SCREEN_CAPTURE)
+        else
         {
             TakeScreenshot(TextFormat("screenshot%03i.png", screenshotCounter));
             screenshotCounter++;
