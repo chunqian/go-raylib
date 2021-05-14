@@ -4,6 +4,13 @@ gen:
 	../c-for-go/c-for-go -out . raylib.yml
 	../c-for-go/c-for-go -out . physac.yml
 
+raygui:
+	# raygui
+	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
+	rm -f raygui/doc.go raygui/types.go raygui/const.go
+	rm -f raygui/raygui.go
+	../c-for-go/c-for-go -out . raygui.yml
+
 clean:
 	# raylib
 	rm -f raylib/cgo_helpers.go raylib/cgo_helpers.h raylib/cgo_helpers.c
