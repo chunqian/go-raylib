@@ -41,6 +41,9 @@ test:
 	go build -o examples/bin/core_window_letterbox examples/core/window_letterbox/window_letterbox.go
 	go build -o examples/bin/core_world_screen examples/core/world_screen/world_screen.go
 
+	go build -o examples/bin/gui_controls_test_suite examples/gui/controls_test_suite/controls_test_suite.go
+	go build -o examples/bin/gui_scroll_panel examples/gui/scroll_panel/scroll_panel.go
+
 	go build -o examples/bin/models_animation examples/models/animation/animation.go
 	go build -o examples/bin/models_billboard examples/models/billboard/billboard.go
 	go build -o examples/bin/models_box_collisions examples/models/box_collisions/box_collisions.go
@@ -106,6 +109,9 @@ testwin:
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/core_vr_simulator.exe examples/core/vr_simulator/vr_simulator.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/core_window_letterbox.exe examples/core/window_letterbox/window_letterbox.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/core_world_screen.exe examples/core/world_screen/world_screen.go
+
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/gui_controls_test_suite.exe examples/gui/controls_test_suite/controls_test_suite.go
+	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/gui_scroll_panel.exe examples/gui/scroll_panel/scroll_panel.go
 
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_animation.exe examples/models/animation/animation.go
 	CGO_ENABLED=1 GOOS=windows GOARCH=386 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go build -o examples/bin/models_billboard.exe examples/models/billboard/billboard.go
