@@ -9,6 +9,8 @@ Header     | Supported          |
 raylib.h   | :heavy_check_mark: |
 raymath.h  | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
+raygui.h   | :heavy_check_mark: |
+ricons.h   | :heavy_check_mark: |
 
 ### Platforms
 
@@ -209,7 +211,7 @@ sudo apt-get install libasound2-dev mesa-common-dev libx11-dev libxrandr-dev lib
 Examples
 --------
 
-Complete with +50 code examples!
+Complete with +60 code examples!
 
 Category   | Example                | Supported          |
 ---------  | ---------------------- | ------------------ |
@@ -237,6 +239,8 @@ core       | storage_values         | :heavy_check_mark: |
 core       | vr_simulator           | :heavy_check_mark: |
 core       | window_letterbox       | :heavy_check_mark: |
 core       | world_screen           | :heavy_check_mark: |
+gui        | controls_test_suite    | :heavy_check_mark: |
+gui        | scroll_panel           | :heavy_check_mark: |
 models     | animation              | :heavy_check_mark: |
 models     | billboard              | :heavy_check_mark: |
 models     | box_collisions         | :heavy_check_mark: |
