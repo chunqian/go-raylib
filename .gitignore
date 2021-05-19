@@ -20,3 +20,5 @@ Thumbs.db
 *.DS_Store
 
 *.old
+raygui/
+lib/
