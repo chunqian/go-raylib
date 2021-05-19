@@ -22,7 +22,7 @@ Windows    | :heavy_check_mark: |
 
 ### Version
 
-go-raylib binding [raylib](https://github.com/raysan5/raylib) C 3.5 release version
+go-raylib binding [raylib](https://github.com/raysan5/raylib) C 3.7 release version
 
 ### Performance
 
@@ -116,6 +116,7 @@ In C
 Texture2D texture = LoadTexture("resources/cubicmap_atlas.png");
 model.materials[0].maps[MAP_DIFFUSE].texture = texture;
 ```
+
 In Go
 
 ```go
@@ -188,6 +189,16 @@ set CGO_ENABLED=1
 set GOARCH=386
 go mod init github.com/chunqian/go-raylib-example
 go build
+```
+
+Other
+--------
+
+Raylib 3.5
+
+```bash
+go get -u github.com/chunqian/go-raylib@3.5
+
 ```
 
 Require
