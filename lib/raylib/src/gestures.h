@@ -90,7 +90,7 @@
 
 typedef enum { TOUCH_UP, TOUCH_DOWN, TOUCH_MOVE } TouchAction;
 
-// Gesture events
+// Gesture event
 // NOTE: MAX_TOUCH_POINTS fixed to 4
 typedef struct {
     int touchAction;
@@ -115,7 +115,7 @@ void ProcessGestureEvent(GestureEvent event);           // Process gesture event
 void UpdateGestures(void);                              // Update gestures detected (must be called every frame)
 
 #if defined(GESTURES_STANDALONE)
-void SetGesturesEnabled(unsigned int gestureFlags);     // Enable a set of gestures using flags
+void SetGesturesEnabled(unsigned int flags);     // Enable a set of gestures using flags
 bool IsGestureDetected(int gesture);                    // Check if a gesture have been detected
 int GetGestureDetected(void);                           // Get latest detected gesture
 int GetTouchPointsCount(void);                          // Get touch points count
@@ -142,9 +142,8 @@ float GetGesturePinchAngle(void);                       // Get gesture pinch ang
 
 #if defined(_WIN32)
     // Functions required to query time on Windows
-    #include <profileapi.h>
-    // int __stdcall QueryPerformanceCounter(unsigned long long int *lpPerformanceCount);
-    // int __stdcall QueryPerformanceFrequency(unsigned long long int *lpFrequency);
+    int __stdcall QueryPerformanceCounter(unsigned long long int *lpPerformanceCount);
+    int __stdcall QueryPerformanceFrequency(unsigned long long int *lpFrequency);
 #elif defined(__linux__)
     #if _POSIX_C_SOURCE < 199309L
         #undef _POSIX_C_SOURCE
@@ -235,9 +234,9 @@ static double GetCurrentTime(void);
 //----------------------------------------------------------------------------------
 
 // Enable only desired getures to be detected
-void SetGesturesEnabled(unsigned int gestureFlags)
+void SetGesturesEnabled(unsigned int flags)
 {
-    GESTURES.enabledFlags = gestureFlags;
+    GESTURES.enabledFlags = flags;
 }
 
 // Check if a gesture have been detected
@@ -523,8 +522,8 @@ static double GetCurrentTime(void)
 #if defined(_WIN32)
     unsigned long long int clockFrequency, currentTime;
 
-    QueryPerformanceFrequency((LARGE_INTEGER *)&clockFrequency);     // BE CAREFUL: Costly operation!
-    QueryPerformanceCounter((LARGE_INTEGER *)&currentTime);
+    QueryPerformanceFrequency(&clockFrequency);     // BE CAREFUL: Costly operation!
+    QueryPerformanceCounter(&currentTime);
 
     time = (double)currentTime/clockFrequency*1000.0f;  // Time in miliseconds
 #endif

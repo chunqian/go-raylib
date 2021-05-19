@@ -18,6 +18,7 @@
 #include "raylib.h"
 
 #define RAYGUI_IMPLEMENTATION
+#define RAYGUI_SUPPORT_ICONS
 #include "../../src/raygui.h"
 
 //------------------------------------------------------------------------------------
@@ -79,9 +80,9 @@ int main()
 
             ClearBackground(RAYWHITE);
 
-            exitWindow = GuiWindowBox((Rectangle){ 0, 0, screenWidth, screenHeight }, "PORTABLE WINDOW");
+            exitWindow = GuiWindowBox((Rectangle){ 0, 0, screenWidth, screenHeight }, "#198# PORTABLE WINDOW");
             
-            DrawText(FormatText("Mouse Position: [ %.0f, %.0f ]", mousePosition.x, mousePosition.y), 10, 40, 10, DARKGRAY);
+            DrawText(TextFormat("Mouse Position: [ %.0f, %.0f ]", mousePosition.x, mousePosition.y), 10, 40, 10, DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

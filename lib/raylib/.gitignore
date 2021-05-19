@@ -55,8 +55,6 @@ packages/
 
 # Ignore all examples files
 examples/*
-# Unignore all examples dirs
-!examples/*/
 # Unignore all examples files with extension
 !examples/*.c
 !examples/*.png
@@ -82,7 +80,7 @@ DerivedData/
 
 # Jetbrains project
 .idea/
-cmake-build-debug/
+cmake-build-*/
 
 # CMake stuff
 CMakeCache.txt
@@ -102,6 +100,3 @@ build
 GPATH
 GRTAGS
 GTAGS
-
-# Unignore These compiled binaries
-!plat/**/*.a

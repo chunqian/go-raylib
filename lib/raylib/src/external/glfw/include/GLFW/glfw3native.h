@@ -92,10 +92,9 @@ extern "C" {
 // @raysan5: Actually, only HWND handler needs to be defined
 // Including windows.h could suppose symbols re-definition issues (i.e Rectangle type)
 //#include <windows.h>
-// cforgo
- // typedef void *PVOID;
- // typedef PVOID HANDLE;
- // typedef HANDLE HWND;
+ typedef void *PVOID;
+ typedef PVOID HANDLE;
+ typedef HANDLE HWND;
 #elif defined(GLFW_EXPOSE_NATIVE_COCOA) || defined(GLFW_EXPOSE_NATIVE_NSGL)
  #include <ApplicationServices/ApplicationServices.h>
  #if defined(__OBJC__)
@@ -175,8 +174,7 @@ GLFWAPI const char* glfwGetWin32Monitor(GLFWmonitor* monitor);
  *
  *  @ingroup native
  */
-// cforgo
-GLFWAPI void * glfwGetWin32Window(GLFWwindow* window);
+GLFWAPI HWND glfwGetWin32Window(GLFWwindow* window);
 #endif
 
 #if defined(GLFW_EXPOSE_NATIVE_WGL)

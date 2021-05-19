@@ -71,7 +71,7 @@ int main(void)
         // Sample mouse input.
         mousePosition = GetMousePosition();
 
-        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             float fp = (float)(mousePosition.y);
             frequency = 40.0f + (float)(fp);
@@ -140,8 +140,8 @@ int main(void)
             // Draw the current buffer state proportionate to the screen
             for (int i = 0; i < screenWidth; i++)
             {
-                position.x = i;
-                position.y = 250 + 50*data[i*MAX_SAMPLES/screenWidth]/32000;
+                position.x = (float)i;
+                position.y = 250 + 50*data[i*MAX_SAMPLES/screenWidth]/32000.0f;
 
                 DrawPixelV(position, RED);
             }
