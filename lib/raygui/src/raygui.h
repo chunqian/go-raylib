@@ -127,6 +127,7 @@
 *     3. This notice may not be removed or altered from any source distribution.
 *
 **********************************************************************************************/
+#pragma once // cforgo
 
 #ifndef RAYGUI_H
 #define RAYGUI_H
@@ -134,7 +135,7 @@
 #define RAYGUI_VERSION  "2.9-dev"
 
 #if !defined(RAYGUI_STANDALONE)
-    #include "raylib.h"
+    #include "../../raylib/src/raylib.h" // cforgo
 #endif
 
 // Define functions scope to be used internally (static) or externally (extern) to the module including this file
@@ -145,13 +146,16 @@
     #elif defined(USE_LIBTYPE_SHARED)
         #define RAYGUIDEF __declspec(dllimport)     // We are using raygui as a Win32 shared library (.dll)
     #else
-        #define RAYGUIDEF   // We are building or using raygui as a static library
+        // cforgo
+        #define RAYGUIDEF static   // We are building or using raygui as a static library
     #endif
 #else
-    #define RAYGUIDEF       // We are building or using raygui as a static library (or Linux shared library)
+    // cforgo
+    #define RAYGUIDEF static       // We are building or using raygui as a static library (or Linux shared library)
 #endif
 
 #if !defined(RAYGUI_MALLOC) && !defined(RAYGUI_CALLOC) && !defined(RAYGUI_FREE)
+    #include <stdint.h> // cforgo
     #include <stdlib.h>                 // Required for: malloc(), calloc(), free()
 #endif
 
@@ -482,7 +486,14 @@ RAYGUIDEF void UnloadGuiStyle(GuiStyle style);                  // Unload style
 
 RAYGUIDEF const char *GuiIconText(int iconId, const char *text); // Get text with icon id prepended (if supported)
 
+// cforgo
+RAYGUIDEF Color GuiColorPanelEx(Rectangle bounds, Color color, float hue);
+RAYGUIDEF float GuiSliderPro(Rectangle bounds, const char *textLeft, const char *textRight, float value, float minValue, float maxValue, int sliderWidth);
+
 #if defined(RAYGUI_SUPPORT_ICONS)
+// cforgo
+RAYGUIDEF char **GuiLoadIcons(const char *fileName, bool loadIconsName);
+
 // Gui icons functionality
 RAYGUIDEF void GuiDrawIcon(int iconId, Vector2 position, int pixelSize, Color color);
 

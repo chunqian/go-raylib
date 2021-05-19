@@ -94,6 +94,8 @@ TRANSLATOR:
       # - { action: accept, from: ^Font }
       - { action: accept, from: ^Gui }
       # - { action: accept, from: ^MultiText$ }
+      # - { action: ignore, from: ^TextureFilter$ }
+      # - { action: ignore, from: ^TextureWrap$ }
 
       # ricons
       - { action: accept, from: ^guiIconName$ }

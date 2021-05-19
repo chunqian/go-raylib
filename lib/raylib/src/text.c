@@ -494,7 +494,8 @@ Font LoadFontFromMemory(const char *fileType, const unsigned char *fileData, int
         font.baseSize = fontSize;
         font.charsCount = (charsCount > 0)? charsCount : 95;
         font.charsPadding = 0;
-        font.chars = LoadFontData(fileData, dataSize, font.baseSize, fontChars, font.charsCount, FONT_DEFAULT);
+        // cforgo
+        font.chars = LoadFontData((unsigned char *)fileData, dataSize, font.baseSize, fontChars, font.charsCount, FONT_DEFAULT);
 
         if (font.chars != NULL)
         {
@@ -523,7 +524,9 @@ Font LoadFontFromMemory(const char *fileType, const unsigned char *fileData, int
 
 // Load font data for further use
 // NOTE: Requires TTF font memory data and can generate SDF data
-CharInfo *LoadFontData(const unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount, int type)
+// cforgo
+CharInfo *LoadFontData(unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount, int type)
+// CharInfo *LoadFontData(const unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount, int type)
 {
     // NOTE: Using some SDF generation default values,
     // trades off precision with ability to handle *smaller* sizes

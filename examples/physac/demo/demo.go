@@ -23,7 +23,6 @@ func main() {
 
 	logoX := screenWidth - rl.MeasureText("Physac", 30) - 10
 	logoY := int32(15)
-	needsReset := false
 
 	phys.InitPhysics()
 
@@ -46,9 +45,12 @@ func main() {
 
 	for !rl.WindowShouldClose() {
 
-		phys.RunPhysicsStep()
+		phys.UpdatePhysics()
 
-		if needsReset {
+		if rl.IsKeyPressed(int32(rl.KEY_R)) {
+
+			phys.ResetPhysics()
+
 			floor = phys.CreatePhysicsBodyRectangle(
 				phys.NewVector2(float32(screenWidth/2), float32(screenHeight)),
 				500,
@@ -63,17 +65,10 @@ func main() {
 				10,
 			)
 			circle.Enabled = false
-
-			needsReset = false
-		}
-
-		if rl.IsKeyPressed(int32(rl.KEY_R)) {
-			phys.ResetPhysics()
-			needsReset = true
 		}
 
 		var pos rl.Vector2
-		if rl.IsMouseButtonPressed(int32(rl.MOUSE_LEFT_BUTTON)) {
+		if rl.IsMouseButtonPressed(int32(rl.MOUSE_BUTTON_LEFT)) {
 			pos = rl.GetMousePosition()
 
 			phys.CreatePhysicsBodyPolygon(
@@ -82,7 +77,7 @@ func main() {
 				rl.GetRandomValue(3, 8),
 				10,
 			)
-		} else if rl.IsMouseButtonPressed(int32(rl.MOUSE_RIGHT_BUTTON)) {
+		} else if rl.IsMouseButtonPressed(int32(rl.MOUSE_BUTTON_RIGHT)) {
 			pos = rl.GetMousePosition()
 
 			phys.CreatePhysicsBodyCircle(

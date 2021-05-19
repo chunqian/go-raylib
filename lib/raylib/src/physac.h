@@ -75,9 +75,14 @@
 *     3. This notice may not be removed or altered from any source distribution.
 *
 **********************************************************************************************/
+#pragma once // cforgo
 
 #if !defined(PHYSAC_H)
 #define PHYSAC_H
+
+#if !defined(PHYSAC_STANDALONE)
+    #include "raylib.h" // cforgo
+#endif
 
 #if defined(PHYSAC_STATIC)
     #define PHYSACDEF static            // Functions just visible to module including this file
@@ -124,8 +129,8 @@
 
 typedef enum PhysicsShapeType { PHYSICS_CIRCLE = 0, PHYSICS_POLYGON } PhysicsShapeType;
 
-// Previously defined to be used in PhysicsShape struct as circular dependencies
-typedef struct PhysicsBodyData *PhysicsBody;
+// // Previously defined to be used in PhysicsShape struct as circular dependencies
+// typedef struct PhysicsBodyData *PhysicsBody;
 
 #if defined(PHYSAC_DEFINE_VECTOR2_TYPE)
 // Vector2 type
@@ -151,7 +156,8 @@ typedef struct PhysicsVertexData {
 
 typedef struct PhysicsShape {
     PhysicsShapeType type;                      // Shape type (circle or polygon)
-    PhysicsBody body;                           // Shape physics body data pointer
+    // PhysicsBody body;                           // Shape physics body data pointer
+    struct PhysicsBodyData *body; // cforgo
     PhysicsVertexData vertexData;               // Shape vertices data (used for polygon shapes)
     float radius;                               // Shape radius (used for circle shapes)
     Matrix2x2 transform;                        // Vertices transform matrix 2x2
@@ -181,8 +187,10 @@ typedef struct PhysicsBodyData {
 
 typedef struct PhysicsManifoldData {
     unsigned int id;                            // Unique identifier
-    PhysicsBody bodyA;                          // Manifold first physics body reference
-    PhysicsBody bodyB;                          // Manifold second physics body reference
+    // PhysicsBody bodyA;                          // Manifold first physics body reference
+    // PhysicsBody bodyB;                          // Manifold second physics body reference
+    struct PhysicsBodyData *bodyA; // cforgo
+    struct PhysicsBodyData *bodyB; // cforgo
     float penetration;                          // Depth of penetration from collision
     Vector2 normal;                             // Normal direction vector from 'a' to 'b'
     Vector2 contacts[2];                        // Points of contact during collision
@@ -191,6 +199,10 @@ typedef struct PhysicsManifoldData {
     float dynamicFriction;                      // Mixed dynamic friction during collision
     float staticFriction;                       // Mixed static friction during collision
 } PhysicsManifoldData, *PhysicsManifold;
+
+// cforgo
+// Previously defined to be used in PhysicsShape struct as circular dependencies
+typedef struct PhysicsBodyData *PhysicsBody;
 
 #if defined(__cplusplus)
 extern "C" {                                    // Prevents name mangling of functions

@@ -1417,6 +1417,18 @@ void _glfwPlatformPollEvents(void)
             break;
 
         [NSApp sendEvent:event];
+
+        // cforgo
+        // fix raylib trackpad click.
+        NSEventType eventType = [event type];
+        if ((eventType == NSLeftMouseDown ||
+            eventType == NSLeftMouseUp ||
+            eventType == NSRightMouseDown ||
+            eventType == NSRightMouseUp) && [event subtype] == NSEventSubtypeTouch)
+        {
+            // NSLog(@"eventType: %lu", eventType);
+            break;
+        }
     }
 
     } // autoreleasepool

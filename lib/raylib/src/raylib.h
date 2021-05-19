@@ -430,11 +430,13 @@ typedef struct rAudioBuffer rAudioBuffer;
 // Audio stream type
 // NOTE: Useful to create custom audio streams not bound to a specific file
 typedef struct AudioStream {
-    rAudioBuffer *buffer;           // Pointer to internal data used by the audio system
+    // rAudioBuffer *buffer;           // Pointer to internal data used by the audio system
 
     unsigned int sampleRate;        // Frequency (samples per second)
     unsigned int sampleSize;        // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
     unsigned int channels;          // Number of channels (1-mono, 2-stereo)
+    // cforgo
+    rAudioBuffer *buffer;           // Pointer to internal data used by the audio system
 } AudioStream;
 
 // Sound source type
@@ -479,6 +481,11 @@ typedef struct VrStereoConfig {
     float scale[2];                 // VR distortion scale
     float scaleIn[2];               // VR distortion scale in
 } VrStereoConfig;
+
+// cforgo
+typedef struct MultiText {
+    const char **text;
+} MultiText;
 
 //----------------------------------------------------------------------------------
 // Enumerators Definition
@@ -1320,7 +1327,9 @@ RLAPI Font LoadFont(const char *fileName);                                      
 RLAPI Font LoadFontEx(const char *fileName, int fontSize, int *fontChars, int charsCount);  // Load font from file with extended parameters
 RLAPI Font LoadFontFromImage(Image image, Color key, int firstChar);                        // Load font from Image (XNA style)
 RLAPI Font LoadFontFromMemory(const char *fileType, const unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount); // Load font from memory buffer, fileType refers to extension: i.e. ".ttf"
-RLAPI CharInfo *LoadFontData(const unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount, int type);      // Load font data for further use
+// cforgo
+RLAPI CharInfo *LoadFontData(unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount, int type);      // Load font data for further use
+// RLAPI CharInfo *LoadFontData(const unsigned char *fileData, int dataSize, int fontSize, int *fontChars, int charsCount, int type);      // Load font data for further use
 RLAPI Image GenImageFontAtlas(const CharInfo *chars, Rectangle **recs, int charsCount, int fontSize, int padding, int packMethod);      // Generate image font atlas using chars info
 RLAPI void UnloadFontData(CharInfo *chars, int charsCount);                                 // Unload font chars info data (RAM)
 RLAPI void UnloadFont(Font font);                                                           // Unload Font from GPU memory (VRAM)
