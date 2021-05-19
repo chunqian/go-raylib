@@ -22,7 +22,21 @@ Windows    | :heavy_check_mark: |
 
 ### Version
 
-go-raylib binding [raylib](https://github.com/raysan5/raylib) C 3.7 release version
+go-raylib binding [raylib](https://github.com/raysan5/raylib) C release version
+
+raylib 3.5
+
+```bash
+go get -u github.com/chunqian/go-raylib@3.5
+
+```
+
+raylib 3.7
+
+```bash
+go get -u github.com/chunqian/go-raylib@3.7
+
+```
 
 ### Performance
 
@@ -189,16 +203,6 @@ set CGO_ENABLED=1
 set GOARCH=386
 go mod init github.com/chunqian/go-raylib-example
 go build
-```
-
-Other
---------
-
-Raylib 3.5
-
-```bash
-go get -u github.com/chunqian/go-raylib@3.5
-
 ```
 
 Require
