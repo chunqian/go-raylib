@@ -28,14 +28,12 @@ raylib 3.5
 
 ```bash
 go get -u github.com/chunqian/go-raylib@3.5
-
 ```
 
 raylib 3.7
 
 ```bash
 go get -u github.com/chunqian/go-raylib@3.7
-
 ```
 
 ### Performance
