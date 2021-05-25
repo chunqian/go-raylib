@@ -129,7 +129,7 @@ Usage
 #### Step 1: Get the go-raylib code
 
 ```bash
-go get -u github.com/chunqian/go-raylib
+go get -u github.com/chunqian/go-raylib/raylib
 ```
 
 #### Step 2: Write the code
