@@ -78,7 +78,7 @@ char multiTextBoxText[256] = "Multi text box";
 In Go
 
 ```go
-multiTextBoxText := rg.NewBytes("Multi text box", 256)
+multiTextBoxText := rl.NewBytes("Multi text box", 256)
 ```
 
 In C
@@ -90,7 +90,7 @@ const char *listViewExList[8] = { "This", "is", "a", "list view", "with", "disab
 In Go
 
 ```go
-listViewExList, mem := rg.AllocMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
+listViewExList, mem := rl.AllocMultiText([]string{"This", "is", "a", "list view", "with", "disable", "elements", "amazing!"})
 listViewExList.GC(mem)
 ```
 
