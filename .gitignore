@@ -21,4 +21,6 @@ Thumbs.db
 
 *.bak
 raygui/
-lib/raylib
+lib/raylib/
+lib/raygui/
+lib/rres/
