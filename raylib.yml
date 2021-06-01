@@ -6,6 +6,7 @@ GENERATOR:
   Includes:
     - ../lib/raylib/src/raylib.h
     - ../lib/raylib/src/raymath.h
+    - ../lib/raylib/src/easings.h
   Options:
     SafeStrings: true
     StructAccessors: true
@@ -17,6 +18,7 @@ PARSER:
   SourcesPaths:
     - lib/raylib/src/raylib.h
     - lib/raylib/src/raymath.h
+    - lib/raylib/src/easings.h
 
 TRANSLATOR:
   ConstRules:
@@ -638,6 +640,9 @@ TRANSLATOR:
       - { action: accept, from: ^QuaternionFromEuler$ }
       - { action: accept, from: ^QuaternionToEuler$ }
       - { action: accept, from: ^QuaternionTransform$ }
+
+      # easings
+      - { action: accept, from: ^Ease }
 
       - { action: ignore, from: __ }
     type:

@@ -17,6 +17,8 @@ PARSER:
   SourcesPaths:
     - lib/raygui/src/raygui.h
     - lib/raygui/src/ricons.h
+  Defines:
+    RAYGUI_SUPPORT_ICONS: 1
 
 TRANSLATOR:
   ConstRules:

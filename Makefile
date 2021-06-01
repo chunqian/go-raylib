@@ -1,30 +1,28 @@
 all: gen
 
 gen:
-	../c-for-go/c-for-go -out . raylib.yml
-	../c-for-go/c-for-go -out . physac.yml
-	../c-for-go/c-for-go -out . raygui.yml
-
-raygui:
-	# raygui
-	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
-	rm -f raygui/doc.go raygui/types.go raygui/const.go
-	rm -f raygui/raygui.go
-	../c-for-go/c-for-go -out . raygui.yml
+# 	../c-for-go/c-for-go -out . raylib.yml
+# 	../c-for-go/c-for-go -out . physac.yml
+# 	../c-for-go/c-for-go -out . raygui.yml
+	../c-for-go/c-for-go -out . rres.yml
 
 clean:
-	# raylib
-	rm -f raylib/cgo_helpers.go raylib/cgo_helpers.h raylib/cgo_helpers.c
-	rm -f raylib/doc.go raylib/types.go raylib/const.go
-	rm -f raylib/raylib.go
-	# physac
-	rm -f physac/cgo_helpers.go physac/cgo_helpers.h physac/cgo_helpers.c
-	rm -f physac/doc.go physac/types.go physac/const.go
-	rm -f physac/physac.go
-	# raygui
-	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
-	rm -f raygui/doc.go raygui/types.go raygui/const.go
-	rm -f raygui/raygui.go
+# 	# raylib
+# 	rm -f raylib/cgo_helpers.go raylib/cgo_helpers.h raylib/cgo_helpers.c
+# 	rm -f raylib/doc.go raylib/types.go raylib/const.go
+# 	rm -f raylib/raylib.go
+# 	# physac
+# 	rm -f physac/cgo_helpers.go physac/cgo_helpers.h physac/cgo_helpers.c
+# 	rm -f physac/doc.go physac/types.go physac/const.go
+# 	rm -f physac/physac.go
+# 	# raygui
+# 	rm -f raygui/cgo_helpers.go raygui/cgo_helpers.h raygui/cgo_helpers.c
+# 	rm -f raygui/doc.go raygui/types.go raygui/const.go
+# 	rm -f raygui/raygui.go
+	# rres
+	rm -f rres/cgo_helpers.go rres/cgo_helpers.h rres/cgo_helpers.c
+	rm -f rres/doc.go rres/types.go rres/const.go
+	rm -f rres/rres.go
 
 test:
 	go build -o examples/bin/audio_module_playing examples/audio/module_playing/module_playing.go

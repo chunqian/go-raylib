@@ -11,6 +11,8 @@ raymath.h  | :heavy_check_mark: |
 physac.h   | :heavy_check_mark: |
 raygui.h   | :heavy_check_mark: |
 ricons.h   | :heavy_check_mark: |
+easings.h  | :heavy_check_mark: |
+rres.h     | :heavy_check_mark: |
 
 ### Platforms
 
