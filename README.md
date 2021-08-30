@@ -34,11 +34,13 @@ High performance, same with the raylib C version.
 
 I use [sublime text](https://www.sublimetext.com) and customize tools.
 
+[sublime-debugger](https://github.com/chunqian/Debugger) graphical debugger for sublime text.
+
 [c-for-go](https://github.com/chunqian/c-for-go) automatic C-Go bindings generator for raylib C version.
 
 [LSP](https://github.com/chunqian/LSP) use [mistune](https://github.com/lepture/mistune) instead [mdpopups](https://github.com/facelessuser/sublime-markdown-popups).
 
-[language-formatter](https://github.com/chunqian/Language-Formatter) general code format tool.
+[language-formatter](https://github.com/chunqian/Formatter) general code format tool.
 
 [gopls](https://github.com/chunqian/golang-tools) fix go-raylib code autocomplete slow.
 
