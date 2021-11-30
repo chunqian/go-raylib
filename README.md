@@ -42,8 +42,6 @@ I use [sublime text](https://www.sublimetext.com) and customize tools.
 
 [language-formatter](https://github.com/chunqian/Formatter) general code format tool.
 
-[gopls](https://github.com/chunqian/golang-tools) fix go-raylib code autocomplete slow.
-
 [Theme-Mariana](https://github.com/chunqian/Theme-Mariana) general color scheme.
 
 Memory
