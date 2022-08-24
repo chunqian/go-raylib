@@ -30,20 +30,6 @@ go-raylib binding [raylib](https://github.com/raysan5/raylib) C 3.5 release vers
 
 High performance, same with the raylib C version.
 
-### Development Tools
-
-I use [sublime text](https://www.sublimetext.com) and customize tools.
-
-[sublime-debugger](https://github.com/chunqian/Debugger) graphical debugger for sublime text.
-
-[c-for-go](https://github.com/chunqian/c-for-go) automatic C-Go bindings generator for raylib C version.
-
-[LSP](https://github.com/chunqian/LSP) use [mistune](https://github.com/lepture/mistune) instead [mdpopups](https://github.com/facelessuser/sublime-markdown-popups).
-
-[language-formatter](https://github.com/chunqian/Formatter) general code format tool.
-
-[Theme-Mariana](https://github.com/chunqian/Theme-Mariana) general color scheme.
-
 Memory
 ------
 
